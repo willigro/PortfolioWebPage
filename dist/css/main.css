@@ -1,0 +1,38 @@
+.page {
+    background-color: #1d1c1c;
+    color: aliceblue;
+}
+
+.menu {
+    margin: 3% auto;
+}
+
+.menu ul li {
+    list-style: none;
+    margin: 0 auto;
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    text-align: center;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: aliceblue;
+    font-size: 18px;
+}
+
+.menu ul li a:hover {
+    text-decoration: none;
+    color: blueviolet;
+    text-decoration-line: underline;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.header-title {
+    text-align: center;
+}
