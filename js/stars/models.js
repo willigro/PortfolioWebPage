@@ -1,119 +1,177 @@
-var ctx
-var delay = 1000 / 30
-var maxWidth = window.innerWidth
-var maxHeight = window.innerHeight
-var maxDistanceToCenter = 0
+class Asteroid {
+    constructor() {
+        this.start()
+    }
 
-var stars = []
+    start() {
+        this.x = this.generatePosition(maxWidth)
+        this.y = this.generatePosition(maxHeight)
+        this.horizontal = 1
+        this.vertical = 1
+        this.size = 15
+        this.velocity = Math.random() * 5 * asteroidVelFactor
+        if (this.velocity < 3) this.velocity = 3
+    }
 
-const centerX = maxWidth / 2
-const centerY = maxHeight / 2
-
-const MAX_VEL = 3
-const MIN_VEL = 1
-const ACELARATION = .1
-
-const TURNS_TO_GO_TO_CENTER = 25
-const STAR_MAX_SIZE = 1.7
-const CLOSE_TO_WALL = 10
-const TO_CLOSE = 100
-const START_COUNT = 2000
-const MAX_RADIUS = 100000
-
-const COLOR_BACKGROUND = "black"
-const COLOR_STAR_WHITE = "white"
-const COLOR_STAR_ORANGE = "#FC9601"
-const COLOR_STAR_YELLOW = "#FFCC33"
-const COLOR_STAR_RED = "#D14009"
-const COLOR_STAR_BLUE = "#210bc3"
-
-const MOVE_STATUS_RUN_AWAY = 1
-const MOVE_STATUS_STOPING = 2
-const MOVE_STATUS_TO_CENTER = 3
-
-var _blackHole;
-
-window.onload = function() {
-    var canvas = document.getElementById("canvas")
-    canvas.width = maxWidth
-    canvas.height = maxHeight
-    ctx = canvas.getContext("2d")
-    configure()
-    init()
-}
-
-function onMouseMove(event) {
-    const x = event.pageX
-    const y = event.pageY
-    for (var i = 0; i < stars.length; i++) {
-        const s = stars[i]
-        if (s.distance(x, y) > TO_CLOSE) {
-            s.stop()
-        } else {
-            s.runAway(x, y)
+    generatePosition(max) {
+        const r = randomMin(50, max)
+        if (Math.random() > .5) {
+            return 0 - r
         }
+        return max + r
+    }
+
+    moveTo(target) {
+
+        const dx = target.x - this.x
+        const dy = target.y - this.y
+
+        const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+        this.x += this.velocity * Math.cos(angle / 180 * Math.PI)
+        this.y += this.velocity * Math.sin(angle / 180 * Math.PI)
+    }
+
+    handleHit(shot) {
+        if (intersect(shot, this)) {
+            this.destroy()
+            actualPoints++
+            updateActualPoints()
+            return true
+        }
+        return false
+    }
+
+    destroy() {
+        this.start()
+    }
+
+    draw() {
+        if (this.destroyed) return
+
+        ctx.fillStyle = "white"
+        ctx.fillRect(this.x, this.y, this.size, this.size)
     }
 }
 
-function OnMouseDown(event) {
-    if (!_blackHole) return
-    _blackHole.x = event.pageX
-    _blackHole.y = event.pageY
-}
+class Shot {
+    constructor(x, y, toX, toY) {
+        this.x = x
+        this.y = y
 
-function init() {
-    setInterval(function() {
-        drawBackground();
-        _blackHole.draw()
-        for (let s of stars) {
-            s.update()
-        }
+        this.velocity = 7
+        this.size = 4
 
-    }, delay);
-}
+        const dx = toX - this.x
+        const dy = toY - this.y
 
-function configure() {
-    _blackHole = new BlackHole()
-    for (var i = 0; i < START_COUNT; i++) {
-        stars.push(new Star(random(maxWidth), random(maxHeight), i))
-            // stars.push(new Star(centerX + 100, centerY + 3))
+        const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+        this.velX = this.velocity * Math.cos(angle / 180 * Math.PI)
+        this.velY = this.velocity * Math.sin(angle / 180 * Math.PI)
     }
 
-    maxDistanceToCenter = distance(0, 0, centerX, centerY)
+    move() {
+        this.x += this.velX
+        this.y += this.velY
+
+        if (this.x < 0 || this.x > maxWidth || this.y < 0 || this.y > maxHeight) {
+            this.destroy()
+        }
+    }
+
+    destroy() {
+        let index = _shots.indexOf(this);
+        if (index !== -1) {
+            _shots.splice(index, 1);
+        }
+    }
+
+    draw() {
+        ctx.fillStyle = "blue"
+        ctx.fillRect(this.x, this.y, this.size, this.size)
+    }
 }
 
-function drawBackground() {
-    ctx.clearRect(0, 0, maxWidth, maxHeight)
-    ctx.fillStyle = COLOR_BACKGROUND
-    ctx.fillRect(0, 0, maxWidth, maxHeight)
-}
+class Ship {
+    constructor() {
+        this.velocity = 5
+        this.size = 5
+        this.timeToNewShot = 15
+        this.currentShotTime = 0
+        this.canShot = true
+        this.start()
+    }
 
-function random(limit) {
-    return Math.floor(Math.random() * limit)
-}
+    start() {
+        this.x = centerX
+        this.y = centerY
+        console.log(this.x, this.y)
+        this.lifePoints = 10
+    }
 
-function randomMin(min, max) {
-    return Math.floor(Math.random() * max) + min
-}
+    update() {
+        if (this.currentShotTime <= 0) {
+            this.currentShotTime = this.timeToNewShot
+            this.canShot = true
+        }
+        this.currentShotTime--;
 
-function randomNotZero(limit) {
-    const r = Math.floor(Math.random() * limit)
-    if (r == 0 && Math.random() > .9) return limit
-    return (r == 0) ? 1 : r
-}
+        this.move()
+    }
 
-function distance(x1, y1, x2, y2) {
-    return Math.sqrt(
-        Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)
-    )
-}
+    move() {
+        // put break
+        for (let keyCode of keysDown) {
+            if (keyCode == 65) // left a
+                this.x -= this.velocity
 
-function percentage(partialValue, totalValue) {
-    return (100 * partialValue) / totalValue
-}
+            if (keyCode == 87) // top w
+                this.y -= this.velocity
 
-function valueFromPercentage(percent, totalValue) {
-    return percent * totalValue / 100
+            if (keyCode == 68) // right d
+                this.x += this.velocity
+
+            if (keyCode == 83) // bottom s
+                this.y += this.velocity
+        }
+
+        // _blackHole.x = this.x
+        // _blackHole.y = this.y
+    }
+
+    shotTo(x, y) {
+        if (this.canShot) {
+            _shots.push(new Shot(this.x, this.y, x, y))
+            this.canShot = false
+        }
+    }
+
+    draw() {
+        ctx.fillStyle = "red"
+        ctx.fillRect(this.x, this.y, this.size, this.size)
+    }
+
+    handleHit(asteroid) {
+        if (intersect(asteroid, this)) {
+
+            asteroid.destroy()
+
+            --this.lifePoints;
+
+            if (this.lifePoints <= 0) {
+                this.die()
+            }
+            updateLifeView()
+        }
+    }
+
+    die() {
+        _blackHole.x = this.x
+        _blackHole.y = this.y
+        this.start()
+        startAsteroids()
+    }
 }
 
 class BlackHole {
@@ -126,7 +184,7 @@ class BlackHole {
     }
 
     draw() {
-        ctx.fillStyle = "rgb(200, 200, 200)"
+        ctx.fillStyle = "rgba(255, 255, 255, 0.1)"
             // ctx.fillRect(this.x, this.y, this.size, this.size)
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
@@ -266,7 +324,6 @@ class Star {
 
         if (percentToCenter < .3) {
             this.insideCenter = true
-            console.log("inside")
         }
 
         this.vel = valueFromPercentage(100 - percentToCenter, MAX_VEL)

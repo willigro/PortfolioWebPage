@@ -46,7 +46,7 @@
   <?php include "./menu.php" ?>
 
   <div class="container">
-    <h1>What's the time?</h1>
+   
   </div>
 </body>
 

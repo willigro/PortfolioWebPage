@@ -2,27 +2,37 @@
 <html lang="en">
 
 <body class="page">
-<div class="container">
-        <nav role="navigation" class="menu">
-            <ul class="row">
-                <div class="three columns">
-                    <h1></h1>
+    <nav id="menu" role="navigation" class="menu">
+        <div class="container">
+            <div class="row">
+                <div class="four columns">
+                    <a href="https://www.linkedin.com/in/willi-rittmann-150b39bb/" target="_blank">
+                        <img class="links-profile-icon" src="dist/images/linkedin-32px.png" alt="Linkedin Profile link">
+                    </a>
+                    <a href="https://github.com/willigro" target="_blank">
+                        <img class="links-profile-icon" src="dist/images/github-32px.png" alt="Github Profile link">
+                    </a>
                 </div>
-                <div class="two columns center">
-                    <li><a href="#" id="menu_index">Me</a></li>
+                <div id="menu-options" class="eight columns">
+                    <div class="row">
+                        <ul style="float: right;">
+                            <li><a href="#" id="menu_home">Me</a></li>
+                            <li><a href="#" id="menu_android">Android</a></li>
+                            <li><a href="#" id="menu_ai">AI</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="menu-option-sections" class="row menu-sections" style="display: none;">
+                        <ul style="float: right;">
+                            <li><a href="#" id="menu-section-my-team">My team</a></li>
+                            <li><a href="#" id="menu-section-skills">Skills</a></li>
+                            <li><a href="#" id="menu-section-resume">Resume</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="two columns center">
-                    <li><a href="#" id="menu_android">Android</a></li>
-                </div>
-                <div class="two columns center">
-                    <li><a href="#" id="menu_ai">AI</a></li>
-                </div>
-                <div class="three columns">
-                    <h1></h1>
-                </div>
-            </ul>
-        </nav>
-    </div>
+            </div>
+        </div>
+    </nav>
 </body>
 
 </html>

@@ -1,15 +1,49 @@
 .page {
-    background-color: #1d1c1c;
+    /* Sizes */
+    --main-avatar-size: 180px;
+    --main-language-icon-size: 24px;
+    /* Background colors */
+    --main-background-color: black;
+    --main-background-color-box: rgb(24, 24, 24);
+    /* Texts color */
+    --main-text-color-light: white;
+    --main-text-color-dark: rgb(24, 24, 24);
+    --main-text-color-dark-secondary: rgb(182, 182, 182);
+    --main-text-color-menu-hover: rgb(175, 19, 247);
+    --main-text-color-menu-selected: rgb(175, 19, 247);
+    --main-text-color-menu-section-hover: rgb(215, 146, 247);
+    --main-text-color-menu-section-selected: rgb(215, 146, 247);
+    --main-text-color-player-hover: rgb(252, 151, 159);
+    /* Texts size */
+    --main-text-size-title: 22px;
+    --main-text-size-subtitle: 19px;
+    --main-text-size-content: 18px;
+    --main-text-size-content-small: 14px;
+    --main-text-size-menu: 18px;
+    --main-text-size-menu-section: 14px;
+    /* Margins */
+    --main-text-margin-bottom-content: .5rem;
+    /* Page attr */
+    background-color: var(--main-background-color);
     color: aliceblue;
 }
 
+.wrap-content {
+    display: inline-block
+}
+
 .menu {
-    margin: 3% auto;
+    z-index: 1;
+    background-color: var(--main-background-color);
+    position: fixed;
+    width: 100%;
+    padding-top: 20px;
+    margin: 0% auto;
 }
 
 .menu ul li {
     list-style: none;
-    margin: 0 auto;
+    margin: 0px 30px;
     display: inline-block;
     position: relative;
     text-decoration: none;
@@ -18,14 +52,26 @@
 
 .menu ul li a {
     text-decoration: none;
-    color: aliceblue;
-    font-size: 18px;
+    color: var(--main-text-color-light);
+    font-size: var(--main-text-size-menu);
 }
 
 .menu ul li a:hover {
     text-decoration: none;
-    color: blueviolet;
+    color: var(--main-text-color-menu-hover);
     text-decoration-line: underline;
+}
+
+.menu-sections ul li a {
+    text-decoration: none;
+    color: var(--main-text-color-light);
+    font-size: var(--main-text-size-menu-section);
+}
+
+.menu-sections ul li a:hover {
+    text-decoration: none;
+    color: var(--main-text-color-menu-section-hover);
+    font-size: var(--main-text-size-menu-section);
 }
 
 .center {
@@ -35,4 +81,176 @@
 
 .header-title {
     text-align: center;
+}
+
+.button-primary {
+    background-color: #4CAF50;
+    border: none;
+    color: var(--main-text-color-light);
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+}
+
+.button-rounded {
+    border-radius: 10%;
+}
+
+.box-background {
+    padding: 20px;
+    border-radius: 3%;
+    background-color: var(--main-background-color-box)
+}
+
+.box-background:hover {
+    background-color: #e74343;
+}
+
+.box-background:hover .p-title {
+    color: var(--main-text-color-light);
+}
+
+.box-background:hover .p-dark {
+    color: var(--main-text-color-dark)
+}
+
+.links-profile {
+    bottom: 0%;
+    position: fixed;
+    width: 100%;
+}
+
+.links-profile ul {
+    display: inline-block;
+    margin: 0 auto;
+    width: 100%;
+    list-style: none;
+    text-align: center;
+}
+
+.links-profile ul li {
+    display: inline-block;
+    list-style: none;
+    text-decoration: none;
+    text-align: center;
+    margin: 20px;
+}
+
+.links-profile-icon {
+    margin: 0px 20px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.avatar {
+    width: var(--main-avatar-size);
+    height: var(--main-avatar-size);
+    border-radius: 50%;
+}
+
+.avatar:hover {
+    border: 3px solid white;
+}
+
+.avatar-container:hover {
+    font-weight: bold;
+}
+
+.profile-box {
+    display: none;
+    padding: 20px;
+    background-color: var(--main-background-color-box);
+    position: relative;
+    z-index: 1;
+    width: 100vw;
+}
+
+.profile-table {
+    margin: 0 auto;
+    width: 50vw;
+}
+
+.profile-table tr td {
+    border: none;
+}
+
+.skills {
+    text-align: center;
+}
+
+.skills-section {
+    /* todo: implement me or remove me */
+}
+
+
+/* P and texts */
+
+.p-title {
+    margin-bottom: var(--main-text-margin-bottom-content);
+    font-size: var(--main-text-size-title);
+}
+
+.p-title.resume {
+    font-weight: bold;
+    margin-bottom: var(--main-text-margin-bottom-content);
+    font-size: var(--main-text-size-title);
+}
+
+.p-subtitle.resume {
+    color: rgb(168, 204, 10);
+    margin-bottom: var(--main-text-margin-bottom-content);
+    font-size: var(--main-text-size-subtitle);
+}
+
+.p-content {
+    margin-bottom: var(--main-text-margin-bottom-content);
+    font-size: var(--main-text-size-content);
+}
+
+.p-content-small {
+    margin-bottom: var(--main-text-margin-bottom-content);
+    font-size: var(--main-text-size-content-small);
+}
+
+.p-light {
+    color: var(--main-text-color-light);
+}
+
+.p-dark {
+    color: var(--main-text-color-dark-secondary)
+}
+
+.language-icons {
+    width: var(--main-language-icon-size);
+    height: var(--main-language-icon-size);
+}
+
+.language tr td {
+    border: none;
+}
+
+.player {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    z-index: 2;
+}
+
+.player a {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--main-text-color-light);
+    font-size: var(--main-text-size-menu-section);
+}
+
+.player a:hover {
+    text-decoration: none;
+    color: var(--main-text-color-player-hover);
+    font-size: var(--main-text-size-menu-section);
 }

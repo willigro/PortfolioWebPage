@@ -38,6 +38,14 @@
     box-sizing: border-box;
 }
 
+.container-large {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
 .column,
 .columns {
     width: 100%;

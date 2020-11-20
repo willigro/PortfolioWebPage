@@ -2,7 +2,13 @@
 <html lang="en">
 
 <body>
-    <canvas id="canvas" style="position: fixed;" onmousemove="onMouseMove(event)" onmousedown="OnMouseDown(event)"></canvas>
+    <canvas id="canvas" style="height: 100%; width: 100%; position: fixed; z-index: -1;" onmousemove="onMouseMove(event)" onmousedown="onMouseDown(event)"></canvas>
+
+    <div class="player">
+        <a id="play" style="text-decoration: none;">Play Asteroids</a>
+        <p id="stop" hidden>Stop</p>
+        <p id="points" hidden></p>
+    </div>
 </body>
 
 </html>
