@@ -1,8 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!--
+Allow the user presse the mouse to shot
+New enemy that can shot to each x * points
+Limit max vel
+Power up: hp, time to shot, super shot
+Menu: Improve stop, points, show A W S D as tip
+Add effects on screen when die, improve enemy, get power up
+Limit area to move (0, 0) (maxW, maxH)
+Add enemy to list to each x * points with a limit
+ -->
+
+
 <body>
-    <canvas id="canvas" style="height: 100%; width: 100%; position: fixed; z-index: -1;" onmousemove="onMouseMove(event)" onmousedown="onMouseDown(event)"></canvas>
+    <canvas id="canvas" style="height: 100%; width: 100%; position: fixed; z-index: -1;" onmousemove="onMouseMove(event)" onmousepresse="onMouseDown(event)"></canvas>
 
     <div class="player">
         <a id="play" style="text-decoration: none;">Play Asteroids</a>
