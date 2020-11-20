@@ -32,6 +32,20 @@
     display: inline-block
 }
 
+.center {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+
+/*
+
+MENU
+*/
+
 .menu {
     z-index: 1;
     background-color: var(--main-background-color);
@@ -74,14 +88,21 @@
     font-size: var(--main-text-size-menu-section);
 }
 
-.center {
-    display: flex;
-    justify-content: center;
-}
+
+/*
+
+HEADER
+*/
 
 .header-title {
     text-align: center;
 }
+
+
+/*
+
+BUTTONS
+*/
 
 .button-primary {
     background-color: #4CAF50;
@@ -96,6 +117,12 @@
 .button-rounded {
     border-radius: 10%;
 }
+
+
+/*
+
+BOX
+*/
 
 .box-background {
     padding: 20px;
@@ -114,6 +141,12 @@
 .box-background:hover .p-dark {
     color: var(--main-text-color-dark)
 }
+
+
+/*
+
+LINKS TO PROFILE
+*/
 
 .links-profile {
     bottom: 0%;
@@ -141,12 +174,11 @@
     margin: 0px 20px;
 }
 
-.center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-}
+
+/*
+
+AVATAR
+*/
 
 .avatar {
     width: var(--main-avatar-size);
@@ -161,6 +193,12 @@
 .avatar-container:hover {
     font-weight: bold;
 }
+
+
+/*
+
+PROFILE
+*/
 
 .profile-box {
     display: none;
@@ -180,6 +218,12 @@
     border: none;
 }
 
+
+/*
+
+SKILLS
+*/
+
 .skills {
     text-align: center;
 }
@@ -189,20 +233,23 @@
 }
 
 
-/* P and texts */
+/*
 
-.p-title {
+TEXT
+*/
+
+.p-title-secondary {
     margin-bottom: var(--main-text-margin-bottom-content);
     font-size: var(--main-text-size-title);
 }
 
-.p-title.resume {
+.p-title {
     font-weight: bold;
     margin-bottom: var(--main-text-margin-bottom-content);
     font-size: var(--main-text-size-title);
 }
 
-.p-subtitle.resume {
+.p-subtitle {
     color: rgb(168, 204, 10);
     margin-bottom: var(--main-text-margin-bottom-content);
     font-size: var(--main-text-size-subtitle);
@@ -226,6 +273,12 @@
     color: var(--main-text-color-dark-secondary)
 }
 
+
+/*
+
+LANGUAGE
+*/
+
 .language-icons {
     width: var(--main-language-icon-size);
     height: var(--main-language-icon-size);
@@ -234,6 +287,12 @@
 .language tr td {
     border: none;
 }
+
+
+/*
+
+GAME
+*/
 
 .player {
     width: 100%;
