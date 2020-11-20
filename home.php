@@ -343,7 +343,7 @@
                 <td style='width:25%'>
                   " . $obj->nivel . "
                   <div style='background-color: rgba(255, 255, 255, 0.8); width: 100%'>
-                    <div style='background-color:green; height:10px;width:" . $obj->nivelPercent . "%'></div>
+                    <div style='background-color: " . $obj->nivelPercentColor() . "; height:10px;width:" . $obj->nivelPercent . "%'></div>
                   </div> 
                 </td>
 
@@ -395,6 +395,8 @@
     <div id="resume">
       <div class="container">
         <div class="row p-content-small">
+
+          <!-- FORMATION -->
           <p class="p-title resume">My academic formation</p>
           <p class="p-subtitle resume">Web Designer</p>
           <p>At 2011 I'd a small course of Web Designer, where I learn some concepts of HTML and CSS.</p>
@@ -415,6 +417,8 @@
             So, I was transfer to Europeia also in Recife. Then the quarentine has come and it spoil the classes, and the experience, but I was
             the possible to learning as much as possible. And today I have some projects with games and one that I making with Android.
           </p>
+
+          <!-- ANDROID -->
           <p class="p-title resume">Android Development</p>
           <p class="p-subtitle resume">The start</p>
           <p>
@@ -465,6 +469,13 @@
           </p>
           <p class="p-subtitle resume">My actual job</p>
           <p>Today I work in the Use Mobile, a company from Minas Gerais, remotely. For now I just work with one project, still knowing the company.</p>
+
+          <!-- AI -->
+          <p class="p-title resume">Artificial Intelligence</p>
+          <p class="p-subtitle resume">The start</p>
+          <p>Start.</p>
+          <p class="p-subtitle resume">Post Degree</p>
+          <p>Degree.</p>
         </div>
       </div>
     </div>
