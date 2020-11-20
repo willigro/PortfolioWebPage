@@ -39,8 +39,6 @@ $(document).ready(function() {
         const height = (window.innerHeight / 2) - (element.height() / 2)
         const width = window.innerWidth - element.width() - valueFromPercentage(5, window.innerWidth)
 
-        console.log(element.width(), valueFromPercentage(5, window.innerWidth))
-
         element.parent().css({ position: 'relative' });
         element.css({ top: height, left: width, position: 'absolute' });
     }

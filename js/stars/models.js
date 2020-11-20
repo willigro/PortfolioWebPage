@@ -106,7 +106,6 @@ class Ship {
     start() {
         this.x = centerX
         this.y = centerY
-        console.log(this.x, this.y)
         this.lifePoints = 10
     }
 
