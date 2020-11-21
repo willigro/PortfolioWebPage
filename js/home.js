@@ -1,8 +1,5 @@
 $(document).ready(function() {
 
-    const menuSectionUnselectedColor = getComputedStyle(document.body).getPropertyValue('--main-text-color-menu-section');
-    const menuSectionSelectedColor = getComputedStyle(document.body).getPropertyValue('--main-text-color-menu-section-selected');
-
     function initAndroid() {
         handleContentHeader()
         handleMenuHomeSections()
@@ -58,7 +55,7 @@ $(document).ready(function() {
             handleMenuSectionsSelection(sections)
         });
 
-        $("#menu-option-sections").show()
+        $("#menu-option-sections-home").show()
     }
 
     function handleMenuSectionsSelection(sections) {

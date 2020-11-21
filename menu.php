@@ -22,11 +22,19 @@
                         </ul>
                     </div>
 
-                    <div id="menu-option-sections" class="row menu-sections" style="display: none;">
+                    <div id="menu-option-sections-home" class="row menu-sections" style="display: none;">
                         <ul style="float: right;">
                             <li><a href="#" id="menu-section-my-team">My team</a></li>
                             <li><a href="#" id="menu-section-skills">Skills</a></li>
                             <li><a href="#" id="menu-section-resume">Resume</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="menu-option-sections-android" class="row menu-sections" style="display: none;">
+                        <ul style="float: right;">
+                            <li><a href="#" id="menu-section-own">Own</a></li>
+                            <li><a href="#" id="menu-section-libs">Libs</a></li>
+                            <li><a href="#" id="menu-section-colaborateds">Colaborateds</a></li>
                         </ul>
                     </div>
                 </div>

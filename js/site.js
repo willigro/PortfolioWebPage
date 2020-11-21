@@ -1,6 +1,10 @@
 const SCROLLING_SMOOTH_TIME = 1500
 const TEM_PERCENT_HEIGHT = valueFromPercentage(10, window.innerHeight)
 
+const menuSectionUnselectedColor = getComputedStyle(document.body).getPropertyValue('--main-text-color-menu-section');
+const menuSectionSelectedColor = getComputedStyle(document.body).getPropertyValue('--main-text-color-menu-section-selected');
+
+
 $(document).ready(function() {
 
     function init() {
