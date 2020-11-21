@@ -37,7 +37,7 @@
         </p> -->
       </div>
 
-      <div class="row" style="padding-top: 5vh;">
+      <div class="row far-to-menu">
         <div id="profile-android" class="two columns offset-by-one column avatar-container">
           <img class="avatar" src="dist/images/avatar_test_4.jpg" alt="Android Developer">
 
@@ -481,5 +481,8 @@
     </div>
   </div>
 </body>
+<!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="js/home.js"></script>
 
 </html>

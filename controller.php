@@ -55,3 +55,72 @@ $languages = array(
     new Language($image_root . "godot.png", "GDScript", "1 year", "Begginer", "20"),
     new Language($image_root . "arduino.png", "C Arduino", "1 year", "Begginer", "10")
 );
+
+class AndroidApplication
+{
+    public $title = "";
+    public $description = "";
+    public $technologies = "";
+    public $mainImage = "";
+    public $smallImages = null;
+    public $googlePlayLink = null;
+
+    function __construct($title, $description, $technologies, $mainImage, $smallImages, $googlePlayLink)
+    {
+        $this->title = $title;
+        $this->description = $description;
+        $this->technologies = $technologies;
+        $this->mainImage = $mainImage;
+        $this->smallImages = $smallImages;
+        $this->googlePlayLink = $googlePlayLink;
+    }
+}
+
+$diabetesDaily = new AndroidApplication( 
+    "Diário da Diabetes", 
+    "Simple register of the cash flows
+    <br>Register expense or earning
+    <br>Register pattern flows to easily regiter of the current flows",
+    "Kotlin, Coroutines, Kodein, Navigation Components, Room, LiveData, ViewMode, MVVM, JUnit, Espresso, AndroidX.",
+    $image_root . "my_pocket_test_shot_1.png",
+    array(
+        $image_root . "my_pocket_test_shot_1.png",
+        $image_root . "my_pocket_test_shot_1.png",
+        $image_root . "my_pocket_test_shot_1.png",
+        $image_root . "my_pocket_test_shot_1.png"
+    ),
+    "https://play.google.com/store/apps/details?id=com.rgames.meusgastos");
+
+$order = new AndroidApplication( 
+    "Pedidos", 
+    "Simple register of the cash flows
+    <br>Register expense or earning
+    <br>Register pattern flows to easily regiter of the current flows",
+    "Kotlin, Coroutines, Kodein, Navigation Components, Room, LiveData, ViewMode, MVVM, JUnit, Espresso, AndroidX.",
+    $image_root . "my_pocket_test_shot_1.png",
+    array(
+        $image_root . "my_pocket_test_shot_1.png",
+        $image_root . "my_pocket_test_shot_1.png",
+        $image_root . "my_pocket_test_shot_1.png",
+        $image_root . "my_pocket_test_shot_1.png"
+    ),
+    "https://play.google.com/store/apps/details?id=com.rgames.meusgastos");
+
+$myPocket = new AndroidApplication( 
+"Meu Bolso", 
+"Simple register of the cash flows
+<br>Register expense or earning
+<br>Register pattern flows to easily regiter of the current flows",
+"Kotlin, Coroutines, Kodein, Navigation Components, Room, LiveData, ViewMode, MVVM, JUnit, Espresso, AndroidX.",
+$image_root . "my_pocket_test_shot_1.png",
+array(
+    $image_root . "my_pocket_test_shot_1.png",
+    $image_root . "my_pocket_test_shot_1.png"
+),
+"https://play.google.com/store/apps/details?id=com.rgames.meusgastos");
+
+$androidApplications = array(
+    $diabetesDaily,
+    $order,
+    $myPocket
+);
