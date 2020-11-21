@@ -3,12 +3,33 @@ $(document).ready(function() {
     const DELAY = 500
 
     function initAndroid() {
-        const sections = ["android-project-list", "android-base-info"]
+        const sections = ["android-own", "android-numbers"]
         for (i in sections) {
             configureSection(sections[i])
+            configureMenuSectionActions(sections[i])
         }
 
+        handleMenuSectionsSelection(sections)
 
+        $(window).scroll(function() {
+            handleMenuSectionsSelection(sections)
+        });
+
+        handleNumbers()
+        $("#menu-option-sections-android").show()
+    }
+
+    function configureSection(section) {
+        const element = $("#" + section)
+
+        const menu = $("#menu")
+        menu.ready(function() {
+            const height = menu.height() + TEM_PERCENT_HEIGHT
+            element.css({ "padding-top": height });
+        })
+    }
+
+    function handleNumbers() {
         upNumberTo(2, "#android-base-info-libs")
         upNumberTo(3, "#android-base-info-own")
         upNumberTo(23, "#android-base-info-colaborated", true)
@@ -27,17 +48,6 @@ $(document).ready(function() {
             } else
                 current++
         }, DELAY / goalNumber)
-    }
-
-    function configureSection(section) {
-        const element = $("#" + section)
-            // element.height(window.innerHeight / 2)
-
-        const menu = $("#menu")
-        menu.ready(function() {
-            const height = menu.height() + TEM_PERCENT_HEIGHT
-            element.css({ "padding-top": height });
-        })
     }
 
     initAndroid();

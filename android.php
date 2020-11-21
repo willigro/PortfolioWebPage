@@ -13,7 +13,7 @@
   VALUES
 
   -->
-  <div id="android-base-info">
+  <div id="android-numbers">
     <div class="container-large far-to-menu">
 
       <div class="row center">
@@ -52,7 +52,7 @@
   Project list
 
   -->
-  <div id="android-project-list">
+  <div id="android-own">
     <div class="container-large p-content">
       <?php
       for ($i = 0; $i < count($androidApplications); $i++) {

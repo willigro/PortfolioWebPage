@@ -58,48 +58,5 @@ $(document).ready(function() {
         $("#menu-option-sections-home").show()
     }
 
-    function handleMenuSectionsSelection(sections) {
-        // reset all
-        for (i in sections) {
-            const s = "#menu-section-" + sections[i]
-            $(s).css({ color: menuSectionUnselectedColor })
-        }
-
-        // select one
-        for (i in sections) {
-            const s = $("#" + sections[i])
-            const sT = s.position().top
-            const t = document.documentElement.scrollTop
-
-            if (t + TEM_PERCENT_HEIGHT >= sT || i == sections.length - 1) {
-                $("#menu-section-" + sections[i]).css({ color: menuSectionSelectedColor })
-                break
-            }
-        }
-    }
-
-    function configureMenuSectionActions(section) {
-        const menuSection = "#menu-section-" + section
-        section = "#" + section
-
-        const elementSection = $(section)
-
-        const menu = $("#menu")
-        menu.ready(function() {
-            const height = menu.height() + TEM_PERCENT_HEIGHT
-            elementSection.css({ "padding-top": height });
-        })
-
-        const elementMenuSection = $(menuSection)
-        elementMenuSection.click(function() {
-            // Scroll to section
-            $([document.documentElement, document.body]).animate({
-                scrollTop: elementSection.position().top
-            }, SCROLLING_SMOOTH_TIME);
-
-            return false
-        })
-    }
-
     initAndroid();
 })
