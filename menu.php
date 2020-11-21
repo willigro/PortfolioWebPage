@@ -34,8 +34,8 @@
                         <ul style="float: right;">
                             <li><a href="#" id="menu-section-android-numbers">Numbers</a></li>
                             <li><a href="#" id="menu-section-android-own">Own</a></li>
-                            <li><a href="#" id="menu-section-libs">Libs</a></li>
-                            <li><a href="#" id="menu-section-colaborateds">Colaborateds</a></li>
+                            <li><a href="#" id="menu-section-android-libs">Libs</a></li>
+                            <li><a href="#" id="menu-section-android-colaborated">Colaborateds</a></li>
                         </ul>
                     </div>
                 </div>

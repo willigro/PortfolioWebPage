@@ -6,9 +6,6 @@ $(document).ready(function() {
     }
 
     function handleContentHeader() {
-        $("#header").height(window.innerHeight)
-        $("#skills").height(window.innerHeight)
-
         const boxes = ["#profile-android", "#profile-tech-leader", "#profile-ceo", "#profile-game", "#profile-data-scientist"]
         for (i in boxes) {
             handleShowAndHideBox(boxes[i])
@@ -42,6 +39,9 @@ $(document).ready(function() {
     }
 
     function handleMenuHomeSections() {
+        $("#header").height(window.innerHeight)
+        $("#skills").height(window.innerHeight)
+
         // The order matters
         // const sections = ["my-team", "skills", "resume"]
         const sections = ["resume", "skills", "my-team"]

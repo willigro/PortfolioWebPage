@@ -3,7 +3,8 @@ $(document).ready(function() {
     const DELAY = 500
 
     function initAndroid() {
-        const sections = ["android-own", "android-numbers"]
+        // last to first
+        const sections = ["android-colaborated", "android-libs", "android-own", "android-numbers"]
         for (i in sections) {
             configureSection(sections[i])
             configureMenuSectionActions(sections[i])

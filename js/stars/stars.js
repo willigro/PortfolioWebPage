@@ -142,6 +142,10 @@ function init() {
     }, delay);
 }
 
+/**
+ * Refactor this config
+ * 
+ */
 function configure() {
     _blackHole = new BlackHole()
 
@@ -152,6 +156,12 @@ function configure() {
     const header = $("#header")
     const resume = $("#resume")
     const skill = $("#skills")
+
+    const numbers = $("#android-numbers")
+    const own = $("#android-own")
+    const libs = $("#android-libs")
+    const colaborated = $("#android-colaborated")
+
     const menu = $("#menu")
 
     elementPlay.click(function() {
@@ -170,6 +180,10 @@ function configure() {
         resume.hide(1000)
         skill.hide(1000)
         menu.hide(1000)
+        own.hide(1000)
+        libs.hide(1000)
+        colaborated.hide(1000)
+        numbers.hide(1000)
     })
 
     elementStop.click(function() {
@@ -189,6 +203,10 @@ function configure() {
         resume.show(1000)
         skill.show(1000)
         menu.show(1000)
+        own.show(1000)
+        libs.show(1000)
+        colaborated.show(1000)
+        numbers.show(1000)
     })
 
     maxDistanceToCenter = distance(0, 0, centerX, centerY)
