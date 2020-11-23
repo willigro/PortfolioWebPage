@@ -32,7 +32,7 @@ const MOVE_STATUS_RUN_AWAY = 1
 const MOVE_STATUS_STOPING = 2
 const MOVE_STATUS_TO_CENTER = 3
 
-const POWER_UP_CLOCK = 1000
+const POWER_UP_CLOCK = 300
 const SHOW_HIDE_ANIMATION_DELAY = 1000
 
 var inGame = false
@@ -45,6 +45,8 @@ var elementStop
 var elementPoints
 var elementLife
 var elementGameTips
+var elementSpeed
+var elementAtkSpeed
 
 var actualPoints = 0
 
@@ -190,6 +192,88 @@ function tryGenerateNewPowerUp() {
 function configure() {
     _blackHole = new BlackHole()
 
+    configureScreenElements();
+
+    maxDistanceToCenter = distance(0, 0, centerX, centerY)
+}
+
+function playerDie() {
+    inGame = false
+    elementNewGame.show()
+    elementStopGame.hide()
+    elementGameTips.show()
+}
+
+function stopGame() {
+    inGame = false;
+
+    document.onkeydown = null;
+    document.onkeyup = null;
+
+    _ship = null
+
+    _asteroids = []
+    _powerUps = []
+}
+
+function startNewGame() {
+    inGame = true;
+    actualPoints = 0
+    gameClock = new Clock();
+    _powerUps = []
+    _ship = new Ship(centerX, centerY)
+    _blackHole.x = centerX
+    _blackHole.y = centerY
+    mousePositionX = 0
+    mousePositionY = 0
+    mousePressed = false
+    updateStatus()
+    startAsteroids()
+    updateLifeView()
+    updateActualPoints()
+}
+
+function updateLifeView() {
+    elementLife.html(_ship.lifePoints)
+}
+
+function updateActualPoints() {
+    if (asteroidVelFactor < MAX_ASTEROID_VEL && actualPoints % 5 == 0) {
+        asteroidVelFactor += .1
+    }
+
+    if (_asteroids.length < ASTEROIDS_COUNT_LIMIT && actualPoints % 20 == 0) {
+        _asteroids.push(new Asteroid())
+    }
+
+    elementPoints.html(actualPoints)
+}
+
+function updateStatus() {
+    if (!_ship) return
+    elementSpeed.html(_ship.velocity)
+    elementAtkSpeed.html(_ship.timeToNewShot)
+}
+
+function startAsteroids() {
+    actualPoints = 0
+    asteroidVelFactor = 1
+
+    _asteroids = []
+    for (var i = 0; i < ASTEROIDS_COUNT; i++) {
+        _asteroids.push(new Asteroid())
+    }
+
+    _shots = []
+}
+
+function drawBackground() {
+    ctx.clearRect(0, 0, maxWidth, maxHeight)
+    ctx.fillStyle = COLOR_BACKGROUND
+    ctx.fillRect(0, 0, maxWidth, maxHeight)
+}
+
+function configureScreenElements() {
     elementPlay = $("#play")
     elementNewGame = $("#new-game")
     elementStopGame = $("#stop-game")
@@ -199,6 +283,8 @@ function configure() {
     elementPoints = $("#points")
     elementLife = $("#life")
     elementGameTips = $("#game-tips")
+    elementAtkSpeed = $("#atk-speed")
+    elementSpeed = $("#speed")
 
     const header = $("#header")
     const resume = $("#resume")
@@ -262,74 +348,4 @@ function configure() {
 
         stopGame()
     })
-
-    maxDistanceToCenter = distance(0, 0, centerX, centerY)
-}
-
-function playerDie() {
-    inGame = false
-    elementNewGame.show()
-    elementStopGame.hide()
-}
-
-function stopGame() {
-    inGame = false;
-
-    document.onkeydown = null;
-    document.onkeyup = null;
-
-    _ship = null
-
-    _asteroids = []
-    _powerUps = []
-}
-
-function startNewGame() {
-    inGame = true;
-    gameClock = new Clock();
-    _powerUps = []
-    _ship = new Ship(centerX, centerY)
-    _blackHole.x = centerX
-    _blackHole.y = centerY
-    mousePositionX = 0
-    mousePositionY = 0
-    mousePressed = false
-    startAsteroids()
-    updateLifeView()
-    actualPoints = 0
-    updateActualPoints()
-}
-
-function updateLifeView() {
-    elementLife.html(_ship.lifePoints)
-}
-
-function updateActualPoints() {
-    if (asteroidVelFactor < MAX_ASTEROID_VEL && actualPoints % 5 == 0) {
-        asteroidVelFactor += .1
-    }
-
-    if (_asteroids.length < ASTEROIDS_COUNT_LIMIT && actualPoints % 20 == 0) {
-        _asteroids.push(new Asteroid())
-    }
-
-    elementPoints.html(actualPoints)
-}
-
-function startAsteroids() {
-    actualPoints = 0
-    asteroidVelFactor = 1
-
-    _asteroids = []
-    for (var i = 0; i < ASTEROIDS_COUNT; i++) {
-        _asteroids.push(new Asteroid())
-    }
-
-    _shots = []
-}
-
-function drawBackground() {
-    ctx.clearRect(0, 0, maxWidth, maxHeight)
-    ctx.fillStyle = COLOR_BACKGROUND
-    ctx.fillRect(0, 0, maxWidth, maxHeight)
 }

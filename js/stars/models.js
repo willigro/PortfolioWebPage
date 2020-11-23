@@ -3,6 +3,8 @@ const ATK_SPEED = 2;
 const SPEED = 3;
 const BASE_PLAYER_TIME_TO_SHOT = 15
 const BASE_PLAYER_VELOCITY = 5
+const POWER_UP_MAX_TIME_WORKING = 500
+const POWER_UP_MAX_LIFE_TIME = 300
 
 class Asteroid {
     constructor() {
@@ -165,9 +167,21 @@ class Ship {
             this.lifePoints++;
             updateLifeView()
         } else if (powerUp.type == ATK_SPEED) {
-            this.timeToNewShot /= 2;
+            this.timeToNewShot = BASE_PLAYER_TIME_TO_SHOT / 2;
+            updateStatus()
+            
+            gameClock.newClock(ATK_SPEED, POWER_UP_MAX_TIME_WORKING, false, function (ship) {
+                ship.timeToNewShot = BASE_PLAYER_TIME_TO_SHOT
+                updateStatus()
+            }, true, this)
         } else {
-            this.velocity *= 1.5;
+            this.velocity = BASE_PLAYER_VELOCITY * 1.5;
+            updateStatus()
+
+            gameClock.newClock(SPEED, POWER_UP_MAX_TIME_WORKING, false, function (ship) {
+                ship.velocity = BASE_PLAYER_VELOCITY
+                updateStatus()
+            }, true, this)
         }
     }
 
@@ -431,10 +445,15 @@ class PowerUp {
     constructor() {
         this.x = randomMin(0, maxWidth);
         this.y = randomMin(0, maxHeight);
-        this.size = 10;
+        this.size = 14;
         this.type = this.getType();
         this.color = this.getColor();
         this.lifeTime = 0;
+
+        var n = new Date().getMilliseconds();
+        gameClock.newClock(n, POWER_UP_MAX_LIFE_TIME, false, function (up) {
+            up.destroy();
+        }, false, this)
     }
 
     getColor() {
@@ -469,11 +488,15 @@ class Clock {
         this.clocks = []
     }
 
-    newClock(tag, maxTime, reset, callback) {
+    newClock(tag, maxTime, reset, callback, replace, args) {
         if (this.clocks.length > 0) {
             for (let c of this.clocks) {
-                if (c.tag == tag)
+                if (c.tag == tag) {
+                    if (replace) {
+                        c.time = 0;
+                    }
                     return
+                }
             }
         }
 
@@ -482,7 +505,8 @@ class Clock {
             reset: reset,
             time: 0,
             max: maxTime,
-            callback: callback
+            callback: callback,
+            args: args
         })
     }
 
@@ -492,8 +516,10 @@ class Clock {
 
             if (c.time >= c.max) {
                 c.time = 0;
-                c.callback();
-                
+
+                if (c.callback)
+                    c.callback(c.args);
+
                 if (!c.reset)
                     pop(this.clocks, c);
             }
