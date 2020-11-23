@@ -238,11 +238,11 @@ function updateActualPoints() {
     }
 
     // enemy count
-    if (_allowedEnemies.length == 1 && actualPoints % 2 == 0) {
+    if (_allowedEnemies.length == 1 && actualPoints % 10 == 0) {
         _allowedEnemies.push(ENEMY_BROWN)
-    } else if (_allowedEnemies.length == 2 && actualPoints % 5 == 0) {
+    } else if (_allowedEnemies.length == 2 && actualPoints % 30 == 0) {
         _allowedEnemies.push(ENEMY_BLUE)
-    } else if (_allowedEnemies.length == 3 && actualPoints % 10 == 0) {
+    } else if (_allowedEnemies.length == 3 && actualPoints % 80 == 0) {
         _allowedEnemies.push(ENEMY_PINK)
     }
 
