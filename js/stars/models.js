@@ -1,6 +1,8 @@
-const HP = 1;
-const ATK_SPEED = 2;
-const SPEED = 3;
+const POWER_HP = 1;
+const POWER_ATK_SPEED = 2;
+const POWER_SPEED = 3;
+const POWER_SHIELD = 4;
+
 const BASE_PLAYER_TIME_TO_SHOT = 13
 const BASE_ENEMY_TIME_TO_SHOT = 30
 const BASE_PLAYER_VELOCITY = 6
@@ -235,25 +237,28 @@ class Ship {
     }
 
     usePowerUp(powerUp) {
-        if (powerUp.type == HP) {
+        if (powerUp.type == POWER_HP) {
             this.lifePoints++;
             updateLifeView()
-        } else if (powerUp.type == ATK_SPEED) {
+        } else if (powerUp.type == POWER_ATK_SPEED) {
             this.timeToNewShot = BASE_PLAYER_TIME_TO_SHOT / 2;
             updateStatus()
 
-            gameClock.newClock(ATK_SPEED, POWER_UP_MAX_TIME_WORKING, false, function (ship) {
+            gameClock.newClock(POWER_ATK_SPEED, POWER_UP_MAX_TIME_WORKING, false, function (ship) {
                 ship.timeToNewShot = BASE_PLAYER_TIME_TO_SHOT
                 updateStatus()
             }, true, this)
-        } else {
+        } else if (powerUp.type == POWER_SPEED) {
             this.velocity = BASE_PLAYER_VELOCITY * 1.5;
             updateStatus()
 
-            gameClock.newClock(SPEED, POWER_UP_MAX_TIME_WORKING, false, function (ship) {
+            gameClock.newClock(POWER_SPEED, POWER_UP_MAX_TIME_WORKING, false, function (ship) {
                 ship.velocity = BASE_PLAYER_VELOCITY
                 updateStatus()
             }, true, this)
+        } else {
+            this.shieldEnergy += 180
+            updateShieldEnergy()
         }
     }
 
@@ -544,20 +549,24 @@ class PowerUp {
     }
 
     getColor() {
-        if (this.type == HP)
+        if (this.type == POWER_HP)
             return "red"
-        if (this.type == ATK_SPEED)
+        if (this.type == POWER_ATK_SPEED)
             return "green"
-        return "yellow"
+        if (this.type == POWER_SPEED)
+            return "yellow"
+        return "orange"
     }
 
     getType() {
         const r = Math.random();
-        if (r > .7)
-            return HP;
-        if (r > .4)
-            return ATK_SPEED;
-        return SPEED;
+        if (r > .7) // .8 to 1
+            return POWER_HP;
+        if (r > .4) // .6 to .69
+            return POWER_SPEED;
+        if (r > .3) // .3 to .59
+            return POWER_ATK_SPEED;
+        return POWER_SHIELD; // .0 to .29
     }
 
     destroy() {
