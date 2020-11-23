@@ -32,6 +32,7 @@ const MOVE_STATUS_RUN_AWAY = 1
 const MOVE_STATUS_STOPING = 2
 const MOVE_STATUS_TO_CENTER = 3
 
+const POWER_UP_CLOCK = 1000
 const SHOW_HIDE_ANIMATION_DELAY = 1000
 
 var inGame = false
@@ -54,6 +55,7 @@ var _shots = []
 var _powerUps = []
 var asteroidVelFactor = 1
 const MAX_ASTEROID_VEL = 3
+var gameClock
 
 var keysDown = []
 var mousePressed = false
@@ -111,10 +113,7 @@ function onKeyDown(event) {
 }
 
 function onKeyUp(event) {
-    let index = keysDown.indexOf(event.keyCode);
-    if (index !== -1) {
-        keysDown.splice(index, 1);
-    }
+    pop(keysDown, event.keyCode)
 }
 
 function init() {
@@ -132,6 +131,11 @@ function init() {
         }
 
         if (inGame) {
+            gameClock.newClock("powerUp", POWER_UP_CLOCK, true, function () {
+                tryGenerateNewPowerUp()
+            })
+            gameClock.tick();
+
             _ship.update()
             _ship.draw()
 
@@ -155,10 +159,28 @@ function init() {
 
             for (let p of _powerUps) {
                 p.draw()
+                if (intersect(p, _ship)) {
+                    _ship.usePowerUp(p);
+                    p.destroy();
+                }
             }
         }
 
     }, delay);
+}
+
+function tryGenerateNewPowerUp() {
+    const p = new PowerUp();
+    var found = false
+    for (let up of _powerUps) {
+        if (up.type == p.type) {
+            found = true
+            break;
+        }
+    }
+    if (!found) {
+        _powerUps.push(p);
+    }
 }
 
 /**
@@ -264,8 +286,8 @@ function stopGame() {
 
 function startNewGame() {
     inGame = true;
+    gameClock = new Clock();
     _powerUps = []
-    _powerUps.push(new PowerUp())
     _ship = new Ship(centerX, centerY)
     _blackHole.x = centerX
     _blackHole.y = centerY

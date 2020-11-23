@@ -1,6 +1,8 @@
 const HP = 1;
 const ATK_SPEED = 2;
 const SPEED = 3;
+const BASE_PLAYER_TIME_TO_SHOT = 15
+const BASE_PLAYER_VELOCITY = 5
 
 class Asteroid {
     constructor() {
@@ -92,10 +94,7 @@ class Shot {
     }
 
     destroy() {
-        let index = _shots.indexOf(this);
-        if (index !== -1) {
-            _shots.splice(index, 1);
-        }
+        pop(_shots, this);
     }
 
     draw() {
@@ -106,9 +105,9 @@ class Shot {
 
 class Ship {
     constructor() {
-        this.velocity = 5
+        this.velocity = BASE_PLAYER_VELOCITY
         this.size = 5
-        this.timeToNewShot = 15
+        this.timeToNewShot = BASE_PLAYER_TIME_TO_SHOT
         this.currentShotTime = 0
         this.canShot = true
         this.start()
@@ -158,6 +157,17 @@ class Ship {
         if (this.canShot) {
             _shots.push(new Shot(this.x, this.y, x, y))
             this.canShot = false
+        }
+    }
+
+    usePowerUp(powerUp) {
+        if (powerUp.type == HP) {
+            this.lifePoints++;
+            updateLifeView()
+        } else if (powerUp.type == ATK_SPEED) {
+            this.timeToNewShot /= 2;
+        } else {
+            this.velocity *= 1.5;
         }
     }
 
@@ -432,20 +442,61 @@ class PowerUp {
             return "red"
         if (this.type == ATK_SPEED)
             return "green"
-        return "blue"
+        return "yellow"
     }
 
     getType() {
         const r = Math.random();
-        if (r > .8)
+        if (r > .7)
             return HP;
-        if (r > .5)
+        if (r > .4)
             return ATK_SPEED;
         return SPEED;
+    }
+
+    destroy() {
+        pop(_powerUps, this);
     }
 
     draw() {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, this.size, this.size)
+    }
+}
+
+class Clock {
+    constructor() {
+        this.clocks = []
+    }
+
+    newClock(tag, maxTime, reset, callback) {
+        if (this.clocks.length > 0) {
+            for (let c of this.clocks) {
+                if (c.tag == tag)
+                    return
+            }
+        }
+
+        this.clocks.push({
+            tag: tag,
+            reset: reset,
+            time: 0,
+            max: maxTime,
+            callback: callback
+        })
+    }
+
+    tick() {
+        for (let c of this.clocks) {
+            c.time++;
+
+            if (c.time >= c.max) {
+                c.time = 0;
+                c.callback();
+                
+                if (!c.reset)
+                    pop(this.clocks, c);
+            }
+        }
     }
 }
