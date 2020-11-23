@@ -91,7 +91,7 @@ class Asteroid {
         this.y += this.velocity * Math.sin(angle / 180 * Math.PI)
     }
 
-    shotTo(x, y){
+    shotTo(x, y) {
         if (this.canShot) {
             _asteroidShots.push(new Shot(this.x, this.y, x, y, _asteroidShots, "white"))
             this.canShot = false
@@ -177,6 +177,7 @@ class Ship {
         this.timeToNewShot = BASE_PLAYER_TIME_TO_SHOT
         this.currentShotTime = 0
         this.canShot = true
+        this.activedShield = false
         this.start()
     }
 
@@ -184,6 +185,7 @@ class Ship {
         this.x = centerX
         this.y = centerY
         this.lifePoints = 10
+        this.shieldEnergy = 1000
     }
 
     update() {
@@ -198,9 +200,11 @@ class Ship {
         }
 
         this.move()
+        this.handleShield()
     }
 
     move() {
+        this.activedShield = false
         // put break
         for (let keyCode of keysDown) {
             if (keyCode == 65 && this.x > 0) // left a
@@ -214,6 +218,9 @@ class Ship {
 
             if (keyCode == 83 && this.y < maxHeight) // bottom s
                 this.y += this.velocity
+
+            if (keyCode == 32) // space
+                this.activedShield = true
         }
 
         // _blackHole.x = this.x
@@ -250,6 +257,16 @@ class Ship {
         }
     }
 
+    handleShield() {
+        if (this.activedShield && this.shieldEnergy > 0) {
+            this.shieldEnergy--;
+            ctx.fillStyle = 'white';
+            ctx.fillRect(this.x - 1, this.y - 1, this.size + 2, this.size + 2);
+
+            updateShieldEnergy()
+        }
+    }
+
     draw() {
         ctx.fillStyle = "red"
         ctx.fillRect(this.x, this.y, this.size, this.size)
@@ -260,7 +277,12 @@ class Ship {
 
             object.destroy()
 
-            --this.lifePoints;
+            if (this.activedShield && this.shieldEnergy > 0) {
+                this.shieldEnergy -= 100;
+                if (this.shieldEnergy < 0) this.shieldEnergy = 0
+                updateShieldEnergy()
+            } else
+                --this.lifePoints;
 
             if (this.lifePoints <= 0) {
                 this.die()

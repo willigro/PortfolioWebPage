@@ -44,6 +44,7 @@ var elementInGamePanel
 var elementStop
 var elementPoints
 var elementLife
+var elementShieldEnergy
 var elementGameTips
 var elementSpeed
 var elementAtkSpeed
@@ -219,6 +220,7 @@ function startNewGame() {
     actualPoints = 0
     gameClock = new Clock();
     _powerUps = []
+    keysDown = []
     _allowedEnemies = [ENEMY_WHITE]
     _ship = new Ship(centerX, centerY)
     _blackHole.x = centerX
@@ -229,11 +231,16 @@ function startNewGame() {
     updateStatus()
     startAsteroids()
     updateLifeView()
+    updateShieldEnergy()
     updateActualPoints()
 }
 
 function updateLifeView() {
     elementLife.html(_ship.lifePoints)
+}
+
+function updateShieldEnergy(){
+    elementShieldEnergy.html(_ship.shieldEnergy)
 }
 
 function updateActualPoints() {
@@ -290,6 +297,7 @@ function configureScreenElements() {
     elementStop = $("#stop")
     elementPoints = $("#points")
     elementLife = $("#life")
+    elementShieldEnergy = $("#shield-energy")
     elementGameTips = $("#game-tips")
     elementAtkSpeed = $("#atk-speed")
     elementSpeed = $("#speed")
