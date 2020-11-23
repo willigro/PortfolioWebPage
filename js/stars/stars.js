@@ -48,6 +48,7 @@ var elementGameTips
 var elementSpeed
 var elementAtkSpeed
 
+var gameActualNivel = 1
 var actualPoints = 0
 
 var _ship;
@@ -55,6 +56,7 @@ var _blackHole;
 var _asteroids = []
 var _shots = []
 var _powerUps = []
+var _allowedEnemies = []
 var asteroidVelFactor = 1
 const MAX_ASTEROID_VEL = 3
 var gameClock
@@ -63,18 +65,6 @@ var keysDown = []
 var mousePressed = false
 var mousePositionX = 0
 var mousePositionY = 0
-
-/*
-todo:
-OK - asteroids move to shiep;
-OK - when die, the blackhole receive the x and y from shiep
-OK - shiep move with a w s d
-OK - when onMouseOver (click), the shiep will shot;
-OK - shot need have a time to do a new shot;
-OK - life point to die;
-OK - show life;
-shot control;
-*/
 
 window.onload = function () {
     var canvas = document.getElementById("canvas")
@@ -221,6 +211,7 @@ function startNewGame() {
     actualPoints = 0
     gameClock = new Clock();
     _powerUps = []
+    _allowedEnemies = [ENEMY_WHITE]
     _ship = new Ship(centerX, centerY)
     _blackHole.x = centerX
     _blackHole.y = centerY
@@ -244,6 +235,15 @@ function updateActualPoints() {
 
     if (_asteroids.length < ASTEROIDS_COUNT_LIMIT && actualPoints % 20 == 0) {
         _asteroids.push(new Asteroid())
+    }
+
+    // enemy count
+    if (_allowedEnemies.length == 1 && actualPoints % 2 == 0) {
+        _allowedEnemies.push(ENEMY_BROWN)
+    } else if (_allowedEnemies.length == 2 && actualPoints % 5 == 0) {
+        _allowedEnemies.push(ENEMY_BLUE)
+    } else if (_allowedEnemies.length == 3 && actualPoints % 10 == 0) {
+        _allowedEnemies.push(ENEMY_PINK)
     }
 
     elementPoints.html(actualPoints)

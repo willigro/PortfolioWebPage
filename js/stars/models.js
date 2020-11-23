@@ -6,6 +6,11 @@ const BASE_PLAYER_VELOCITY = 6
 const POWER_UP_MAX_TIME_WORKING = 500
 const POWER_UP_MAX_LIFE_TIME = 300
 
+const ENEMY_WHITE = 1
+const ENEMY_BROWN = 2
+const ENEMY_BLUE = 3
+const ENEMY_PINK = 4
+
 class Asteroid {
     constructor() {
         this.start()
@@ -14,7 +19,9 @@ class Asteroid {
     start() {
         this.x = this.generatePosition(maxWidth)
         this.y = this.generatePosition(maxHeight)
+        this.type = this.generateType()
         this.life = this.getLife()
+        this.color = this.getColor()
         this.horizontal = 1
         this.vertical = 1
         this.size = 15
@@ -22,8 +29,25 @@ class Asteroid {
         if (this.velocity < 3) this.velocity = 3
     }
 
+    generateType() {
+        const r = randomMin(1, _allowedEnemies.length) - 1;
+        return _allowedEnemies[r]
+    }
+
+    getColor() {
+        if (this.type == ENEMY_WHITE)
+            return "white"
+        if (this.type == ENEMY_BROWN)
+            return "brown"
+        if (this.type == ENEMY_BLUE)
+            return "blue"
+        return "pink"
+    }
+
     getLife() {
-        return 1
+        if (this.type == ENEMY_WHITE || this.type == ENEMY_BLUE)
+            return 1
+        return 2
     }
 
     generatePosition(max) {
@@ -64,7 +88,7 @@ class Asteroid {
     draw() {
         if (this.destroyed) return
 
-        ctx.fillStyle = "white"
+        ctx.fillStyle = this.color
         ctx.fillRect(this.x, this.y, this.size, this.size)
     }
 }
@@ -169,7 +193,7 @@ class Ship {
         } else if (powerUp.type == ATK_SPEED) {
             this.timeToNewShot = BASE_PLAYER_TIME_TO_SHOT / 2;
             updateStatus()
-            
+
             gameClock.newClock(ATK_SPEED, POWER_UP_MAX_TIME_WORKING, false, function (ship) {
                 ship.timeToNewShot = BASE_PLAYER_TIME_TO_SHOT
                 updateStatus()
