@@ -53,7 +53,7 @@ Add enemy to list to each x * points with a limit
     onmousedown="onMouseDown(event)" onmouseup="onMouseUp(event)"></canvas>
 
   <div class="player">
-    <a id="play">Play Asteroids</a>
+    <a id="play">Play Asterblocks</a>
     <div id="game-panel" hidden>
       <ul>
         <li>
@@ -63,20 +63,28 @@ Add enemy to list to each x * points with a limit
           <a>New Game</a>
         </li>
         <li id="stop-game" hidden>
-          <a>Stop Game</a>
+          <a>Stop Asterblocks</a>
         </li>
       </ul>
 
-      <p id="game-tips">
-        <span style="color: gold;">W</span> (up)
-        <span style="color: gold;">A</span> (left)
-        <span style="color: gold;">S</span> (down)
-        <span style="color: gold;">D</span> (right) to move
-        <br>Press <span style="color: gold;">left</span> mouse to shot
-        <br>Touch the <span style="color: red">red blocks</span> to increase your life
-        <br>Touch the <span style="color: yellow">yellow blocks</span> to increase your speed
-        <br>Touch the <span style="color: green">green blocks</span> to increase your atk speed
-      </p>
+      <div id="game-tips">
+        <p>
+          <span style="color: gold;">W</span> (up)
+          <span style="color: gold;">A</span> (left)
+          <span style="color: gold;">S</span> (down)
+          <span style="color: gold;">D</span> (right) to move
+          <br>Press <span style="color: gold;">left</span> mouse to shot
+          <br>Touch the <span style="color: red">red blocks</span> to increase your life
+          <br>Touch the <span style="color: yellow">yellow blocks</span> to increase your speed
+          <br>Touch the <span style="color: green">green blocks</span> to increase your atk speed
+        </p>
+        <p>
+          White enemies have 1 life and cannot attack
+          <br><span style="color: brown">Brown enemies</span> have 2 life and cannot attack
+          <br><span style="color: blue">Blue enemies</span> have 1 life and can attack
+          <br><span style="color: pink">Pink enemies</span> have 2 life and can attack
+        </p>
+      </div>
 
       <div id="in-game-panel" hidden>
         <p style="margin-top: 10px">
