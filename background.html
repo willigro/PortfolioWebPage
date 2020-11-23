@@ -2,60 +2,85 @@
 
 <head>
 
-    <!-- Basic Page Needs
+  <!-- Basic Page Needs
 
     CODE BASE BASED IN SKELETON
 
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta charset="utf-8">
-    <title>My Portfolio</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <title>My Portfolio</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <!-- Mobile Specific Metas
+  <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- FONT
+  <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="stylesheet" href="dist/css/font_raleway.css">
+  <link rel="stylesheet" href="dist/css/font_raleway.css">
 
-    <!-- CSS
+  <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="stylesheet" href="dist/css/normalize.css">
-    <link rel="stylesheet" href="dist/css/skeleton.css">
-    <link rel="stylesheet" href="dist/css/main.css">
+  <link rel="stylesheet" href="dist/css/normalize.css">
+  <link rel="stylesheet" href="dist/css/skeleton.css">
+  <link rel="stylesheet" href="dist/css/main.css">
 
-    <!-- Scripts
+  <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/site.js"></script>
-    <script src="js/stars/stars.js"></script>
-    <script src="js/stars/models.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/stars/stars.js"></script>
+  <script src="js/stars/models.js"></script>
 </head>
 <html lang="en">
 
 <!--
-Allow the user presse the mouse to shot
+OK - Allow the user presse the mouse to shot
 New enemy that can shot to each x * points
-Limit max vel
+OK - Limit max vel
 Power up: hp, time to shot, super shot
 Menu: Improve stop, points, show A W S D as tip
 Add effects on screen when die, improve enemy, get power up
-Limit area to move (0, 0) (maxW, maxH)
+OK - Limit area to move (0, 0) (maxW, maxH)
 Add enemy to list to each x * points with a limit
  -->
 
 
 <body>
-    <canvas id="canvas" style="height: 100%; width: 100%; position: fixed; z-index: -1;" onmousemove="onMouseMove(event)" onmousepresse="onMouseDown(event)"></canvas>
+  <canvas id="canvas" style="height: 100%; width: 100%; position: fixed; z-index: -1;" onmousemove="onMouseMove(event)"
+    onmousedown="onMouseDown(event)" onmouseup="onMouseUp(event)"></canvas>
 
-    <div class="player">
-        <a id="play" style="text-decoration: none;">Play Asteroids</a>
-        <p id="stop" hidden>Stop</p>
-        <p id="points" hidden></p>
+  <div class="player">
+    <a id="play">Play Asteroids</a>
+    <div id="game-panel" hidden>
+      <ul>
+        <li>
+          <a id="stop">Return to site</a>
+        </li>
+        <li id="new-game">
+          <a>New Game</a>
+        </li>
+        <li id="stop-game" hidden>
+          <a>Stop Game</a>
+        </li>
+      </ul>
+
+      <p id="game-tips">
+        <span style="color: gold;">W</span> (up)
+        <span style="color: gold;">A</span> (left)
+        <span style="color: gold;">S</span> (down)
+        <span style="color: gold;">D</span> (right) to move
+        <br>Press <span style="color: gold;">left</span> mouse to shot
+      </p>
+
+      <div id="in-game-panel" hidden>
+        <p style="margin-top: 10px">Life <span id="life"></span>
+          <br>Points <span id="points"></span></p>
+      </div>
     </div>
+  </div>
 </body>
 
 </html>

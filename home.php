@@ -12,7 +12,7 @@
 <body id="body" class="page">
 
   <?php include "./background.html"; ?>
-  <?php include "./controller.php"; ?>
+  <?php include "./app/controller.php"; ?>
 
   <!-- MENU -->
   <?php include "./menu.php"; ?>
@@ -328,7 +328,7 @@
 
             <table>
               <?php
-
+              $languages = getLanguages();
               for ($i = 0; $i < count($languages); $i++) {
                 $obj = $languages[$i];
 

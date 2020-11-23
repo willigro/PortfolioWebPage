@@ -19,6 +19,7 @@ const MAX_RADIUS = 100000
 
 const START_COUNT = 1000
 const ASTEROIDS_COUNT = 10
+const ASTEROIDS_COUNT_LIMIT = 20
 
 const COLOR_BACKGROUND = "black"
 const COLOR_STAR_WHITE = "white"
@@ -31,18 +32,33 @@ const MOVE_STATUS_RUN_AWAY = 1
 const MOVE_STATUS_STOPING = 2
 const MOVE_STATUS_TO_CENTER = 3
 
+const SHOW_HIDE_ANIMATION_DELAY = 1000
+
 var inGame = false
+var elementPlay
+var elementNewGame
+var elementStopGame
+var elementGamePanel
+var elementInGamePanel
 var elementStop
 var elementPoints
+var elementLife
+var elementGameTips
+
 var actualPoints = 0
 
 var _ship;
 var _blackHole;
 var _asteroids = []
 var _shots = []
+var _powerUps = []
 var asteroidVelFactor = 1
+const MAX_ASTEROID_VEL = 3
 
 var keysDown = []
+var mousePressed = false
+var mousePositionX = 0
+var mousePositionY = 0
 
 /*
 todo:
@@ -56,7 +72,7 @@ OK - show life;
 shot control;
 */
 
-window.onload = function() {
+window.onload = function () {
     var canvas = document.getElementById("canvas")
     canvas.width = maxWidth
     canvas.height = maxHeight
@@ -66,17 +82,16 @@ window.onload = function() {
 }
 
 function onMouseMove(event) {
-
+    mousePositionX = event.clientX
+    mousePositionY = event.clientY
 }
 
 function onMouseDown(event) {
-    // if (!_blackHole) return
-    // _blackHole.x = event.clientX
-    // _blackHole.y = event.clientY
+    mousePressed = true;
+}
 
-    if (inGame && _ship) {
-        _ship.shotTo(event.clientX, event.clientY)
-    }
+function onMouseUp(event) {
+    mousePressed = false;
 }
 
 function onKeyDown(event) {
@@ -103,7 +118,7 @@ function onKeyUp(event) {
 }
 
 function init() {
-    setInterval(function() {
+    setInterval(function () {
         drawBackground();
 
         if (stars.length < START_COUNT) {
@@ -137,6 +152,10 @@ function init() {
                 s.move()
                 s.draw()
             }
+
+            for (let p of _powerUps) {
+                p.draw()
+            }
         }
 
     }, delay);
@@ -149,9 +168,15 @@ function init() {
 function configure() {
     _blackHole = new BlackHole()
 
-    const elementPlay = $("#play")
+    elementPlay = $("#play")
+    elementNewGame = $("#new-game")
+    elementStopGame = $("#stop-game")
+    elementGamePanel = $("#game-panel")
+    elementInGamePanel = $("#in-game-panel")
     elementStop = $("#stop")
     elementPoints = $("#points")
+    elementLife = $("#life")
+    elementGameTips = $("#game-tips")
 
     const header = $("#header")
     const resume = $("#resume")
@@ -164,62 +189,108 @@ function configure() {
 
     const menu = $("#menu")
 
-    elementPlay.click(function() {
-        document.onkeydown = onKeyDown;
-        document.onkeyup = onKeyUp;
-        inGame = true;
-        _ship = new Ship(centerX, centerY)
-        startAsteroids()
-        elementStop.show()
+    elementPlay.click(function () {
+        elementGamePanel.show()
         elementPlay.hide()
-        updateLifeView()
-        elementPoints.show()
-        actualPoints = 0
-        updateActualPoints()
-        header.hide(1000)
-        resume.hide(1000)
-        skill.hide(1000)
-        menu.hide(1000)
-        own.hide(1000)
-        libs.hide(1000)
-        colaborated.hide(1000)
-        numbers.hide(1000)
+        elementGameTips.show()
+        elementNewGame.show()
+        elementStopGame.hide()
+
+        header.hide(SHOW_HIDE_ANIMATION_DELAY)
+        resume.hide(SHOW_HIDE_ANIMATION_DELAY)
+        skill.hide(SHOW_HIDE_ANIMATION_DELAY)
+        menu.hide(SHOW_HIDE_ANIMATION_DELAY)
+        own.hide(SHOW_HIDE_ANIMATION_DELAY)
+        libs.hide(SHOW_HIDE_ANIMATION_DELAY)
+        colaborated.hide(SHOW_HIDE_ANIMATION_DELAY)
+        numbers.hide(SHOW_HIDE_ANIMATION_DELAY)
     })
 
-    elementStop.click(function() {
-        document.onkeydown = null;
-        document.onkeyup = null;
-        inGame = false;
-        _ship = null
-        _asteroids = []
-        elementStop.hide()
-        elementStop.html("Stop")
+    elementStop.click(function () {
+        stopGame()
+        elementGamePanel.hide()
         elementPlay.show()
-        elementPoints.hide()
-        _blackHole.x = centerX
-        _blackHole.y = centerY
 
-        header.show(1000)
-        resume.show(1000)
-        skill.show(1000)
-        menu.show(1000)
-        own.show(1000)
-        libs.show(1000)
-        colaborated.show(1000)
-        numbers.show(1000)
+        header.show(SHOW_HIDE_ANIMATION_DELAY)
+        resume.show(SHOW_HIDE_ANIMATION_DELAY)
+        skill.show(SHOW_HIDE_ANIMATION_DELAY)
+        menu.show(SHOW_HIDE_ANIMATION_DELAY)
+        own.show(SHOW_HIDE_ANIMATION_DELAY)
+        libs.show(SHOW_HIDE_ANIMATION_DELAY)
+        colaborated.show(SHOW_HIDE_ANIMATION_DELAY)
+        numbers.show(SHOW_HIDE_ANIMATION_DELAY)
+    })
+
+    elementNewGame.click(function () {
+        elementInGamePanel.show()
+        elementGameTips.hide()
+        elementStopGame.show()
+        elementNewGame.hide()
+
+        document.onkeydown = onKeyDown;
+        document.onkeyup = onKeyUp;
+
+        startNewGame();
+    })
+
+    elementStopGame.click(function () {
+        elementGameTips.show()
+        elementStopGame.hide()
+        elementNewGame.show()
+
+        stopGame()
     })
 
     maxDistanceToCenter = distance(0, 0, centerX, centerY)
 }
 
+function playerDie() {
+    inGame = false
+    elementNewGame.show()
+    elementStopGame.hide()
+}
+
+function stopGame() {
+    inGame = false;
+
+    document.onkeydown = null;
+    document.onkeyup = null;
+
+    _ship = null
+
+    _asteroids = []
+    _powerUps = []
+}
+
+function startNewGame() {
+    inGame = true;
+    _powerUps = []
+    _powerUps.push(new PowerUp())
+    _ship = new Ship(centerX, centerY)
+    _blackHole.x = centerX
+    _blackHole.y = centerY
+    mousePositionX = 0
+    mousePositionY = 0
+    mousePressed = false
+    startAsteroids()
+    updateLifeView()
+    actualPoints = 0
+    updateActualPoints()
+}
+
 function updateLifeView() {
-    elementStop.html("Stop " + _ship.lifePoints)
+    elementLife.html(_ship.lifePoints)
 }
 
 function updateActualPoints() {
-    if (actualPoints % 5 == 0) {
+    if (asteroidVelFactor < MAX_ASTEROID_VEL && actualPoints % 5 == 0) {
         asteroidVelFactor += .1
     }
+
+    if (_asteroids.length < ASTEROIDS_COUNT_LIMIT && actualPoints % 20 == 0) {
+        _asteroids.push(new Asteroid())
+    }
+
     elementPoints.html(actualPoints)
 }
 

@@ -3,7 +3,7 @@
 
 <body class="page">
   <?php include "./background.html" ?>
-  <?php include "./controller.php" ?>
+  <?php include "./app/controller.php" ?>
 
   <!-- MENU -->
   <?php include "./menu.php" ?>
@@ -55,6 +55,7 @@
   <div id="android-own">
     <div class="container-large p-content">
       <?php
+      $androidApplications = getOwnAndroidApplications();
       for ($i = 0; $i < count($androidApplications); $i++) {
         $obj = $androidApplications[$i];
         echo '<div style="margin-top: 15vh; margin-bottom: 15vh">';

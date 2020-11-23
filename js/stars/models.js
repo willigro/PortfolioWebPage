@@ -1,3 +1,7 @@
+const HP = 1;
+const ATK_SPEED = 2;
+const SPEED = 3;
+
 class Asteroid {
     constructor() {
         this.start()
@@ -6,11 +10,16 @@ class Asteroid {
     start() {
         this.x = this.generatePosition(maxWidth)
         this.y = this.generatePosition(maxHeight)
+        this.life = this.getLife()
         this.horizontal = 1
         this.vertical = 1
         this.size = 15
         this.velocity = Math.random() * 5 * asteroidVelFactor
         if (this.velocity < 3) this.velocity = 3
+    }
+
+    getLife() {
+        return 1
     }
 
     generatePosition(max) {
@@ -22,7 +31,6 @@ class Asteroid {
     }
 
     moveTo(target) {
-
         const dx = target.x - this.x
         const dy = target.y - this.y
 
@@ -34,9 +42,12 @@ class Asteroid {
 
     handleHit(shot) {
         if (intersect(shot, this)) {
-            this.destroy()
-            actualPoints++
-            updateActualPoints()
+            this.life--;
+            if (this.life == 0) {
+                this.destroy()
+                actualPoints++
+                updateActualPoints()
+            }
             return true
         }
         return false
@@ -88,7 +99,7 @@ class Shot {
     }
 
     draw() {
-        ctx.fillStyle = "blue"
+        ctx.fillStyle = "yellow"
         ctx.fillRect(this.x, this.y, this.size, this.size)
     }
 }
@@ -116,22 +127,26 @@ class Ship {
         }
         this.currentShotTime--;
 
+        if (mousePressed) {
+            _ship.shotTo(mousePositionX, mousePositionY)
+        }
+
         this.move()
     }
 
     move() {
         // put break
         for (let keyCode of keysDown) {
-            if (keyCode == 65) // left a
+            if (keyCode == 65 && this.x > 0) // left a
                 this.x -= this.velocity
 
-            if (keyCode == 87) // top w
+            if (keyCode == 87 && this.y > 0) // top w
                 this.y -= this.velocity
 
-            if (keyCode == 68) // right d
+            if (keyCode == 68 && this.x < maxWidth) // right d
                 this.x += this.velocity
 
-            if (keyCode == 83) // bottom s
+            if (keyCode == 83 && this.y < maxHeight) // bottom s
                 this.y += this.velocity
         }
 
@@ -169,7 +184,7 @@ class Ship {
         _blackHole.x = this.x
         _blackHole.y = this.y
         this.start()
-        startAsteroids()
+        playerDie()
     }
 }
 
@@ -184,7 +199,7 @@ class BlackHole {
 
     draw() {
         ctx.fillStyle = "rgba(255, 255, 255, 0.1)"
-            // ctx.fillRect(this.x, this.y, this.size, this.size)
+        // ctx.fillRect(this.x, this.y, this.size, this.size)
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
         ctx.fill();
@@ -283,9 +298,9 @@ class Star {
         this.ry += velocity * rdt * Math.sin(r) + Math.cos(r)
         this.x = this.rx
         this.y = this.ry
-            // if (this.position == 0)
-            // if (this.x > maxWidth || this.x < 0)
-            //     console.log(this.x, this.y, maxWidth, maxHeight, velocity, this.position)
+        // if (this.position == 0)
+        // if (this.x > maxWidth || this.x < 0)
+        //     console.log(this.x, this.y, maxWidth, maxHeight, velocity, this.position)
     }
 
     // There is not delay, so i can put the max or min value without aceleration
@@ -387,7 +402,7 @@ class Star {
     draw() {
         if (this.x > 0 && this.x < maxWidth && this.y > 0 && this.y < maxHeight) {
             ctx.fillStyle = this.color
-                // ctx.fillRect(this.x, this.y, this.size, this.size)
+            // ctx.fillRect(this.x, this.y, this.size, this.size)
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
             ctx.fill();
@@ -399,5 +414,38 @@ class Star {
         return Math.sqrt(
             Math.pow(x - this.x, 2) + Math.pow(y - this.y, 2)
         )
+    }
+}
+
+class PowerUp {
+    constructor() {
+        this.x = randomMin(0, maxWidth);
+        this.y = randomMin(0, maxHeight);
+        this.size = 10;
+        this.type = this.getType();
+        this.color = this.getColor();
+        this.lifeTime = 0;
+    }
+
+    getColor() {
+        if (this.type == HP)
+            return "red"
+        if (this.type == ATK_SPEED)
+            return "green"
+        return "blue"
+    }
+
+    getType() {
+        const r = Math.random();
+        if (r > .8)
+            return HP;
+        if (r > .5)
+            return ATK_SPEED;
+        return SPEED;
+    }
+
+    draw() {
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, this.y, this.size, this.size)
     }
 }

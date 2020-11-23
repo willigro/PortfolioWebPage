@@ -349,6 +349,12 @@ GAME
     text-align: center;
     position: fixed;
     z-index: 2;
+
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
 }
 
 .player a {
@@ -364,6 +370,14 @@ GAME
     font-size: var(--main-text-size-menu-section);
 }
 
+.player ul li {
+    list-style: none;
+    margin: 0px 30px;
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    text-align: center;
+}
 
 /*
 
