@@ -55,6 +55,7 @@ var _ship;
 var _blackHole;
 var _asteroids = []
 var _shots = []
+var _asteroidShots = []
 var _powerUps = []
 var _allowedEnemies = []
 var asteroidVelFactor = 1
@@ -138,7 +139,7 @@ function init() {
                         break
                     }
                 }
-                a.moveTo(_ship)
+                a.update(_ship)
                 a.draw()
 
                 _ship.handleHit(a)
@@ -147,6 +148,13 @@ function init() {
             for (let s of _shots) {
                 s.move()
                 s.draw()
+            }
+
+            for (let s of _asteroidShots) {
+                s.move()
+                s.draw()
+
+                _ship.handleHit(s)
             }
 
             for (let p of _powerUps) {
@@ -237,12 +245,11 @@ function updateActualPoints() {
         _asteroids.push(new Asteroid())
     }
 
-    // enemy count
     if (_allowedEnemies.length == 1 && actualPoints % 10 == 0) {
         _allowedEnemies.push(ENEMY_BROWN)
-    } else if (_allowedEnemies.length == 2 && actualPoints % 30 == 0) {
+    } else if (_allowedEnemies.length == 2 && actualPoints % 25 == 0) {
         _allowedEnemies.push(ENEMY_BLUE)
-    } else if (_allowedEnemies.length == 3 && actualPoints % 80 == 0) {
+    } else if (_allowedEnemies.length == 3 && actualPoints % 50 == 0) {
         _allowedEnemies.push(ENEMY_PINK)
     }
 
@@ -265,6 +272,7 @@ function startAsteroids() {
     }
 
     _shots = []
+    _asteroidShots = []
 }
 
 function drawBackground() {

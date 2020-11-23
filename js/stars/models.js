@@ -2,6 +2,7 @@ const HP = 1;
 const ATK_SPEED = 2;
 const SPEED = 3;
 const BASE_PLAYER_TIME_TO_SHOT = 13
+const BASE_ENEMY_TIME_TO_SHOT = 30
 const BASE_PLAYER_VELOCITY = 6
 const POWER_UP_MAX_TIME_WORKING = 500
 const POWER_UP_MAX_LIFE_TIME = 300
@@ -22,11 +23,18 @@ class Asteroid {
         this.type = this.generateType()
         this.life = this.getLife()
         this.color = this.getColor()
+
         this.horizontal = 1
         this.vertical = 1
         this.size = 15
+
         this.velocity = Math.random() * 5 * asteroidVelFactor
         if (this.velocity < 3) this.velocity = 3
+
+        this.timeToNewShot = 0
+        this.currentShotTime = 0
+        this.canShot = false
+        this.ifCanHandleShot();
     }
 
     generateType() {
@@ -58,6 +66,21 @@ class Asteroid {
         return max + r
     }
 
+    update(target) {
+        this.moveTo(target)
+
+
+        if (this.timeToNewShot > 0) {
+            if (this.currentShotTime <= 0) {
+                this.currentShotTime = this.timeToNewShot
+                this.canShot = true
+            }
+            this.currentShotTime--;
+
+            this.shotTo(target.x, target.y)
+        }
+    }
+
     moveTo(target) {
         const dx = target.x - this.x
         const dy = target.y - this.y
@@ -66,6 +89,13 @@ class Asteroid {
 
         this.x += this.velocity * Math.cos(angle / 180 * Math.PI)
         this.y += this.velocity * Math.sin(angle / 180 * Math.PI)
+    }
+
+    shotTo(x, y){
+        if (this.canShot) {
+            _asteroidShots.push(new Shot(this.x, this.y, x, y, _asteroidShots, "white"))
+            this.canShot = false
+        }
     }
 
     handleHit(shot) {
@@ -81,6 +111,14 @@ class Asteroid {
         return false
     }
 
+    ifCanHandleShot() {
+        if (this.type == ENEMY_WHITE || this.type == ENEMY_BROWN) return;
+
+        this.timeToNewShot = BASE_ENEMY_TIME_TO_SHOT
+        this.currentShotTime = 0
+        this.canShot = true
+    }
+
     destroy() {
         this.start()
     }
@@ -94,9 +132,12 @@ class Asteroid {
 }
 
 class Shot {
-    constructor(x, y, toX, toY) {
+    constructor(x, y, toX, toY, mainList, color) {
         this.x = x
         this.y = y
+        this.color = color
+
+        this.list = mainList
 
         this.velocity = 7
         this.size = 4
@@ -120,11 +161,11 @@ class Shot {
     }
 
     destroy() {
-        pop(_shots, this);
+        pop(this.list, this);
     }
 
     draw() {
-        ctx.fillStyle = "yellow"
+        ctx.fillStyle = this.color
         ctx.fillRect(this.x, this.y, this.size, this.size)
     }
 }
@@ -153,7 +194,7 @@ class Ship {
         this.currentShotTime--;
 
         if (mousePressed) {
-            _ship.shotTo(mousePositionX, mousePositionY)
+            this.shotTo(mousePositionX, mousePositionY)
         }
 
         this.move()
@@ -181,7 +222,7 @@ class Ship {
 
     shotTo(x, y) {
         if (this.canShot) {
-            _shots.push(new Shot(this.x, this.y, x, y))
+            _shots.push(new Shot(this.x, this.y, x, y, _shots, "yellow"))
             this.canShot = false
         }
     }
@@ -214,10 +255,10 @@ class Ship {
         ctx.fillRect(this.x, this.y, this.size, this.size)
     }
 
-    handleHit(asteroid) {
-        if (intersect(asteroid, this)) {
+    handleHit(object) {
+        if (intersect(object, this)) {
 
-            asteroid.destroy()
+            object.destroy()
 
             --this.lifePoints;
 
