@@ -19,7 +19,7 @@
       <div class="row center">
         <div class="three columns">
           <p id="android-base-info-libs" class="p-extra-large center">
-            <!-- To Informe -->
+            <!-- To Informe by js -->
           </p>
           <p class="p-content center">
             Libs
@@ -28,7 +28,7 @@
 
         <div class="three columns">
           <p id="android-base-info-own" class="p-extra-large center">
-            <!-- To Informe -->
+            <!-- To Informe by js -->
           </p>
           <p class="p-content center">
             Own published projects
@@ -37,7 +37,7 @@
 
         <div class="three columns">
           <p id="android-base-info-colaborated" class="p-extra-large center">
-            <!-- To Informe -->
+            <!-- To Informe by js -->
           </p>
           <p class="p-content center">
             Colaborated projects
