@@ -2,6 +2,7 @@
     /* Sizes */
     --main-avatar-size: 180px;
     --main-language-icon-size: 24px;
+    --main-android-app-lib-size: 80px;
     --main-android-app-width: 250px;
     --main-android-app-height: 450px;
     --main-android-app-width-small: 100px;
@@ -222,6 +223,11 @@ ANDROID APP SCREEN SHOT
     margin-right: 10px;
 }
 
+.android-app-img-lib {
+    width: var(--main-android-app-lib-size);
+    height: var(--main-android-app-lib-size);
+}
+
 
 /*
 
@@ -349,7 +355,6 @@ GAME
     text-align: center;
     position: fixed;
     z-index: 2;
-
     user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
@@ -378,6 +383,7 @@ GAME
     text-decoration: none;
     text-align: center;
 }
+
 
 /*
 
