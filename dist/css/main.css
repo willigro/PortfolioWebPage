@@ -225,10 +225,10 @@ ANDROID APP SCREEN SHOT
 
 /*
 
-GOOGLE PLAY ICON
+ANDROID APPLICATION ICON FOR LINK
 */
 
-.google-play-icon {
+.android-application-links-icon {
     width: var(--main-language-icon-size);
     height: var(--main-language-icon-size);
 }
@@ -381,15 +381,15 @@ GAME
 
 /*
 
-GOOGLE PLAY SECTION
+ANDROID APPLICATION LINKS
 */
 
-.google-play {
+.android-application-links-content {
     margin-top: var(--main-pattern-margin);
     margin-bottom: var(--main-pattern-margin);
 }
 
-.google-play-link {
+.android-application-links-link {
     cursor: pointer;
     text-decoration: none;
     color: var(--main-text-color-light);

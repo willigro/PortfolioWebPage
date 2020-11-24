@@ -1,7 +1,9 @@
 <?php
 include "./app/business/languageBusiness.php";
 include "./app/business/androidApplication.php";
+include "./app/html/generator.php";
 
+$htmlGenerator = new HtmlGenerator();
 $languageBusiness = new LanguageBusiness();
 $androidApplicationBusiness = new AndroidApplicationBusiness();
 
@@ -14,17 +16,20 @@ function getLanguages()
 function getOwnAndroidApplications()
 {
     global $androidApplicationBusiness;
-    return $androidApplicationBusiness->getOwnAndroidApplications();
+    global $htmlGenerator;
+    return $htmlGenerator->getAndroidApplications($androidApplicationBusiness->getOwnAndroidApplications());
 }
 
 function getAndroidLibsApplications()
 {
     global $androidApplicationBusiness;
-    return $androidApplicationBusiness->getAndroidLibsApplications();
+    global $htmlGenerator;
+    return $htmlGenerator->getAndroidApplications($androidApplicationBusiness->getAndroidLibsApplications());
 }
 
 function getColaboratedAndroidApplications()
 {
     global $androidApplicationBusiness;
-    return $androidApplicationBusiness->getColaboratedAndroidApplications();
+    global $htmlGenerator;
+    return $htmlGenerator->getAndroidApplications($androidApplicationBusiness->getColaboratedAndroidApplications());
 }

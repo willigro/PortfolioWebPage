@@ -11,9 +11,11 @@ class AndroidApplicationBusiness
             "Diário da Diabetes",
             "To control the register from the diabetes. Designed from a Diabestes types 1 carrier to Diabetes type 1 carriers, type 
             2 and people responsable from carries
-            <br>Register expense or earning
-            <br>Register pattern flows to easily regiter of the current flows",
-            "Kotlin, Coroutines, Kodein, Navigation Components, Room, LiveData, ViewMode, MVVM, JUnit, Espresso, AndroidX.",
+            <br>Register glucose fees, insulin applications, meals, favorite meals, weight historic.
+            <br>Insulin to application calculator, carboohydrates calculator and suggestions based in the actual glucose fee.
+            <br>Can be used to notify when the insulin action is started or finish (standard hours).
+            <br>The registers generate a historic of the fees, insulins and meals.",
+            "Java, Kotlin, Async Task, SQLite, JUnit, MVP, MVVM (refactoring), ViewModel (refactoring), WorkManager, AndroidX, Material Design",
             IMAGE_ROOT . "my_pocket_test_shot_1.png",
             array(
                 IMAGE_ROOT . "my_pocket_test_shot_1.png",
@@ -21,15 +23,16 @@ class AndroidApplicationBusiness
                 IMAGE_ROOT . "my_pocket_test_shot_1.png",
                 IMAGE_ROOT . "my_pocket_test_shot_1.png"
             ),
-            "https://play.google.com/store/apps/details?id=com.rgames.meusgastos"
+            "https://play.google.com/store/apps/details?id=com.rgames.diariodadiabetes"
         );
 
         $order = new AndroidApplication(
             "Pedidos",
-            "Simple register of the cash flows
-            <br>Register expense or earning
-            <br>Register pattern flows to easily regiter of the current flows",
-            "Kotlin, Coroutines, Kodein, Navigation Components, Room, LiveData, ViewMode, MVVM, JUnit, Espresso, AndroidX.",
+            "Control small business
+            <br>Perfect to small business that have few services or products, like restaurants, bars, small stores.
+            <br>Register the cashier, create orders, fast pay, parceled pay or pay with change.
+            <br>Register items, services, investiments, exists, and know how much you gain, and how much you spend with investiments or exists.",
+            "Java, Async Task, SQLite, JUnit, MVP, AndroidX, Material Design",
             IMAGE_ROOT . "my_pocket_test_shot_1.png",
             array(
                 IMAGE_ROOT . "my_pocket_test_shot_1.png",
@@ -37,14 +40,14 @@ class AndroidApplicationBusiness
                 IMAGE_ROOT . "my_pocket_test_shot_1.png",
                 IMAGE_ROOT . "my_pocket_test_shot_1.png"
             ),
-            "https://play.google.com/store/apps/details?id=com.rgames.meusgastos"
+            "https://play.google.com/store/apps/details?id=com.rgames.appvendabar"
         );
 
         $myPocket = new AndroidApplication(
             "Meu Bolso",
             "Simple register of the cash flows
-        <br>Register expense or earning
-        <br>Register pattern flows to easily regiter of the current flows",
+            <br>Register expense or earning.
+            <br>Register pattern flows to easily regiter of the current flows.",
             "Kotlin, Coroutines, Kodein, Navigation Components, Room, LiveData, ViewMode, MVVM, JUnit, Espresso, AndroidX.",
             IMAGE_ROOT . "my_pocket_test_shot_1.png",
             array(
@@ -56,8 +59,8 @@ class AndroidApplicationBusiness
 
         return array(
             $diabetesDaily,
-            $order,
-            $myPocket
+            $myPocket,
+            $order
         );
     }
 
@@ -74,7 +77,8 @@ class AndroidApplicationBusiness
                 IMAGE_ROOT . "my_pocket_test_shot_1.png",
                 IMAGE_ROOT . "my_pocket_test_shot_1.png"
             ),
-            null
+            null,
+            "https://github.com/willigro/Olimpo"
         );
 
         $robbie  = new AndroidApplication(
@@ -88,7 +92,8 @@ class AndroidApplicationBusiness
                 IMAGE_ROOT . "my_pocket_test_shot_1.png",
                 IMAGE_ROOT . "my_pocket_test_shot_1.png"
             ),
-            null
+            null,
+            "https://github.com/willigro/RobbieAndroidUtil"
         );
 
         return array(
@@ -97,7 +102,8 @@ class AndroidApplicationBusiness
         );
     }
 
-    function getColaboratedAndroidApplications(){
+    function getColaboratedAndroidApplications()
+    {
         $roadcard = new AndroidApplication(
             "Roadcard",
             "Simple register of the cash flows
