@@ -101,7 +101,7 @@
     </div>
   </div>
 
-   <!--
+  <!--
 
   Libs Project list
 
@@ -109,8 +109,9 @@
   <div id="android-libs">
     <div class="container-large p-content">
       <?php
-      for ($i = 0; $i < count($androidApplications); $i++) {
-        $obj = $androidApplications[$i];
+      $libsAndroidApplication = getAndroidLibsApplications();
+      for ($i = 0; $i < count($libsAndroidApplication); $i++) {
+        $obj = $libsAndroidApplication[$i];
         echo '<div style="margin-top: 15vh; margin-bottom: 15vh">';
         echo '<div class="row">
 
@@ -142,7 +143,8 @@
         echo '</div>
       </div>';
 
-        echo '<div class="center google-play">
+        if ($obj->googlePlayLink)
+          echo '<div class="center google-play">
             <a class="google-play-link" href="' . $obj->googlePlayLink . '" target="blank">
               <img class="google-play-icon" src="dist/images/google_play.png">
               Clique aqui e baixe o app
@@ -154,7 +156,7 @@
     </div>
   </div>
 
-    <!--
+  <!--
 
   Colaborateds Project list
 
@@ -162,8 +164,9 @@
   <div id="android-colaborated">
     <div class="container-large p-content">
       <?php
-      for ($i = 0; $i < count($androidApplications); $i++) {
-        $obj = $androidApplications[$i];
+      $colaboratedAndroidApps = getColaboratedAndroidApplications();
+      for ($i = 0; $i < count($colaboratedAndroidApps); $i++) {
+        $obj = $colaboratedAndroidApps[$i];
         echo '<div style="margin-top: 15vh; margin-bottom: 15vh">';
         echo '<div class="row">
 

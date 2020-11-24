@@ -290,7 +290,7 @@
               Android
             </p>
             <p>
-              Kotlin, Java, JUnit, Espresso, MVC, MVVM, MVP, Clean Architecture, Android Jetpack, Room, Navigation Components, LiveData,
+              Kotlin, Java, JUnit, Espresso, MVC, MVVM, MVP, Clean Architecture, Android Jetpack, Modules, Room, Navigation Components, LiveData,
               REST, ViewModel, Coroutines, Kodein, Retrofit, WorkManager, Services, Broadcast, Threads, SQLite, DBBrowser, Firebase,
               Facebook, Google, GPS, Custom View, <br>and more.
             </p>

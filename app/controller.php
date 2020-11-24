@@ -2,12 +2,29 @@
 include "./app/business/languageBusiness.php";
 include "./app/business/androidApplication.php";
 
-function getLanguages(){
-    $business = new LanguageBusiness();
-    return $business->getLanguages();
+$languageBusiness = new LanguageBusiness();
+$androidApplicationBusiness = new AndroidApplicationBusiness();
+
+function getLanguages()
+{
+    global $languageBusiness;
+    return $languageBusiness->getLanguages();
 }
 
-function getOwnAndroidApplications(){
-    $business = new AndroidApplicationBusiness();
-    return $business->getOwnAndroidApplications();
+function getOwnAndroidApplications()
+{
+    global $androidApplicationBusiness;
+    return $androidApplicationBusiness->getOwnAndroidApplications();
+}
+
+function getAndroidLibsApplications()
+{
+    global $androidApplicationBusiness;
+    return $androidApplicationBusiness->getAndroidLibsApplications();
+}
+
+function getColaboratedAndroidApplications()
+{
+    global $androidApplicationBusiness;
+    return $androidApplicationBusiness->getColaboratedAndroidApplications();
 }
