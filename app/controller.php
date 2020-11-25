@@ -1,4 +1,7 @@
 <?php
+/*
+Move data to database when finish the layout
+*/
 include "./app/business/languageBusiness.php";
 include "./app/business/androidApplication.php";
 include "./app/html/generator.php";

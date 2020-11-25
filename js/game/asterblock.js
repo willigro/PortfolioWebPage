@@ -1,6 +1,7 @@
 var ctx
 var delay = 1000 / 30
 var maxDistanceToCenter = 0
+var starsInterval
 
 var stars = []
 
@@ -17,7 +18,7 @@ const CLOSE_TO_WALL = 10
 const TO_CLOSE = 100
 const MAX_RADIUS = 100000
 
-const START_COUNT = 1000
+const START_COUNT = 700
 const ASTEROIDS_COUNT = 10
 const ASTEROIDS_COUNT_LIMIT = 20
 
@@ -78,6 +79,15 @@ window.onload = function() {
     init()
 }
 
+function startStars() {
+    init()
+}
+
+function stopStars() {
+    clearInterval(starsInterval)
+    drawBackground();
+}
+
 function onMouseMove(event) {
     mousePositionX = event.clientX
     mousePositionY = event.clientY
@@ -113,7 +123,7 @@ function onKeyUp(event) {
 }
 
 function init() {
-    setInterval(function() {
+    starsInterval = setInterval(function() {
         drawBackground();
 
         if (stars.length < START_COUNT) {

@@ -91,7 +91,7 @@
   <div id="android-colaborated">
     <div class="container-large p-content">
       <div class="center-text">
-        <p class="p-title p-shine">Here there some projects that I worked in the last 2 years</p>
+        <p class="p-title p-shine">Here are some projects that I worked in the last 2 years</p>
         <p class="p-content">You can ask me about this projects, I won't put many information about them because of the privacity of companies</p>
       </div>
 

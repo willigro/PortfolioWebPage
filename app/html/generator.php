@@ -43,7 +43,7 @@ class HtmlGenerator
         for ($j = 0; $j < count($obj->smallImages); $j++) {
           $html .= '<img class="android-app-img-small" src="' . $obj->smallImages[$j] . '">';
         }
-        $html .= '</div>';
+        $html .= '</div>'; // small images
       }
 
       $html .= '</div>
@@ -66,9 +66,7 @@ class HtmlGenerator
         if ($obj->privateProject)
           $html .= '<p class="p-content-small">The code and the link to download is private</p>';
 
-
-
-        $html .= '</div>';
+        $html .= '</div>'; // links content
       }
       $html .= ' </div>'; // scope
     }
