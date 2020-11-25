@@ -40,6 +40,10 @@
     display: inline-block
 }
 
+.center-text {
+    text-align: center;
+}
+
 .center {
     display: flex;
     justify-content: center;
@@ -321,6 +325,10 @@ TEXT
 
 .p-dark {
     color: var(--main-text-color-dark-secondary)
+}
+
+.p-shine {
+    color: var(--main-text-color-accent)
 }
 
 .p-extra-large {

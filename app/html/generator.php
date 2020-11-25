@@ -26,9 +26,12 @@ class HtmlGenerator
               </p>
               <p>
               ' . $obj->description . '
-              </p>
+              </p>';
 
-              <p class="p-subtitle">
+      if ($obj->fromZero)
+        $html .= '<p class="p-shine p-content-small">I work in this project since the start</p>';
+
+      $html .=   '<p class="p-subtitle">
                 Some used tecnologies
               </p>
               <p>
@@ -47,12 +50,12 @@ class HtmlGenerator
       </div>'; // row
 
       if ($obj->googlePlayLink || $obj->gitLink || $obj->privateProject) {
-        $html .= '<div class="center android-application-links-content">';
+        $html .= '<div class="android-application-links-content" style="text-align: center">';
         if ($obj->googlePlayLink)
-          $html .= '<a class="android-application-links-link" href="' . $obj->googlePlayLink . '" target="blank">
+          $html .= '<p><a class="android-application-links-link" href="' . $obj->googlePlayLink . '" target="blank">
                     <img class="android-application-links-icon" src="dist/images/google_play.png">
                     Click here and open the google play
-                  </a>';
+                  </a></p>';
 
         if ($obj->gitLink)
           $html .= '<a class="android-application-links-link" href="' . $obj->gitLink . '" target="blank">
@@ -61,10 +64,13 @@ class HtmlGenerator
                       </a>';
 
         if ($obj->privateProject)
-          $html .= 'This project is private, and your code or link to download is protected';
-        $html .= '</div>
-                </div>'; // scope
+          $html .= '<p class="p-content-small">The code and the link to download is private</p>';
+
+
+
+        $html .= '</div>';
       }
+      $html .= ' </div>'; // scope
     }
 
     return $html;

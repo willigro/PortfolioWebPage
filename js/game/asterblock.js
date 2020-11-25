@@ -68,7 +68,7 @@ var mousePressed = false
 var mousePositionX = 0
 var mousePositionY = 0
 
-window.onload = function () {
+window.onload = function() {
     var canvas = document.getElementById("canvas")
     canvas.width = maxWidth
     canvas.height = maxHeight
@@ -111,7 +111,7 @@ function onKeyUp(event) {
 }
 
 function init() {
-    setInterval(function () {
+    setInterval(function() {
         drawBackground();
 
         if (stars.length < START_COUNT) {
@@ -125,7 +125,7 @@ function init() {
         }
 
         if (inGame) {
-            gameClock.newClock("powerUp", POWER_UP_CLOCK, true, function () {
+            gameClock.newClock("powerUp", POWER_UP_CLOCK, true, function() {
                 tryGenerateNewPowerUp()
             })
             gameClock.tick();
@@ -239,7 +239,7 @@ function updateLifeView() {
     elementLife.html(_ship.lifePoints)
 }
 
-function updateShieldEnergy(){
+function updateShieldEnergy() {
     elementShieldEnergy.html(_ship.shieldEnergy)
 }
 
@@ -254,9 +254,9 @@ function updateActualPoints() {
 
     if (_allowedEnemies.length == 1 && actualPoints % 10 == 0) {
         _allowedEnemies.push(ENEMY_BROWN)
-    } else if (_allowedEnemies.length == 2 && actualPoints % 25 == 0) {
+    } else if (_allowedEnemies.length == 2 && actualPoints % 20 == 0) {
         _allowedEnemies.push(ENEMY_BLUE)
-    } else if (_allowedEnemies.length == 3 && actualPoints % 50 == 0) {
+    } else if (_allowedEnemies.length == 3 && actualPoints % 40 == 0) {
         _allowedEnemies.push(ENEMY_PINK)
     }
 
@@ -313,7 +313,7 @@ function configureScreenElements() {
 
     const menu = $("#menu")
 
-    elementPlay.click(function () {
+    elementPlay.click(function() {
         elementGamePanel.show()
         elementPlay.hide()
         elementGameTips.show()
@@ -330,7 +330,7 @@ function configureScreenElements() {
         numbers.hide(SHOW_HIDE_ANIMATION_DELAY)
     })
 
-    elementStop.click(function () {
+    elementStop.click(function() {
         stopGame()
         elementGamePanel.hide()
         elementPlay.show()
@@ -345,7 +345,7 @@ function configureScreenElements() {
         numbers.show(SHOW_HIDE_ANIMATION_DELAY)
     })
 
-    elementNewGame.click(function () {
+    elementNewGame.click(function() {
         elementInGamePanel.show()
         elementGameTips.hide()
         elementStopGame.show()
@@ -357,7 +357,7 @@ function configureScreenElements() {
         startNewGame();
     })
 
-    elementStopGame.click(function () {
+    elementStopGame.click(function() {
         elementGameTips.show()
         elementStopGame.hide()
         elementNewGame.show()

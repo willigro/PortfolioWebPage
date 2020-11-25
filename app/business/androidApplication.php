@@ -17,7 +17,7 @@ class AndroidApplicationBusiness
             <br>Insulin to application calculator, carboohydrates calculator and suggestions based in the actual glucose fee.
             <br>Can be used to notify when the insulin action is started or finish (standard hours).
             <br>The registers generate a historic of the fees, insulins and meals.",
-            "Java, Kotlin, Async Task, SQLite, JUnit, MVP, MVVM (refactoring), ViewModel (refactoring), WorkManager, AndroidX, Material Design",
+            "Java, Kotlin, Async Task, SQLite, JUnit, MVP, MVVM (refactoring), ViewModell (refactoring), WorkManager, AndroidX, Material Design",
             $this->imageRoot . "d_d_test_shot_1.png",
             array(
                 $this->imageRoot . "d_d_test_shot_2.png",
@@ -48,7 +48,7 @@ class AndroidApplicationBusiness
             "Simple register of the cash flows
             <br>Register expense or earning.
             <br>Register pattern flows to easily regiter of the current flows.",
-            "Kotlin, Coroutines, Kodein, Navigation Components, Room, LiveData, ViewMode, MVVM, JUnit, Espresso, AndroidX.",
+            "Kotlin, Coroutines, Kodein, Navigation Components, Room, LiveData, ViewModel, MVVM, JUnit, Espresso, AndroidX.",
             $this->imageRoot . "my_pocket_test_shot_1.png",
             array(
                 $this->imageRoot . "my_pocket_test_shot_2.png",
@@ -101,39 +101,90 @@ class AndroidApplicationBusiness
 
     function getColaboratedAndroidApplications()
     {
+        $gerencianet = new AndroidApplication(
+            "Gerencianet",
+            "Finance",
+            "Kotlin, Retrofit, Custom Views, Realm, Coroutines, LiveData, ViewModel, MVVM, Pictures (QR Code), AndroidX, Refactoring.",
+            null,
+            null,
+            "https://play.google.com/store/apps/details?id=br.com.gerencianet.app"
+        );
+
         $roadcard = new AndroidApplication(
             "Roadcard",
-            "Simple register of the cash flows
-            <br>Register expense or earning
-            <br>Register pattern flows to easily regiter of the current flows",
-            "Kotlin, Coroutines, Kodein, Navigation Components, Room, LiveData, ViewMode, MVVM, JUnit, Espresso, AndroidX.",
-            $this->imageRoot . "my_pocket_test_shot_1.png",
-            array(
-                $this->imageRoot . "my_pocket_test_shot_1.png",
-                $this->imageRoot . "my_pocket_test_shot_1.png"
-            ),
-            "https://play.google.com/store/apps/details?id=br.com.mmcafe.roadcardapp"
+            "Application for truckers",
+            "Kotlin, Retrofit, Facebook, Push notification, Google Services as well as GPS and Maps, Custom Views, SQLite to cache, Glide,
+            Anko, Kodein, LiveData, ViewModel, MVVM, JUnit, Espresso, background, Files, Pictures (API 19+), AndroidX.",
+            null,
+            null,
+            "https://play.google.com/store/apps/details?id=br.com.mmcafe.roadcardapp",
+            null,
+            false,
+            true
         );
 
         $neoEnergia  = new AndroidApplication(
             "NeoEnergia",
-            "Simple register of the cash flows
-            <br>Register expense or earning
-            <br>Register pattern flows to easily regiter of the current flows",
-            "Kotlin, Coroutines, Kodein, Navigation Components, Room, LiveData, ViewMode, MVVM, JUnit, Espresso, AndroidX.",
-            $this->imageRoot . "my_pocket_test_shot_1.png",
-            array(
-                $this->imageRoot . "my_pocket_test_shot_1.png",
-                $this->imageRoot . "my_pocket_test_shot_1.png"
-            ),
+            "Energy projects management",
+            "Kotlin, Anko, Retrofit, SQLite to cache, Kodein, LiveData, ViewModel, MVVM, JUnit, Custom Views, Files, Pictures (API 19+), AndroidX.",
+            null,
+            null,
+            null,
+            null,
+            true,
+            true
+        );
+
+        $rdm = new AndroidApplication(
+            "RDM",
+            "Sales and orders management",
+            "Kotlin, Coroutines, Retrofit, SQLite, Kodein, LiveData, ViewModel, MVVM, JUnit, AndroidX.",
+            null,
+            null,
+            "https://play.google.com/store/apps/details?id=com.rittamann.rdm",
+            null,
+            false,
+            true
+        );
+
+        $smartSell  = new AndroidApplication(
+            "SmartSell",
+            "Sales and orders management",
+            "Java, SQLite, AsyncTask, Services, Broadcast, GPS, Files, Pictures, Dynamic Layouts (by server), parameterized application,
+            OKHttp3, Refactoring.",
+            null,
+            null,
             null,
             null,
             true
         );
 
+        $petFlerte  = new AndroidApplication(
+            "PetFlerte",
+            "Sales and orders management",
+            "Kotlin, Navigation Components, Coroutines, Firebase (Message), Facebook, Google.",
+            null,
+            null,
+            "https://play.google.com/store/apps/details?id=br.com.petflerte"
+        );
+
+        $armazemParaiba = new AndroidApplication(
+            "Armazém PB",
+            "Store",
+            "Kotlin.",
+            null,
+            null,
+            "https://play.google.com/store/apps/details?id=br.com.mobile.armazempb"
+        );
+
         return array(
+            $gerencianet,
             $roadcard,
-            $neoEnergia
+            $neoEnergia,
+            $rdm,
+            $smartSell,
+            $petFlerte,
+            $armazemParaiba
         );
     }
 }
