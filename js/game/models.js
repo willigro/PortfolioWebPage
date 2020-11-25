@@ -4,8 +4,10 @@ const POWER_SPEED = 3;
 const POWER_SHIELD = 4;
 
 const BASE_PLAYER_TIME_TO_SHOT = 13
+const BASE_PLAYER_TIME_TO_SHO_NATURAL_MIN = 6
 const BASE_ENEMY_TIME_TO_SHOT = 30
 const BASE_PLAYER_VELOCITY = 6
+const BASE_PLAYER_VELOCITY_NATURAL_MAX = 10
 const POWER_UP_MAX_TIME_WORKING = 500
 const POWER_UP_MAX_LIFE_TIME = 300
 
@@ -174,9 +176,7 @@ class Shot {
 
 class Ship {
     constructor() {
-        this.velocity = BASE_PLAYER_VELOCITY
         this.size = 5
-        this.timeToNewShot = BASE_PLAYER_TIME_TO_SHOT
         this.currentShotTime = 0
         this.canShot = true
         this.activedShield = false
@@ -184,10 +184,47 @@ class Ship {
     }
 
     start() {
+        this.level = 1
         this.x = centerX
         this.y = centerY
         this.lifePoints = 10
         this.shieldEnergy = 1000
+
+        this.startVelocity = BASE_PLAYER_VELOCITY
+        this.velocity = BASE_PLAYER_VELOCITY
+
+        this.startBaseTimeToShot = BASE_PLAYER_TIME_TO_SHOT
+        this.timeToNewShot = BASE_PLAYER_TIME_TO_SHOT
+
+    }
+
+    upLevel() {
+        this.level++;
+
+        // max 9
+        if (this.startVelocity < BASE_PLAYER_VELOCITY_NATURAL_MAX && this.level % 5 == 0) {
+            this.startVelocity = this.startVelocity + 1;
+            this.velocity = this.startVelocity;
+        }
+
+        // min 7
+        if (this.startBaseTimeToShot > BASE_PLAYER_TIME_TO_SHO_NATURAL_MIN && this.level % 2 == 0) {
+            this.startBaseTimeToShot = this.startBaseTimeToShot - 0.5
+            this.timeToNewShot = this.startBaseTimeToShot
+        }
+
+        if (this.level % 3 == 0) {
+            this.lifePoints++;
+            updateLifeView()
+        }
+
+        if (this.level % 4 == 0) {
+            this.shieldEnergy += 200;
+            updateShieldEnergy()
+        }
+
+        console.log(this.level, this.startVelocity, this.velocity, this.startBaseTimeToShot, this.timeToNewShot)
+        updateStatus()
     }
 
     update() {
@@ -207,7 +244,7 @@ class Ship {
 
     move() {
         this.activedShield = false
-        // put break
+            // put break
         for (let keyCode of keysDown) {
             if (keyCode == 65 && this.x > 0) // left a
                 this.x -= this.velocity
@@ -241,19 +278,21 @@ class Ship {
             this.lifePoints++;
             updateLifeView()
         } else if (powerUp.type == POWER_ATK_SPEED) {
-            this.timeToNewShot = BASE_PLAYER_TIME_TO_SHOT / 2;
+            this.timeToNewShot = this.startBaseTimeToShot / 2;
             updateStatus()
 
-            gameClock.newClock(POWER_ATK_SPEED, POWER_UP_MAX_TIME_WORKING, false, function (ship) {
-                ship.timeToNewShot = BASE_PLAYER_TIME_TO_SHOT
+            gameClock.newClock(POWER_ATK_SPEED, POWER_UP_MAX_TIME_WORKING, false, function(ship) {
+                ship.timeToNewShot = ship.startBaseTimeToShot
                 updateStatus()
             }, true, this)
         } else if (powerUp.type == POWER_SPEED) {
-            this.velocity = BASE_PLAYER_VELOCITY * 1.5;
+            this.velocity = this.startVelocity * 1.3;
+            if (this.velocity === undefined) console.log("power up speed")
             updateStatus()
 
-            gameClock.newClock(POWER_SPEED, POWER_UP_MAX_TIME_WORKING, false, function (ship) {
-                ship.velocity = BASE_PLAYER_VELOCITY
+            gameClock.newClock(POWER_SPEED, POWER_UP_MAX_TIME_WORKING, false, function(ship) {
+                ship.velocity = ship.startVelocity
+                if (this.velocity === undefined) console.log("power up speed time over")
                 updateStatus()
             }, true, this)
         } else {
@@ -315,7 +354,7 @@ class BlackHole {
 
     draw() {
         ctx.fillStyle = "rgba(255, 255, 255, 0.1)"
-        // ctx.fillRect(this.x, this.y, this.size, this.size)
+            // ctx.fillRect(this.x, this.y, this.size, this.size)
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
         ctx.fill();
@@ -414,9 +453,9 @@ class Star {
         this.ry += velocity * rdt * Math.sin(r) + Math.cos(r)
         this.x = this.rx
         this.y = this.ry
-        // if (this.position == 0)
-        // if (this.x > maxWidth || this.x < 0)
-        //     console.log(this.x, this.y, maxWidth, maxHeight, velocity, this.position)
+            // if (this.position == 0)
+            // if (this.x > maxWidth || this.x < 0)
+            //     console.log(this.x, this.y, maxWidth, maxHeight, velocity, this.position)
     }
 
     // There is not delay, so i can put the max or min value without aceleration
@@ -518,7 +557,7 @@ class Star {
     draw() {
         if (this.x > 0 && this.x < maxWidth && this.y > 0 && this.y < maxHeight) {
             ctx.fillStyle = this.color
-            // ctx.fillRect(this.x, this.y, this.size, this.size)
+                // ctx.fillRect(this.x, this.y, this.size, this.size)
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
             ctx.fill();
@@ -543,7 +582,7 @@ class PowerUp {
         this.lifeTime = 0;
 
         var n = new Date().getMilliseconds();
-        gameClock.newClock(n, POWER_UP_MAX_LIFE_TIME, false, function (up) {
+        gameClock.newClock(n, POWER_UP_MAX_LIFE_TIME, false, function(up) {
             up.destroy();
         }, false, this)
     }

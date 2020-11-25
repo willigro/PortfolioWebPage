@@ -32,6 +32,7 @@ const MOVE_STATUS_RUN_AWAY = 1
 const MOVE_STATUS_STOPING = 2
 const MOVE_STATUS_TO_CENTER = 3
 
+const POINTS_CLOCK = 50
 const POWER_UP_CLOCK = 300
 const SHOW_HIDE_ANIMATION_DELAY = 1000
 
@@ -48,8 +49,8 @@ var elementShieldEnergy
 var elementGameTips
 var elementSpeed
 var elementAtkSpeed
+var elementPlayerLevel
 
-var gameActualNivel = 1
 var actualPoints = 0
 
 var _ship;
@@ -60,7 +61,7 @@ var _asteroidShots = []
 var _powerUps = []
 var _allowedEnemies = []
 var asteroidVelFactor = 1
-const MAX_ASTEROID_VEL = 3
+const MAX_ASTEROID_VEL = 2.5
 var gameClock
 
 var keysDown = []
@@ -83,6 +84,7 @@ function onMouseMove(event) {
 }
 
 function onMouseDown(event) {
+    console.log("down")
     mousePressed = true;
 }
 
@@ -128,6 +130,12 @@ function init() {
             gameClock.newClock("powerUp", POWER_UP_CLOCK, true, function() {
                 tryGenerateNewPowerUp()
             })
+
+            gameClock.newClock("points", POINTS_CLOCK, true, function() {
+                actualPoints++;
+                updateActualPoints()
+            })
+
             gameClock.tick();
 
             _ship.update()
@@ -244,20 +252,26 @@ function updateShieldEnergy() {
 }
 
 function updateActualPoints() {
-    if (asteroidVelFactor < MAX_ASTEROID_VEL && actualPoints % 5 == 0) {
-        asteroidVelFactor += .1
-    }
+    if (actualPoints > 0) {
+        if (asteroidVelFactor < MAX_ASTEROID_VEL && actualPoints % 15 == 0) {
+            asteroidVelFactor += .1
+        }
 
-    if (_asteroids.length < ASTEROIDS_COUNT_LIMIT && actualPoints % 20 == 0) {
-        _asteroids.push(new Asteroid())
-    }
+        if (_asteroids.length < ASTEROIDS_COUNT_LIMIT && actualPoints % 30 == 0) {
+            _asteroids.push(new Asteroid())
+        }
 
-    if (_allowedEnemies.length == 1 && actualPoints % 10 == 0) {
-        _allowedEnemies.push(ENEMY_BROWN)
-    } else if (_allowedEnemies.length == 2 && actualPoints % 20 == 0) {
-        _allowedEnemies.push(ENEMY_BLUE)
-    } else if (_allowedEnemies.length == 3 && actualPoints % 40 == 0) {
-        _allowedEnemies.push(ENEMY_PINK)
+        if (actualPoints % 10 == 0) {
+            _ship.upLevel()
+        }
+
+        if (_allowedEnemies.length == 1 && actualPoints % 20 == 0) {
+            _allowedEnemies.push(ENEMY_BROWN)
+        } else if (_allowedEnemies.length == 2 && actualPoints % 50 == 0) {
+            _allowedEnemies.push(ENEMY_BLUE)
+        } else if (_allowedEnemies.length == 3 && actualPoints % 100 == 0) {
+            _allowedEnemies.push(ENEMY_PINK)
+        }
     }
 
     elementPoints.html(actualPoints)
@@ -267,6 +281,7 @@ function updateStatus() {
     if (!_ship) return
     elementSpeed.html(_ship.velocity)
     elementAtkSpeed.html(_ship.timeToNewShot)
+    elementPlayerLevel.html(_ship.level)
 }
 
 function startAsteroids() {
@@ -301,6 +316,7 @@ function configureScreenElements() {
     elementGameTips = $("#game-tips")
     elementAtkSpeed = $("#atk-speed")
     elementSpeed = $("#speed")
+    elementPlayerLevel = $("#player-level")
 
     const header = $("#header")
     const resume = $("#resume")

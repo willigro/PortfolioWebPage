@@ -2,37 +2,37 @@
 
 <head>
 
-  <!-- Basic Page Needs
+    <!-- Basic Page Needs
 
     CODE BASE BASED IN SKELETON
 
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>My Portfolio</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <title>My Portfolio</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <!-- Mobile Specific Metas
+    <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- FONT
+    <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="dist/css/font_raleway.css">
+    <link rel="stylesheet" href="dist/css/font_raleway.css">
 
-  <!-- CSS
+    <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="dist/css/normalize.css">
-  <link rel="stylesheet" href="dist/css/skeleton.css">
-  <link rel="stylesheet" href="dist/css/main.css">
+    <link rel="stylesheet" href="dist/css/normalize.css">
+    <link rel="stylesheet" href="dist/css/skeleton.css">
+    <link rel="stylesheet" href="dist/css/main.css">
 
-  <!-- Scripts
+    <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script src="js/jquery.min.js"></script>
-  <script src="js/utils.js"></script>
-  <script src="js/site.js"></script>
-  <script src="js/game/asterblock.js"></script>
-  <script src="js/game/models.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/site.js"></script>
+    <script src="js/game/asterblock.js"></script>
+    <script src="js/game/models.js"></script>
 </head>
 <html lang="en">
 
@@ -49,56 +49,56 @@ OK - Add enemy to list to each x * points with a limit
 
 
 <body>
-  <canvas id="canvas" style="height: 100%; width: 100%; position: fixed; z-index: -1;" onmousemove="onMouseMove(event)"
-    onmousedown="onMouseDown(event)" onmouseup="onMouseUp(event)"></canvas>
+    <canvas id="canvas" style="height: 100%; width: 100%; position: fixed; z-index: -1;" onmousemove="onMouseMove(event)" onmousedown="onMouseDown(event)" onmouseup="onMouseUp(event)"></canvas>
 
-  <div class="player">
-    <a id="play">Play Asterblocks</a>
-    <div id="game-panel" hidden>
-      <ul>
-        <li>
-          <a id="stop">Return to site</a>
-        </li>
-        <li id="new-game">
-          <a>New Game</a>
-        </li>
-        <li id="stop-game" hidden>
-          <a>Stop Asterblocks</a>
-        </li>
-      </ul>
+    <div class="player">
+        <a id="play">Play Asterblocks</a>
+        <div id="game-panel" hidden>
+            <ul>
+                <li>
+                    <a id="stop">Return to site</a>
+                </li>
+                <li id="new-game">
+                    <a>New Game</a>
+                </li>
+                <li id="stop-game" hidden>
+                    <a>Stop Asterblocks</a>
+                </li>
+            </ul>
 
-      <div id="game-tips">
-        <p>
-          <span style="color: gold;">W</span> (up)
-          <span style="color: gold;">A</span> (left)
-          <span style="color: gold;">S</span> (down)
-          <span style="color: gold;">D</span> (right) to move
-          <br>Press <span style="color: gold;">left</span> mouse to shot
-          <br>Press <span style="color: gold;">right</span> mouse to use the special !! TODO !!
-          <br>Press <span style="color: gold;">space bar</span> to active the shield
-          <br>Touch the <span style="color: red">red blocks</span> to increase your life
-          <br>Touch the <span style="color: yellow">yellow blocks</span> to increase your speed
-          <br>Touch the <span style="color: green">green blocks</span> to increase your atk speed
-        </p>
-        <p>
-          White enemies have 1 life and cannot attack
-          <br><span style="color: brown">Brown enemies</span> have 2 life and cannot attack
-          <br><span style="color: blue">Blue enemies</span> have 1 life and can attack
-          <br><span style="color: pink">Pink enemies</span> have 2 life and can attack
-        </p>
-      </div>
+            <div id="game-tips">
+                <p>
+                    <span style="color: gold;">W</span> (up)
+                    <span style="color: gold;">A</span> (left)
+                    <span style="color: gold;">S</span> (down)
+                    <span style="color: gold;">D</span> (right) to move
+                    <br>Press <span style="color: gold;">left</span> mouse to shot
+                    <br>Press <span style="color: gold;">right</span> mouse to use the special !! TODO !!
+                    <br>Press <span style="color: gold;">space bar</span> to active the shield
+                    <br>Touch the <span style="color: red">red blocks</span> to increase your life
+                    <br>Touch the <span style="color: yellow">yellow blocks</span> to increase your speed
+                    <br>Touch the <span style="color: green">green blocks</span> to increase your atk speed
+                </p>
+                <p>
+                    White enemies have 1 life and cannot attack
+                    <br><span style="color: brown">Brown enemies</span> have 2 life and cannot attack
+                    <br><span style="color: blue">Blue enemies</span> have 1 life and can attack
+                    <br><span style="color: pink">Pink enemies</span> have 2 life and can attack
+                </p>
+            </div>
 
-      <div id="in-game-panel" hidden>
-        <p style="margin-top: 10px">
-          Life <span id="life"></span>
-          <br>Shield Energy <span id="shield-energy"></span>
-          <br>Points <span id="points"></span>
-          <br>Speed <span id="speed"></span>
-          <br>Atk Speed <span id="atk-speed"></span>
-        </p>
-      </div>
+            <div id="in-game-panel" hidden>
+                <p style="margin-top: 10px">
+                    Life <span id="life"></span>
+                    <br>Shield Energy <span id="shield-energy"></span>
+                    <br>Points <span id="points"></span>
+                    <br>Level <span id="player-level"></span>
+                    <br>Speed <span id="speed"></span>
+                    <br>Atk Speed <span id="atk-speed"></span>
+                </p>
+            </div>
+        </div>
     </div>
-  </div>
 </body>
 
 </html>
