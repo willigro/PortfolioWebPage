@@ -1,62 +1,78 @@
 $(document).ready(function() {
 
+    const MY_TEAM_MOVE_ANIMATION_DELAY = 700
+    const MY_TEAM_MOVE_ANIMATION_DELAY_FAST = 500
+    const MY_TEAM_OPACITY_ANIMATION_DELAY = 500
+
     function initAndroid() {
         // handleContentHeader()
-        handleMenuHomeSections()
+        handleMenuHomeSections(true)
 
-        const boxes = ["#profile-avatar-android", "#profile-avatar-tech", "#profile-avatar-ceo", "#profile-avatar-game", "#profile-avatar-data"]
-        const boxesContent = ["#profile-content-android", "#profile-content-tech", "#profile-content-ceo", "#profile-content-game", "#profile-content-data"]
+        $("#show-my-team").click(function() {
 
-        for (i in boxes) {
-            $(boxes[i]).hover(function() {
-                console.log(boxes, boxes[i] + "-content")
-                $("#profile-content-android").addClass('avatar-container-hover');
-            }, function() {
-                $("#profile-content-android").removeClass('avatar-container-hover');
+            const boxes = ["#profile-android", "#profile-tech-leader", "#profile-ceo", "#profile-game", "#profile-data-scientist"]
+            const boxesA = ["#my-team-android", "#my-team-tech-leader", "#my-team-ceo", "#my-team-game", "#my-team-data-scientist"]
+
+            var one = false
+            for (i in boxes) {
+                const b = boxes[i]
+                const bA = boxesA[i]
+
+                $(b).animate({
+                    opacity: 0
+                }, MY_TEAM_OPACITY_ANIMATION_DELAY);
+
+                $(bA).show(MY_TEAM_MOVE_ANIMATION_DELAY, function() {
+                    if (!one) {
+                        one = true
+                        $("#skills").show(MY_TEAM_MOVE_ANIMATION_DELAY_FAST);
+                        $("#resume").show(MY_TEAM_MOVE_ANIMATION_DELAY_FAST);
+                    }
+                });
+            }
+
+            $("#skills").hide(MY_TEAM_MOVE_ANIMATION_DELAY_FAST);
+            $("#resume").hide(MY_TEAM_MOVE_ANIMATION_DELAY_FAST);
+
+            $("#profile-avatars").hide(MY_TEAM_MOVE_ANIMATION_DELAY, function() {
+                handleMenuHomeSections(false)
             });
+
+            $(this).hide()
+            $("#hide-my-team").show()
+        });
+
+        $("#hide-my-team").click(function() {
+
+            const boxes = ["#profile-android", "#profile-tech-leader", "#profile-ceo", "#profile-game", "#profile-data-scientist"]
+            const boxesA = ["#my-team-android", "#my-team-tech-leader", "#my-team-ceo", "#my-team-game", "#my-team-data-scientist"]
+
+            for (i in boxes) {
+                const b = boxes[i]
+                const bA = boxesA[i]
+
+                $(b).animate({
+                    opacity: 1
+                }, MY_TEAM_OPACITY_ANIMATION_DELAY);
+
+                $(bA).hide(MY_TEAM_MOVE_ANIMATION_DELAY);
+            }
+
+            $("#profile-avatars").show(MY_TEAM_MOVE_ANIMATION_DELAY, function() {
+                handleMenuHomeSections(false)
+            });
+
+            $(this).hide()
+            $("#show-my-team").show()
+        });
+    }
+
+    function handleMenuHomeSections(updateHeight) {
+        if (updateHeight) {
+            $("#header").height(window.innerHeight)
+            $("#skills").height(window.innerHeight)
         }
-
-    }
-
-    function handleContentHeader() {
-        const boxes = ["#profile-android", "#profile-tech-leader", "#profile-ceo", "#profile-game", "#profile-data-scientist"]
-        for (i in boxes) {
-            handleShowAndHideBox(boxes[i])
-        }
-    }
-
-    function handleShowAndHideBox(profile) {
-        const box = profile + "-box"
-
-        // show
-        $(profile).mouseenter(function() {
-            // const position = $(profile).offset()
-            const element = $(box)
-            element.show()
-                // element.width(window.innerWidth)
-                // element.css({ left: 0, position: 'absolute' });
-        });
-
-        $(box).mouseenter(function() {
-            $(box).show()
-        });
-
-        // hide
-        $(profile).mouseleave(function() {
-            $(box).hide()
-        });
-
-        $(box).mouseleave(function() {
-            $(box).hide()
-        });
-    }
-
-    function handleMenuHomeSections() {
-        $("#header").height(window.innerHeight)
-        $("#skills").height(window.innerHeight)
-
         // The order matters
-        // const sections = ["my-team", "skills", "resume"]
         const sections = ["resume", "skills", "my-team"]
         for (i in sections) {
             configureMenuSectionActions(sections[i])

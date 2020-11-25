@@ -34,6 +34,7 @@
     /* Page attr */
     background-color: var(--main-background-color);
     color: aliceblue;
+    position: relative;
 }
 
 .wrap-content {
@@ -203,26 +204,13 @@ AVATAR
 }
 
 .avatar:hover {
-    border: 3px solid white;
+    /* border: 3px solid white; */
 }
 
 .avatar-container {
-    max-height: var(--main-avatar-size);
-    transition: max-height 0.15s ease-out;
-    overflow: hidden;
     text-align: left;
     margin-bottom: 100px;
     border-bottom: 1px solid rgb(97, 97, 97);
-}
-
-.avatar-container-hover {
-    max-height: 1000px;
-    transition: max-height 0.25s ease-in;
-}
-
-.avatar-container:hover {
-    max-height: 1000px;
-    transition: max-height 0.25s ease-in;
 }
 
 
@@ -422,4 +410,20 @@ ANDROID APPLICATION LINKS
     text-decoration: none;
     color: var(--main-text-color-light);
     font-size: var(--main-text-size-menu-section);
+}
+
+
+/*
+
+MAIN LINK
+*/
+
+.a-main {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.move {
+    width: 100vw;
+    display: inline-block;
 }

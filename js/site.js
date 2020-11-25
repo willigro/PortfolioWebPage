@@ -37,6 +37,7 @@ function configureMenuSectionActions(section) {
     })
 
     const elementMenuSection = $(menuSection)
+    elementMenuSection.unbind();
     elementMenuSection.click(function() {
         // Scroll to section
         $([document.documentElement, document.body]).animate({
