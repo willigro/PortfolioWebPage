@@ -483,6 +483,6 @@
 </body>
 <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<script src="js/home.js"></script>
+<script src="js/pages/home.js"></script>
 
 </html>

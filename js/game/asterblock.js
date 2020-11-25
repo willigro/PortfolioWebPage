@@ -99,6 +99,7 @@ function onMouseDown(event) {
 }
 
 function onMouseUp(event) {
+    console.log("up")
     mousePressed = false;
 }
 

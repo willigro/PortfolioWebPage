@@ -105,6 +105,6 @@
 
 <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<script src="js/android.js"></script>
+<script src="js/pages/android.js"></script>
 
 </html>
