@@ -1,8 +1,21 @@
 $(document).ready(function() {
 
     function initAndroid() {
-        handleContentHeader()
+        // handleContentHeader()
         handleMenuHomeSections()
+
+        const boxes = ["#profile-avatar-android", "#profile-avatar-tech", "#profile-avatar-ceo", "#profile-avatar-game", "#profile-avatar-data"]
+        const boxesContent = ["#profile-content-android", "#profile-content-tech", "#profile-content-ceo", "#profile-content-game", "#profile-content-data"]
+
+        for (i in boxes) {
+            $(boxes[i]).hover(function() {
+                console.log(boxes, boxes[i] + "-content")
+                $("#profile-content-android").addClass('avatar-container-hover');
+            }, function() {
+                $("#profile-content-android").removeClass('avatar-container-hover');
+            });
+        }
+
     }
 
     function handleContentHeader() {
