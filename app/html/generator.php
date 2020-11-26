@@ -79,31 +79,57 @@ class HtmlGenerator
     $html = "<p>";
 
     $mainInfo = $myTeam->mainInfo;
+    $knowledge = $myTeam->knowledge;
     
+    $all = sizeof($mainInfo) + sizeof($knowledge);
+    $j = 0;
+
     for ($i = 0; $i < sizeof($mainInfo); $i++) {
+      $j++;
       $obj = $mainInfo[$i];
 
-      $html .= $obj[0] . '<span class="p-shine"><br>' . $obj[1] . '</span>';
+      $html .= $obj[0] . '<span style="color:' . $this->percent2Color((100 * $j / 2) / $all) . '"><br>' . $obj[1] . '</span>';
 
       if ($i < sizeof($mainInfo) - 1)
         $html .= "<br>";
     }
-   
+
     $html .= "</p>
     <p>";
 
-    $knowledge = $myTeam->knowledge;
     
+
     for ($i = 0; $i < sizeof($knowledge); $i++) {
+      $j++;
       $obj = $knowledge[$i];
 
-      $html .= $obj[0] . '<span class="p-shine"><br>' . $obj[1] . '</span>';
+      $html .= $obj[0] . '<span style="color:' . $this->percent2Color((100 * $j / 2) / $all) . '"><br>' . $obj[1] . '</span>';
 
       if ($i < sizeof($knowledge) - 1)
         $html .= "<br>";
     }
-   
 
     return $html;
+  }
+
+  function percent2Color($value, $brightness = 255, $max = 100, $min = 0, $thirdColorHex = '55')
+  {
+    // Calculate first and second color (Inverse relationship)
+    $first = (1 - ($value / $max)) * $brightness;
+    $second = ($value / $max) * $brightness;
+
+    // Find the influence of the middle color (yellow if 1st and 2nd are red and green)
+    $diff = abs($first - $second);
+    $influence = ($brightness - $diff) / 2;
+    $first = intval($first + $influence);
+    $second = intval($second + $influence);
+
+    // Convert to HEX, format and return
+    $firstHex = str_pad(dechex($first), 2, 0, STR_PAD_LEFT);
+    $secondHex = str_pad(dechex($second), 2, 0, STR_PAD_LEFT);
+
+    // return "#" . $firstHex . $secondHex . $thirdColorHex;
+    return "#" . $thirdColorHex . $firstHex . $secondHex;
+    // return "#" . $firstHex . $thirdColorHex . $secondHex;
   }
 }
