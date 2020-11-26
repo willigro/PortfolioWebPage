@@ -73,4 +73,37 @@ class HtmlGenerator
 
     return $html;
   }
+
+  function getMyTeam($myTeam)
+  {
+    $html = "<p>";
+
+    $mainInfo = $myTeam->mainInfo;
+    
+    for ($i = 0; $i < sizeof($mainInfo); $i++) {
+      $obj = $mainInfo[$i];
+
+      $html .= $obj[0] . '<span class="p-shine"><br>' . $obj[1] . '</span>';
+
+      if ($i < sizeof($mainInfo) - 1)
+        $html .= "<br>";
+    }
+   
+    $html .= "</p>
+    <p>";
+
+    $knowledge = $myTeam->knowledge;
+    
+    for ($i = 0; $i < sizeof($knowledge); $i++) {
+      $obj = $knowledge[$i];
+
+      $html .= $obj[0] . '<span class="p-shine"><br>' . $obj[1] . '</span>';
+
+      if ($i < sizeof($knowledge) - 1)
+        $html .= "<br>";
+    }
+   
+
+    return $html;
+  }
 }

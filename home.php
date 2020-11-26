@@ -71,11 +71,11 @@
       </div>
 
       <div class="row center-text">
-        <a id="show-my-team" class="p-content-small p-shine a-main">
-          Click here and see more about they
+        <a id="show-my-team" class="p-content-small p-selectable a-main">
+          Click here and see more about them
         </a>
 
-        <a id="hide-my-team" class="p-content-small p-shine a-main" hidden>
+        <a id="hide-my-team" class="p-content-small p-selectable a-main" hidden>
           Less
         </a>
       </div>
@@ -91,46 +91,18 @@
           </div>
 
           <div id="profile-content-android" class="eight columns avatar-container">
-            <p>
-              Experience: 3 years
-              <br>Skills: Middle
-              <br>Colaborated Projects (Including hybrids): 23+
-              <br>Projects from the zero (Including hybrids): 19
-              <br>Paralel projects (to learn): ??
-            </p>
-            <p>
-              Knowledge:
-              <br>Java, Kotlin;
-              <br>MVVM, MVP, MVC;
-              <br>Koin, Kodein;
-              <br>Architecture components: LiveData, ViewModel, Navigation
-              <br>Room, Lyfecycle, etc;
-              <br>JUnit, Expresso, TDD
-              <br>REST, Retrofit, Glide, Picasso, and most others libs;
-              <br>SQLite, DBBrowser;
-              <br>Clean Code, SOLID.
-              <br><br> Others:
-              <br>PHP, NodeJs, javascript;
-            </p>
+            <?php
+            echo getMyAndroidTeam();
+            ?>
           </div>
         </div>
 
         <!-- Tech leader -->
         <div id="my-team-tech-leader" class="row" hidden>
           <div id="profile-content-tech" class="eight columns avatar-container">
-            <p>
-              Experience: 1 year
-              <br>Skills: Junior
-              <br>Projects as leader (with team): 4
-              <br>Projects from the zero (Including hybrids): 19
-              <br>Paralel projects (to learn): ??
-            </p>
-            <p>
-              What did i do?:
-              <br>Designed tasks, define cronograme, the architeture and tecnologies;
-              <br>Code review, classes to teach some techincs and live;
-              <br>Talks with costumers.
-            </p>
+            <?php
+            echo getMyTechLeaderTeam();
+            ?>
           </div>
 
           <div id="profile-avatar-tech" class="four columns">
@@ -149,32 +121,18 @@
           </div>
 
           <div id="profile-content-ceo" class="eight columns avatar-container">
-            <p>
-              Experience: 1 year
-              <br>Skills: Junior
-              <br>Projects I do for Rittmann (me): 10
-            </p>
-            <p>
-              What did i do?:
-              <br>Android projects in the general. But i'm working in some others projects.
-            </p>
+            <?php
+            echo getMyCEOTeam();
+            ?>
           </div>
         </div>
 
         <!-- Game Developer -->
         <div id="my-team-game" class="row" hidden>
           <div id="profile-content-game" class="eight columns avatar-container">
-            <p>
-              Experience: 1 year
-              <br>Skills: Junior
-              <br>Projects I finish: 0, yes, Zero
-              <br>Projects I started (and remember): 4
-              <br>Projects I make to learn: 6+
-            </p>
-            <p>
-              Tecnologies:
-              <br>Godot, Unity and javascript.
-            </p>
+            <?php
+            echo getMyGameTeam();
+            ?>
           </div>
 
           <div id="profile-avatar-game" class="four columns">
@@ -193,18 +151,9 @@
           </div>
 
           <div id="profile-content-data" class="eight columns avatar-container">
-            <p>
-              Experience: 1 year
-              <br>Skills: Junior
-              <br>Projects I finish: 12+
-              <br>Main skills: ML and genetic algorithm
-            </p>
-            <p>
-              Knowledge:
-              <br>Python, ML, NLP, genetic algorithm, KNN,
-              <br>Deep Learning, backpropagation, BigData, visual computing,
-              <br>Data analysis, intelligent agent.
-            </p>
+            <?php
+            echo getMyDataTeam();
+            ?>
           </div>
         </div>
       </div>

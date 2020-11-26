@@ -15,6 +15,7 @@
     --main-text-color-dark: rgb(24, 24, 24);
     --main-text-color-dark-secondary: rgb(182, 182, 182);
     --main-text-color-accent: rgb(245, 158, 45);
+    --main-text-color-selectable: rgb(85, 245, 45);
     --main-text-color-menu-hover: rgb(175, 19, 247);
     --main-text-color-menu-selected: rgb(175, 19, 247);
     --main-text-color-menu-section-hover: rgb(215, 146, 247);
@@ -331,6 +332,10 @@ TEXT
 
 .p-shine {
     color: var(--main-text-color-accent)
+}
+
+.p-selectable {
+    color: var(--main-text-color-selectable)
 }
 
 .p-extra-large {
