@@ -319,6 +319,7 @@ function configureScreenElements() {
     elementNewGame = $("#new-game")
     elementStopGame = $("#stop-game")
     elementGamePanel = $("#game-panel")
+    elementGamePanel.height(maxHeight)
     elementInGamePanel = $("#in-game-panel")
     elementStop = $("#stop")
     elementPoints = $("#points")

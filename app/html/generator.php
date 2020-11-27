@@ -76,7 +76,7 @@ class HtmlGenerator
 
   function getMyTeam($myTeam)
   {
-    $html = "<p>";
+    $html = "<div class='p-content'><p>";
 
     $mainInfo = $myTeam->mainInfo;
     $knowledge = $myTeam->knowledge;
@@ -88,7 +88,7 @@ class HtmlGenerator
       $j++;
       $obj = $mainInfo[$i];
 
-      $html .= $obj[0] . '<span style="color:' . $this->percent2Color((100 * $j / 2) / $all) . '"><br>' . $obj[1] . '</span>';
+      $html .= $obj[0] . '<span class="p-content-small" style="color:' . $this->percent2Color((100 * $j / 2) / $all) . '"><br>' . $obj[1] . '</span>';
 
       if ($i < sizeof($mainInfo) - 1)
         $html .= "<br>";
@@ -103,13 +103,13 @@ class HtmlGenerator
       $j++;
       $obj = $knowledge[$i];
 
-      $html .= $obj[0] . '<span style="color:' . $this->percent2Color((100 * $j / 2) / $all) . '"><br>' . $obj[1] . '</span>';
+      $html .= $obj[0] . '<span class="p-content-small" style="color:' . $this->percent2Color((100 * $j / 2) / $all) . '"><br>' . $obj[1] . '</span>';
 
       if ($i < sizeof($knowledge) - 1)
         $html .= "<br>";
     }
 
-    return $html;
+    return $html . "</div>";
   }
 
   function percent2Color($value, $brightness = 255, $max = 100, $min = 0, $thirdColorHex = '55')

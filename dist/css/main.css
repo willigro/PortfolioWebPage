@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Geo&subset=latin);
 .page {
     /* Sizes */
     --main-avatar-size: 180px;
@@ -22,13 +23,13 @@
     --main-text-color-menu-section-selected: rgb(215, 146, 247);
     --main-text-color-player-hover: rgb(252, 151, 159);
     /* Texts size */
-    --main-text-extra-large: 54px;
-    --main-text-size-title: 22px;
-    --main-text-size-subtitle: 19px;
-    --main-text-size-content: 18px;
-    --main-text-size-content-small: 14px;
-    --main-text-size-menu: 18px;
-    --main-text-size-menu-section: 14px;
+    --main-text-extra-large: 68px;
+    --main-text-size-title: 32px;
+    --main-text-size-subtitle: 28px;
+    --main-text-size-content: 22px;
+    --main-text-size-content-small: 18px;
+    --main-text-size-menu: 26px;
+    --main-text-size-menu-section: 18px;
     /* Margins */
     --main-text-margin-bottom-content: .5rem;
     --main-pattern-margin: 25px;
@@ -36,6 +37,9 @@
     background-color: var(--main-background-color);
     color: aliceblue;
     position: relative;
+    font-family: 'Geo', serif;
+    /* make text super sharp */
+    -webkit-font-smoothing: none;
 }
 
 .wrap-content {
