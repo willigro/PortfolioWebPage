@@ -83,7 +83,7 @@ Refactor:
                     <span style="color: gold;">S</span> (down)
                     <span style="color: gold;">D</span> (right) to move
                     <br>Press <span style="color: gold;">left</span> mouse to shot
-                    <br>Press <span style="color: gold;">right</span> mouse to use the special !! TODO !!
+                    <br>Press <span style="color: gold;">1</span> or <span style="color: gold;">2</span> to use the special !! TODO !!
                     <br>Press <span style="color: gold;">space bar</span> to active the shield
                     <br>Pick up the <span style="color: red">red blocks</span> to increase your life
                     <br>Pick up the <span style="color: orange">orange blocks</span> to increase your shield
@@ -100,12 +100,12 @@ Refactor:
 
             <div id="in-game-panel" style="position: absolute; bottom:3px; right:3px;" hidden>
                 <p style="margin-top: 10px">
-                    Life <span id="life"></span>
-                    <br>Shield Energy <span id="shield-energy"></span>
+                    Life <span id="life" style="color: red"></span>
+                    <br>Shield Energy <span id="shield-energy" style="color: orange"></span>
                     <br>Points <span id="points"></span>
-                    <br>Level <span id="player-level"></span>
-                    <br>Speed <span id="speed"></span>
-                    <br>Atk Speed <span id="atk-speed"></span>
+                    <br>Level <span id="player-level" style="color: rgb(87, 106, 228)"></span>
+                    <br>Speed <span id="speed" style="color: yellow"></span>
+                    <br>Atk Speed <span id="atk-speed" style="color: green"></span>
                 </p>
             </div>
 
@@ -115,6 +115,7 @@ Refactor:
                 <p id="power-up-received-atk-speed" style="color: green;" class="p-power-up" hidden>ATK SPEED UP!!</p>
                 <p id="power-up-received-shield" style="color: orange;" class="p-power-up" hidden>SHIELD RECOVERED!!</p>
                 <p id="power-up-received-hp" style="color: red;" class="p-power-up" hidden>HP RECOVERED!!</p>
+                <p id="power-up-received-base-enemy-life" class="p-power-up" hidden><span style="color: red;">WARNING</span> ENEMY BASE LIFE UP TO <span id="enemy-base-life" style="color: red;"></span>!!</p>
             </div>
         </div>
     </div>

@@ -33,6 +33,7 @@ const MOVE_STATUS_RUN_AWAY = 1
 const MOVE_STATUS_STOPING = 2
 const MOVE_STATUS_TO_CENTER = 3
 
+const BASE_ENEMY_LIFE = 2500
 const POINTS_CLOCK = 50
 const POWER_UP_CLOCK = 300
 const SHOW_HIDE_ANIMATION_DELAY = 1000
@@ -53,7 +54,7 @@ var elementAtkSpeed
 var elementPlayerLevel
 
 var actualPoints = 0
-
+var baseEnemyLife = 0
 var _ship;
 var _blackHole;
 var _asteroids = []
@@ -148,6 +149,11 @@ function init() {
                 updateActualPoints()
             })
 
+            gameClock.newClock("baseEnemyLife", BASE_ENEMY_LIFE, true, function() {
+                baseEnemyLife++;
+                showEnemyLifeUp()
+            })
+
             gameClock.tick();
 
             _ship.update()
@@ -233,6 +239,8 @@ function stopGame() {
 
     _asteroids = []
     _powerUps = []
+
+    resetEffects()
 }
 
 function startNewGame() {

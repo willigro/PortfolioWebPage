@@ -1,12 +1,16 @@
-const maxRectangleHitHeight = 25
-const maxRectangleHitWidth = 40
+const maxRectangleHitHeight = valueFromPercentage(10, maxHeight)
+const maxRectangleHitWidth = valueFromPercentage(10, maxWidth)
 
 var elementSpeedEffect
 var elementAtkSpeedEffect
 var elementHpEffect
 var elementShieldEffect
+var elementLevelUpEffect
+var elementPowerUpBaseEnemyLifeEffect
+var elementBaseLifeEffect
 
 const MAX_TIME_POWER_UP_EFFECT = 25
+const MAX_TIME_ENEMY_LIFE_UP_EFFECT = 75
 
 function initScreenEffects() {
     elementSpeedEffect = $("#power-up-received-speed")
@@ -14,6 +18,8 @@ function initScreenEffects() {
     elementHpEffect = $("#power-up-received-hp")
     elementShieldEffect = $("#power-up-received-shield")
     elementLevelUpEffect = $("#power-up-received-level-up")
+    elementPowerUpBaseEnemyLifeEffect = $("#power-up-received-base-enemy-life")
+    elementBaseLifeEffect = $("#enemy-base-life")
 }
 
 function resetEffects() {
@@ -22,6 +28,9 @@ function resetEffects() {
     elementHpEffect.hide()
     elementShieldEffect.hide()
     elementLevelUpEffect.hide()
+    elementPowerUpBaseEnemyLifeEffect.hide()
+    elementBaseLifeEffect.hide()
+    elementBaseLifeEffect.html(0)
 }
 
 function showLevelUpEffect() {
@@ -49,6 +58,15 @@ function showPowerUpEffect(powerUp) {
     }
 }
 
+function showEnemyLifeUp() {
+    elementPowerUpBaseEnemyLifeEffect.show();
+    elementBaseLifeEffect.html(baseEnemyLife)
+    elementBaseLifeEffect.show()
+    gameClock.newClock("enemyLife", MAX_TIME_ENEMY_LIFE_UP_EFFECT, true, function() {
+        elementPowerUpBaseEnemyLifeEffect.hide();
+    })
+}
+
 function showPowerUpEffectGameClock(tag, maxTimes, element) {
     element.show();
     gameClock.newClock(tag, maxTimes, false, function() {
@@ -73,7 +91,7 @@ function buildSides(tag, maxTimes, resetTimes) {
     gameClock.newClock(tag, maxTimes, true, function() {
 
         var x = 0
-        var y = maxHeight / 2
+        var y = randomMin(0, maxHeight / 2)
         var actualMaxHitWidth = 10
         while (y < maxHeight) {
             if (actualMaxHitWidth < maxRectangleHitWidth) {
