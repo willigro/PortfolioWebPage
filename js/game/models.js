@@ -39,6 +39,7 @@ class Asteroid {
         this.currentShotTime = 0
         this.canShot = false
         this.ifCanHandleShot();
+        this.points = this.getPoints();
     }
 
     generateType() {
@@ -56,10 +57,25 @@ class Asteroid {
         return "pink"
     }
 
-    getLife() {
-        if (this.type == ENEMY_WHITE || this.type == ENEMY_BLUE)
+    getPoints() {
+        if (this.type == ENEMY_WHITE)
             return 1
-        return 2
+        if (this.type == ENEMY_BROWN)
+            return 2
+        if (this.type == ENEMY_BLUE)
+            return 3
+        return 4
+    }
+
+    getLife() {
+        var life = (actualPoints % 50 == 0) ? 1 : 0;
+        if (this.type == ENEMY_WHITE || this.type == ENEMY_BLUE)
+            life += 1;
+        else
+            life += 2;
+
+        console.log(life);
+        return life;
     }
 
     generatePosition(max) {
@@ -107,7 +123,7 @@ class Asteroid {
             this.life--;
             if (this.life == 0) {
                 this.destroy()
-                actualPoints++
+                actualPoints += this.points
                 updateActualPoints()
             }
             return true
@@ -201,31 +217,36 @@ class Ship {
     }
 
     upLevel() {
+        showLevelUpEffect()
         this.level++;
 
         // max 9
         if (this.startVelocity < BASE_PLAYER_VELOCITY_NATURAL_MAX && this.level % 5 == 0) {
             this.startVelocity = this.startVelocity + 1;
             this.velocity = this.startVelocity;
+            showPowerUpEffect(POWER_SPEED)
         }
 
         // min 7
         if (this.startBaseTimeToShot > BASE_PLAYER_TIME_TO_SHO_NATURAL_MIN && this.level % 2 == 0) {
             this.startBaseTimeToShot = this.startBaseTimeToShot - 0.5
             this.timeToNewShot = this.startBaseTimeToShot
+            showPowerUpEffect(POWER_ATK_SPEED)
         }
 
         if (this.level % 3 == 0) {
             this.lifePoints++;
             updateLifeView()
+            showPowerUpEffect(POWER_HP)
         }
 
         if (this.level % 4 == 0) {
             this.shieldEnergy += 200;
             updateShieldEnergy()
+            showPowerUpEffect(POWER_SHIELD)
         }
 
-        console.log(this.level, this.startVelocity, this.velocity, this.startBaseTimeToShot, this.timeToNewShot)
+        // console.log(this.level, this.startVelocity, this.velocity, this.startBaseTimeToShot, this.timeToNewShot)
         updateStatus()
     }
 
@@ -290,30 +311,34 @@ class Ship {
     }
 
     usePowerUp(powerUp) {
-        if (powerUp.type == POWER_HP) {
-            this.lifePoints++;
-            updateLifeView()
-        } else if (powerUp.type == POWER_ATK_SPEED) {
-            this.timeToNewShot = this.startBaseTimeToShot / 2;
-            updateStatus()
-
-            gameClock.newClock(POWER_ATK_SPEED, POWER_UP_MAX_TIME_WORKING, false, function(ship) {
-                ship.timeToNewShot = ship.startBaseTimeToShot
+        showPowerUpEffect(powerUp)
+        switch (powerUp.type) {
+            case POWER_HP:
+                this.lifePoints++;
+                updateLifeView()
+                break;
+            case POWER_ATK_SPEED:
+                this.timeToNewShot = this.startBaseTimeToShot / 2;
                 updateStatus()
-            }, true, this)
-        } else if (powerUp.type == POWER_SPEED) {
-            this.velocity = this.startVelocity * 1.3;
-            if (this.velocity === undefined) console.log("power up speed")
-            updateStatus()
 
-            gameClock.newClock(POWER_SPEED, POWER_UP_MAX_TIME_WORKING, false, function(ship) {
-                ship.velocity = ship.startVelocity
-                if (this.velocity === undefined) console.log("power up speed time over")
+                gameClock.newClock(POWER_ATK_SPEED, POWER_UP_MAX_TIME_WORKING, false, function(ship) {
+                    ship.timeToNewShot = ship.startBaseTimeToShot
+                    updateStatus()
+                }, true, this)
+                break;
+            case POWER_SPEED:
+                this.velocity = this.startVelocity * 1.3;
                 updateStatus()
-            }, true, this)
-        } else {
-            this.shieldEnergy += 180
-            updateShieldEnergy()
+
+                gameClock.newClock(POWER_SPEED, POWER_UP_MAX_TIME_WORKING, false, function(ship) {
+                    ship.velocity = ship.startVelocity
+                    updateStatus()
+                }, true, this)
+                break;
+            case POWER_SHIELD:
+                this.shieldEnergy += 180
+                updateShieldEnergy()
+                break;
         }
     }
 
@@ -331,9 +356,9 @@ class Ship {
         var size = this.size - 1
         var x = this.x
         var y = this.y
-
+        const f = 1
         while (size > 0) {
-            size -= .7
+            size -= f
             x -= this.velocity * this.directionX
             y -= this.velocity * this.directionY
             ctx.fillRect(x, y, size, size)
@@ -363,6 +388,7 @@ class Ship {
                 this.die()
             }
             updateLifeView()
+            showHitInTheSides()
         }
     }
 
@@ -607,7 +633,15 @@ class PowerUp {
     constructor() {
         this.x = randomMin(0, maxWidth);
         this.y = randomMin(0, maxHeight);
-        this.size = 14;
+        this.size = 10;
+
+        const f = _ship.velocity * 2 // on high speed will be more easy to get the power up
+        this.contact = {
+            x: this.x - f,
+            y: this.y - f,
+            size: this.size + (f * 2)
+        }
+
         this.type = this.getType();
         this.color = this.getColor();
         this.lifeTime = 0;
@@ -654,12 +688,13 @@ class Clock {
         this.clocks = []
     }
 
-    newClock(tag, maxTime, reset, callback, replace, args) {
+    newClock(tag, maxTime, reset, callback, replace, args, resetTimes) {
         if (this.clocks.length > 0) {
             for (let c of this.clocks) {
                 if (c.tag == tag) {
                     if (replace) {
                         c.time = 0;
+                        c.doneTimes = 0;
                     }
                     return
                 }
@@ -672,7 +707,9 @@ class Clock {
             time: 0,
             max: maxTime,
             callback: callback,
-            args: args
+            args: args,
+            doneTimes: 0,
+            resetTimes: resetTimes
         })
     }
 
@@ -682,12 +719,17 @@ class Clock {
 
             if (c.time >= c.max) {
                 c.time = 0;
+                c.doneTimes++;
 
                 if (c.callback)
                     c.callback(c.args);
 
                 if (!c.reset)
                     pop(this.clocks, c);
+            }
+
+            if (c.resetTimes && c.doneTimes >= c.resetTimes) {
+                pop(this.clocks, c);
             }
         }
     }

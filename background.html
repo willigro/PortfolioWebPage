@@ -33,6 +33,7 @@
     <script src="js/site.js"></script>
     <script src="js/game/asterblock.js"></script>
     <script src="js/game/models.js"></script>
+    <script src="js/game/screen_effects.js"></script>
 </head>
 <html lang="en">
 
@@ -42,16 +43,23 @@ OK - New enemy that can shot to each x * points
 OK - Limit max vel
 OK - Power up: hp, time to shot, speed and shield
 OK - Menu: Improve stop, points, show A W S D as tip
-Add effects on screen when die, improve enemy, get power up
+Add effects on screen when die, improve enemy, 
+    OK - Pick up power up
+    OK - Level up
 OK - Limit area to move (0, 0) (maxW, maxH)
-OK - Add enemy to list to each x * points with a limit
+OK - Add enemy tolist to each x * points with a limit
+
+Refactor: 
+    - Const to colors
+    - Const to power up
+    - Use the const here (dynamic text, points, etc)
  -->
 
 
 <body>
-    <canvas id="canvas" style="height: 100%; width: 100%; position: fixed; z-index: -1;" onmousemove="onMouseMove(event)" onmousedown="onMouseDown(event)" onmouseup="onMouseUp(event)"></canvas>
+    <canvas id="canvas" style="height: 100%; width: 100%; position: fixed; z-index: -1;"></canvas>
 
-    <div class="player p-content">
+    <div class="player p-content" onmousemove="onMouseMove(event)" onmousedown="onMouseDown(event)" onmouseup="onMouseUp(event)">
         <a id="play">Play Asterblocks</a>
         <div id="game-panel" hidden>
             <ul>
@@ -68,22 +76,25 @@ OK - Add enemy to list to each x * points with a limit
 
             <div id="game-tips">
                 <p>
-                    <span style="color: gold;">W</span> (up)
+                    Killing enemy increases <span style="color:rgb(87, 106, 228)">X</span> points and each time <span style="color:rgb(87, 106, 228)">1</span> point is increased
+                    <br>Each 20 points <span style="color:rgb(87, 106, 228)">1</span> level is increased
+                    <br><span style="color: gold;">W</span> (up)
                     <span style="color: gold;">A</span> (left)
                     <span style="color: gold;">S</span> (down)
                     <span style="color: gold;">D</span> (right) to move
                     <br>Press <span style="color: gold;">left</span> mouse to shot
                     <br>Press <span style="color: gold;">right</span> mouse to use the special !! TODO !!
                     <br>Press <span style="color: gold;">space bar</span> to active the shield
-                    <br>Touch the <span style="color: red">red blocks</span> to increase your life
-                    <br>Touch the <span style="color: yellow">yellow blocks</span> to increase your speed
-                    <br>Touch the <span style="color: green">green blocks</span> to increase your atk speed
+                    <br>Pick up the <span style="color: red">red blocks</span> to increase your life
+                    <br>Pick up the <span style="color: orange">orange blocks</span> to increase your shield
+                    <br>Pick up the <span style="color: yellow">yellow blocks</span> to increase your speed
+                    <br>Pick up the <span style="color: green">green blocks</span> to increase your atk speed
                 </p>
                 <p>
-                    White enemies have 1 life and cannot attack
-                    <br><span style="color: brown">Brown enemies</span> have 2 life and cannot attack
-                    <br><span style="color: blue">Blue enemies</span> have 1 life and can attack
-                    <br><span style="color: pink">Pink enemies</span> have 2 life and can attack
+                    White enemies start with 1 life and cannot attack
+                    <br><span style="color: brown">Brown enemies</span> start with 2 lifes and cannot attack
+                    <br><span style="color: blue">Blue enemies</span> start with 1 life and can attack
+                    <br><span style="color: pink">Pink enemies</span> start with 2 lifes and can attack
                 </p>
             </div>
 
@@ -96,6 +107,14 @@ OK - Add enemy to list to each x * points with a limit
                     <br>Speed <span id="speed"></span>
                     <br>Atk Speed <span id="atk-speed"></span>
                 </p>
+            </div>
+
+            <div style=" position: relative; padding-top: 5vh;">
+                <p id="power-up-received-level-up" style="color: rgb(87, 106, 228);" class="p-power-up-high" hidden>LEVEL UP!!</p>
+                <p id="power-up-received-speed" style="color: yellow;" class="p-power-up" hidden>SPEED UP!!</p>
+                <p id="power-up-received-atk-speed" style="color: green;" class="p-power-up" hidden>ATK SPEED UP!!</p>
+                <p id="power-up-received-shield" style="color: orange;" class="p-power-up" hidden>SHIELD RECOVERED!!</p>
+                <p id="power-up-received-hp" style="color: red;" class="p-power-up" hidden>HP RECOVERED!!</p>
             </div>
         </div>
     </div>

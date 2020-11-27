@@ -77,6 +77,7 @@ window.onload = function() {
     ctx = canvas.getContext("2d")
     configure()
     init()
+    initScreenEffects()
 }
 
 function startStars() {
@@ -179,7 +180,7 @@ function init() {
 
             for (let p of _powerUps) {
                 p.draw()
-                if (intersect(p, _ship)) {
+                if (intersect(p.contact, _ship)) {
                     _ship.usePowerUp(p);
                     p.destroy();
                 }
@@ -252,6 +253,7 @@ function startNewGame() {
     updateLifeView()
     updateShieldEnergy()
     updateActualPoints()
+    resetEffects()
 }
 
 function updateLifeView() {
@@ -272,7 +274,7 @@ function updateActualPoints() {
             _asteroids.push(new Asteroid())
         }
 
-        if (actualPoints % 10 == 0) {
+        if (actualPoints % 20 == 0) {
             _ship.upLevel()
         }
 

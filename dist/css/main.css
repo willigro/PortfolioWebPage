@@ -25,7 +25,7 @@
     --main-text-color-player-hover: rgb(252, 151, 159);
     /* Texts size */
     --main-text-extra-large: 68px;
-    --main-text-size-title: 32px;
+    --main-text-size-title: 34px;
     --main-text-size-subtitle: 28px;
     --main-text-size-content: 22px;
     --main-text-size-content-small: 18px;
@@ -347,6 +347,18 @@ TEXT
     font-weight: bold;
     color: var(--main-text-color-accent);
     font-size: var(--main-text-extra-large);
+}
+
+.p-power-up {
+    font-weight: bold;
+    margin-bottom: var(--main-text-margin-bottom-content);
+    font-size: var(--main-text-size-subtitle);
+}
+
+.p-power-up-high {
+    font-weight: bold;
+    margin-bottom: var(--main-text-margin-bottom-content);
+    font-size: var(--main-text-size-title);
 }
 
 
