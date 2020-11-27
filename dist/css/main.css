@@ -15,7 +15,8 @@
     --main-text-color-dark: rgb(24, 24, 24);
     --main-text-color-dark-secondary: rgb(182, 182, 182);
     --main-text-color-accent: rgb(245, 158, 45);
-    --main-text-color-selectable: rgb(85, 245, 45);
+    --main-text-color-info: rgb(167, 167, 167);
+    --main-text-color-selectable: rgb(209, 171, 115);
     --main-text-color-menu-hover: rgb(175, 19, 247);
     --main-text-color-menu-selected: rgb(175, 19, 247);
     --main-text-color-menu-section-hover: rgb(215, 146, 247);
@@ -334,8 +335,8 @@ TEXT
     color: var(--main-text-color-accent)
 }
 
-.p-selectable {
-    color: var(--main-text-color-selectable)
+.p-info {
+    color: var(--main-text-color-info);
 }
 
 .p-extra-large {
@@ -412,8 +413,8 @@ ANDROID APPLICATION LINKS
 
 .android-application-links-link {
     cursor: pointer;
-    text-decoration: none;
-    color: var(--main-text-color-light);
+    text-decoration: underline;
+    color: var(--main-text-color-selectable);
     font-size: var(--main-text-size-menu-section);
 }
 
@@ -424,8 +425,9 @@ MAIN LINK
 */
 
 .a-main {
+    color: var(--main-text-color-selectable);
     cursor: pointer;
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 .move {

@@ -7,7 +7,7 @@ class HtmlGenerator
 
     for ($i = 0; $i < count($androidApplications); $i++) {
       $obj = $androidApplications[$i];
-      $html .= '<div style="margin-top: 15vh; margin-bottom: 15vh">
+      $html .= '<div style="margin-top: 15vh; margin-bottom: 15vh" class="p-content-small">
             <div class="row">';
 
       if ($obj->mainImage) {
@@ -29,7 +29,7 @@ class HtmlGenerator
               </p>';
 
       if ($obj->fromZero)
-        $html .= '<p class="p-shine p-content-small">I work in this project since the start</p>';
+        $html .= '<p class="p-info">I worked in this project since the start</p>';
 
       $html .=   '<p class="p-subtitle">
                 Some used tecnologies
@@ -52,10 +52,10 @@ class HtmlGenerator
       if ($obj->googlePlayLink || $obj->gitLink || $obj->privateProject) {
         $html .= '<div class="android-application-links-content" style="text-align: center">';
         if ($obj->googlePlayLink)
-          $html .= '<p><a class="android-application-links-link" href="' . $obj->googlePlayLink . '" target="blank">
+          $html .= '<a class="android-application-links-link" href="' . $obj->googlePlayLink . '" target="blank">
                     <img class="android-application-links-icon" src="dist/images/google_play.png">
                     Click here and open the google play
-                  </a></p>';
+                  </a>';
 
         if ($obj->gitLink)
           $html .= '<a class="android-application-links-link" href="' . $obj->gitLink . '" target="blank">

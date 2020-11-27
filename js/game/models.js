@@ -196,6 +196,8 @@ class Ship {
         this.startBaseTimeToShot = BASE_PLAYER_TIME_TO_SHOT
         this.timeToNewShot = BASE_PLAYER_TIME_TO_SHOT
 
+        this.directionX = 0
+        this.directionY = 0
     }
 
     upLevel() {
@@ -244,19 +246,33 @@ class Ship {
 
     move() {
         this.activedShield = false
+        this.directionX = 0
+        this.directionY = 0
             // put break
         for (let keyCode of keysDown) {
-            if (keyCode == 65 && this.x > 0) // left a
+            if (keyCode == 65 && this.x > 0) {
+                // left a
                 this.x -= this.velocity
+                this.directionX = -1
+            }
 
-            if (keyCode == 87 && this.y > 0) // top w
+            if (keyCode == 87 && this.y > 0) {
+                // top w
                 this.y -= this.velocity
+                this.directionY = -1
+            }
 
-            if (keyCode == 68 && this.x < maxWidth) // right d
+            if (keyCode == 68 && this.x < maxWidth) {
+                // right d
                 this.x += this.velocity
+                this.directionX = 1
+            }
 
-            if (keyCode == 83 && this.y < maxHeight) // bottom s
+            if (keyCode == 83 && this.y < maxHeight) {
+                // bottom s
                 this.y += this.velocity
+                this.directionY = 1
+            }
 
             if (keyCode == 32) // space
                 this.activedShield = true
@@ -311,9 +327,24 @@ class Ship {
         }
     }
 
+    trail() {
+        var size = this.size - 1
+        var x = this.x
+        var y = this.y
+
+        while (size > 0) {
+            size -= .7
+            x -= this.velocity * this.directionX
+            y -= this.velocity * this.directionY
+            ctx.fillRect(x, y, size, size)
+        }
+    }
+
     draw() {
         ctx.fillStyle = "red"
         ctx.fillRect(this.x, this.y, this.size, this.size)
+
+        this.trail()
     }
 
     handleHit(object) {
