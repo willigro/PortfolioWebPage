@@ -196,14 +196,6 @@
               Git, Github, Gitlab, Bitbucket, VisualCode, Android Studio, NotePade++, Apache, Godot, Unity,<br>and more.
             </p>
 
-            <!-- Manager -->
-            <p class="p-subtitle">
-              Manager
-            </p>
-            <p>
-              Agile, Scrum, Kambam, Asana, Trello, Git Wiki, Markdown.
-            </p>
-
             <!-- AI -->
             <p class="p-subtitle">
               AI
@@ -258,6 +250,14 @@
             </p>
             <p>
               Test, SOLID, KISS, DRY, YAGNI, SoC, Design Patterns, Refactor
+            </p>
+
+            <!-- Manager -->
+            <p class="p-subtitle">
+              Manager
+            </p>
+            <p>
+              Agile, Scrum, Kambam, Asana, Trello, Git Board, Git Wiki, Markdown.
             </p>
 
             <!-- Engineer -->
@@ -364,11 +364,11 @@
           <p>Today I work in the Use Mobile, a company from Minas Gerais, remotely. For now I just work with one project, still knowing the company.</p>
 
           <!-- AI -->
-          <p class="p-title resume">Artificial Intelligence</p>
+          <!-- <p class="p-title resume">Artificial Intelligence</p>
           <p class="p-subtitle">The start</p>
           <p>Start.</p>
           <p class="p-subtitle">Post Degree</p>
-          <p>Degree.</p>
+          <p>Degree.</p> -->
         </div>
       </div>
     </div>

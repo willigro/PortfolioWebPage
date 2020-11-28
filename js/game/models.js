@@ -26,11 +26,9 @@ class Asteroid {
         this.y = this.generatePosition(maxHeight)
         this.type = this.generateType()
         this.life = this.getLife()
-        this.color = this.getColor()
 
         this.horizontal = 1
         this.vertical = 1
-        this.size = 15
 
         this.velocity = Math.random() * 5 * asteroidVelFactor
         if (this.velocity < 3) this.velocity = 3
@@ -38,8 +36,34 @@ class Asteroid {
         this.timeToNewShot = 0
         this.currentShotTime = 0
         this.canShot = false
-        this.ifCanHandleShot();
-        this.points = this.getPoints();
+        this.configureByType()
+    }
+
+    configureByType() {
+        switch (this.type) {
+            case ENEMY_WHITE:
+                this.color = "white"
+                this.points = 1
+                this.size = 12
+                break;
+            case ENEMY_BROWN:
+                this.color = "brown"
+                this.points = 2
+                this.size = 18
+                break;
+            case ENEMY_BLUE:
+                this.color = "blue"
+                this.points = 3
+                this.size = 12
+                this.configureShot()
+                break;
+            case ENEMY_PINK:
+                this.color = "pink"
+                this.points = 4
+                this.size = 15
+                this.configureShot()
+                break;
+        }
     }
 
     generateType() {
@@ -47,32 +71,13 @@ class Asteroid {
         return _allowedEnemies[r]
     }
 
-    getColor() {
-        if (this.type == ENEMY_WHITE)
-            return "white"
-        if (this.type == ENEMY_BROWN)
-            return "brown"
-        if (this.type == ENEMY_BLUE)
-            return "blue"
-        return "pink"
-    }
-
-    getPoints() {
-        if (this.type == ENEMY_WHITE)
-            return 1
-        if (this.type == ENEMY_BROWN)
-            return 2
-        if (this.type == ENEMY_BLUE)
-            return 3
-        return 4
-    }
-
     getLife() {
-        var life = baseEnemyLife;
+        var life = (actualPoints % 50 == 0) ? 1 : 0;
         if (this.type == ENEMY_WHITE || this.type == ENEMY_BLUE)
             life += 1;
         else
             life += 2;
+
         return life;
     }
 
@@ -129,9 +134,7 @@ class Asteroid {
         return false
     }
 
-    ifCanHandleShot() {
-        if (this.type == ENEMY_WHITE || this.type == ENEMY_BROWN) return;
-
+    configureShot() {
         this.timeToNewShot = BASE_ENEMY_TIME_TO_SHOT
         this.currentShotTime = 0
         this.canShot = true
