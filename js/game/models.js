@@ -72,7 +72,7 @@ class Asteroid {
     }
 
     getLife() {
-        var life = (actualPoints % 50 == 0) ? 1 : 0;
+        var life = baseEnemyLife
         if (this.type == ENEMY_WHITE || this.type == ENEMY_BLUE)
             life += 1;
         else
