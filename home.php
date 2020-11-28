@@ -169,43 +169,10 @@
         Skills
         </p> -->
 
-      <div class="container-large">
-        <div class="row p-content-small">
+      <div class="container-larger">
 
-          <!-- BY TECHNOLOGY -->
-          <div class="four columns skills-section">
-            <p class="p-title">
-              By Technology
-            </p>
-
-            <!-- Android -->
-            <p class="p-subtitle">
-              Android
-            </p>
-            <p>
-              Kotlin, Java, JUnit, Espresso, MVC, MVVM, MVP, Clean Architecture, Android Jetpack, Modules, Room, Navigation Components, LiveData,
-              REST, ViewModel, Coroutines, Kodein, Retrofit, WorkManager, Services, Broadcast, Threads, SQLite, DBBrowser, Firebase,
-              Facebook, Google, GPS, Custom View, <br>and more.
-            </p>
-
-            <!-- Dev Support -->
-            <p class="p-subtitle">
-              Dev Tools
-            </p>
-            <p>
-              Git, Github, Gitlab, Bitbucket, VisualCode, Android Studio, NotePade++, Apache, Godot, Unity,<br>and more.
-            </p>
-
-            <!-- AI -->
-            <p class="p-subtitle">
-              AI
-            </p>
-            <p>
-              Machine learning, Genectic algorithm, Deep Learning, Computer vision, NLP (Natural Language Process)<br>and some more.
-            </p>
-          </div>
-
-          <!-- LANGUAGES -->
+        <!-- LANGUAGES -->
+        <div class="row center p-content-small">
           <div class="four columns skills-section language">
             <p class="p-title resume">
               Languages
@@ -237,45 +204,182 @@
               ?>
             </table>
           </div>
+        </div>
+      </div>
 
-          <!-- CONCEPTS -->
-          <div class="four columns skills-section">
-            <p class="p-title resume">
-              Concepts
-            </p>
+      <div class="container">
+        <div class="row p-content-small">
 
-            <!-- Coding -->
-            <p class="p-subtitle">
-              Coding
-            </p>
-            <p>
-              Test, SOLID, KISS, DRY, YAGNI, SoC, Design Patterns, Refactor
+          <!-- BY TECHNOLOGY -->
+          <div class="skills-section">
+            <p class="p-title">
+              By Technology
             </p>
 
-            <!-- Manager -->
-            <p class="p-subtitle">
-              Manager
-            </p>
-            <p>
-              Agile, Scrum, Kambam, Asana, Trello, Git Board, Git Wiki, Markdown.
-            </p>
+            <div class="row" style="text-align: left;">
+              <div class="six columns">
+                <!-- Android -->
+                <p class="p-subtitle" style="margin-top: 50px">
+                  Android
+                </p>
 
-            <!-- Engineer -->
-            <p class="p-subtitle">
-              Engineer
-            </p>
-            <p>
-              Simple documentation, requirements analysis, interactions with stakeholders
-            </p>
+                <div class="row" style="color: orange;">
+                  <div class="six columns">Architecture</div>
+                  <div class="six columns">Android Jetpack</div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                  <div class="six columns" style="font-weight: bold;">
+                    Clean Architecture
+                    <br>MVVM
+                    <br>MVP
+                    <br>MVC
+                    <br>Facade
+                  </div>
 
-            <!-- To user -->
-            <p class="p-subtitle">
-              To user
-            </p>
-            <p>
-              Simple designer and usability
-            </p>
+                  <div class="six columns" style="font-weight: bold;">
+                    LiveData
+                    <br>ViewModel
+                    <br>Coroutines
+                    <br>Room
+                    <br>Navigation Components
+                    <br><span style="font-weight: lighter;">and more...</span>
+                  </div>
+                </div>
+
+                <div class="row" style="margin-top: 15px; color: orange;">
+                  <div class="six columns">Test</div>
+                  <div class="six columns">Network</div>
+                </div>
+                <div class="row" style="margin-top: 10px;  font-weight: bold;">
+                  <div class="six columns">
+                    JUnit
+                    <br>Espresso
+                  </div>
+
+                  <div class="six columns">
+                    REST
+                    <br>OkHttp3
+                    <br>Retrofit
+                    <br>Glide, Picasso
+                    <br>Firebase, Facebook, Google
+                    <br><span style="font-weight: lighter;">and more...</span>
+                  </div>
+                </div>
+
+                <div class="row" style="margin-top: 15px; color: orange;">
+                  <div class="six columns">Persistence</div>
+                  <div class="six columns">Others</div>
+                </div>
+                <div class="row" style="margin-top: 10px;  font-weight: bold;">
+                  <div class="six columns">
+                    SQLite
+                    <br>SharedPreferences
+                    <br>DataStore
+                    <br>Files
+                    <br>Camera
+                    <br>DBBrowser
+                    <br><span style="font-weight: lighter;">and more... like MYSQL, PostgreSQL</span>
+                  </div>
+
+                  <div class="six columns">
+                    Kodein
+                    <br>WorkManager
+                    <br>Services
+                    <br>Broadcast
+                    <br>Threads
+                    <br>GPS
+                    <br><span style="font-weight: lighter;">and more...</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="six columns">
+                <!-- Dev Support and AI -->
+                <div style="color: orange;margin-top: 50px">
+                  <div class="six columns">
+                    <p class="p-subtitle">
+                      Dev Tools
+                    </p>
+                  </div>
+                  <div class="six columns">
+                    <p class="p-subtitle">
+                      AI
+                    </p>
+                  </div>
+                </div>
+
+
+                <div class="row" style="color: orange;">
+                  <div class="six columns">Most used apps</div>
+                  <div class="six columns">Techniques</div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                  <div class="six columns" style="font-weight: bold;">
+                    Git
+                    <br>Github
+                    <br>Gitlab
+                    <br>Bitbucket
+                    <br>VisualCode
+                    <br>Android Studio
+                    <br>NotePade++
+                    <br>Apache
+                    <br>Godot
+                    <br>Unity
+                  </div>
+
+                  <div class="six columns" style="font-weight: bold;">
+                    Machine learning
+                    <br>Genectic algorithm
+                    <br>Deep Learning
+                    <br>Computer vision
+                    <br>NLP (Natural Language Process)
+                    <br><span style="font-weight: lighter;">and some more...</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+
+
+        </div>
+
+        <!-- CONCEPTS -->
+        <div class="four columns skills-section">
+          <p class="p-title resume">
+            Concepts
+          </p>
+
+          <!-- Coding -->
+          <p class="p-subtitle">
+            Coding
+          </p>
+          <p>
+            Test, SOLID, KISS, DRY, YAGNI, SoC, Design Patterns, Refactor
+          </p>
+
+          <!-- Manager -->
+          <p class="p-subtitle">
+            Manager
+          </p>
+          <p>
+            Agile, Scrum, Kambam, Asana, Trello, Git Board, Git Wiki, Markdown.
+          </p>
+
+          <!-- Engineer -->
+          <p class="p-subtitle">
+            Engineer
+          </p>
+          <p>
+            Simple documentation, requirements analysis, interactions with stakeholders
+          </p>
+
+          <!-- To user -->
+          <p class="p-subtitle">
+            To user
+          </p>
+          <p>
+            Simple designer and usability
+          </p>
         </div>
       </div>
     </div>

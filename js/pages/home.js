@@ -70,7 +70,6 @@ $(document).ready(function() {
     function handleMenuHomeSections(updateHeight) {
         if (updateHeight) {
             $("#header").height(window.innerHeight)
-            $("#skills").height(window.innerHeight)
         }
         // The order matters
         const sections = ["resume", "skills", "my-team"]
