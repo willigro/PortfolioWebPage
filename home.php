@@ -178,7 +178,7 @@
               Languages
             </p>
 
-            <table>
+            <table id="table-languages" style="justify-content: center; margin-left: auto; margin-right: auto;">
               <?php
               $languages = getLanguages();
               for ($i = 0; $i < count($languages); $i++) {
@@ -195,7 +195,7 @@
                 <td style='width:25%'>
                   " . $obj->nivel . "
                   <div style='background-color: rgba(255, 255, 255, 0.8); width: 100%'>
-                    <div style='background-color: " . $obj->nivelPercentColor() . "; height:10px;width:" . $obj->nivelPercent . "%'></div>
+                    <div id='" . preg_replace('/\s+/', '_', $obj->name) . "' style='background-color: " . $obj->nivelPercentColor() . "; height:10px; width: 0%' data-percente='" . $obj->nivelPercent . "'></div>
                   </div> 
                 </td>
 
@@ -207,8 +207,8 @@
         </div>
       </div>
 
-      <div class="container">
-        <div class="row p-content-small">
+      <div class="container-larger">
+        <div class="row p-content-small center">
 
           <!-- BY TECHNOLOGY -->
           <div class="skills-section">
@@ -216,84 +216,84 @@
               By Technology
             </p>
 
-            <div class="row" style="text-align: left;">
-              <div class="six columns">
-                <!-- Android -->
-                <p class="p-subtitle" style="margin-top: 50px">
-                  Android
-                </p>
+            <div class="row">
 
-                <div class="row" style="color: orange;">
-                  <div class="six columns">Architecture</div>
-                  <div class="six columns">Android Jetpack</div>
-                </div>
-                <div class="row" style="margin-top: 10px;">
-                  <div class="six columns" style="font-weight: bold;">
-                    Clean Architecture
-                    <br>MVVM
-                    <br>MVP
-                    <br>MVC
-                    <br>Facade
-                  </div>
+              <!-- Android -->
+              <p class="p-subtitle" style="margin-top: 50px">
+                Android
+              </p>
 
-                  <div class="six columns" style="font-weight: bold;">
-                    LiveData
-                    <br>ViewModel
-                    <br>Coroutines
-                    <br>Room
-                    <br>Navigation Components
-                    <br><span style="font-weight: lighter;">and more...</span>
-                  </div>
+              <div class="row" style="color: orange;">
+                <div class="six columns">Architecture</div>
+                <div class="six columns">Android Jetpack</div>
+              </div>
+              <div class="row" style="margin-top: 10px;">
+                <div class="six columns" style="font-weight: bold;">
+                  Clean Architecture
+                  <br>MVVM
+                  <br>MVP
+                  <br>MVC
+                  <br>Facade
                 </div>
 
-                <div class="row" style="margin-top: 15px; color: orange;">
-                  <div class="six columns">Test</div>
-                  <div class="six columns">Network</div>
-                </div>
-                <div class="row" style="margin-top: 10px;  font-weight: bold;">
-                  <div class="six columns">
-                    JUnit
-                    <br>Espresso
-                  </div>
-
-                  <div class="six columns">
-                    REST
-                    <br>OkHttp3
-                    <br>Retrofit
-                    <br>Glide, Picasso
-                    <br>Firebase, Facebook, Google
-                    <br><span style="font-weight: lighter;">and more...</span>
-                  </div>
-                </div>
-
-                <div class="row" style="margin-top: 15px; color: orange;">
-                  <div class="six columns">Persistence</div>
-                  <div class="six columns">Others</div>
-                </div>
-                <div class="row" style="margin-top: 10px;  font-weight: bold;">
-                  <div class="six columns">
-                    SQLite
-                    <br>SharedPreferences
-                    <br>DataStore
-                    <br>Files
-                    <br>Camera
-                    <br>DBBrowser
-                    <br><span style="font-weight: lighter;">and more... like MYSQL, PostgreSQL</span>
-                  </div>
-
-                  <div class="six columns">
-                    Kodein
-                    <br>WorkManager
-                    <br>Services
-                    <br>Broadcast
-                    <br>Threads
-                    <br>GPS
-                    <br><span style="font-weight: lighter;">and more...</span>
-                  </div>
+                <div class="six columns" style="font-weight: bold;">
+                  LiveData
+                  <br>ViewModel
+                  <br>Coroutines
+                  <br>Room
+                  <br>Navigation Components
+                  <br><span style="font-weight: lighter;">and more...</span>
                 </div>
               </div>
 
-              <div class="six columns">
+              <div class="row" style="margin-top: 15px; color: orange;">
+                <div class="six columns">Test</div>
+                <div class="six columns">Network</div>
+              </div>
+              <div class="row" style="margin-top: 10px;  font-weight: bold;">
+                <div class="six columns">
+                  JUnit
+                  <br>Espresso
+                </div>
+
+                <div class="six columns">
+                  REST
+                  <br>OkHttp3
+                  <br>Retrofit
+                  <br>Glide, Picasso
+                  <br>Firebase, Facebook, Google
+                  <br><span style="font-weight: lighter;">and more...</span>
+                </div>
+              </div>
+
+              <div class="row" style="margin-top: 15px; color: orange;">
+                <div class="six columns">Persistence</div>
+                <div class="six columns">Others</div>
+              </div>
+              <div class="row" style="margin-top: 10px;  font-weight: bold;">
+                <div class="six columns">
+                  SQLite
+                  <br>SharedPreferences
+                  <br>DataStore
+                  <br>Files
+                  <br>Camera
+                  <br>DBBrowser
+                  <br><span style="font-weight: lighter;">and more... like MYSQL, PostgreSQL</span>
+                </div>
+
+                <div class="six columns">
+                  Kodein
+                  <br>WorkManager
+                  <br>Services
+                  <br>Broadcast
+                  <br>Threads
+                  <br>GPS
+                  <br><span style="font-weight: lighter;">and more...</span>
+                </div>
+              </div>
+
+
+              <div class="row">
                 <!-- Dev Support and AI -->
                 <div style="color: orange;margin-top: 50px">
                   <div class="six columns">
@@ -307,7 +307,6 @@
                     </p>
                   </div>
                 </div>
-
 
                 <div class="row" style="color: orange;">
                   <div class="six columns">Most used apps</div>
@@ -339,47 +338,47 @@
               </div>
             </div>
           </div>
-
-
         </div>
 
         <!-- CONCEPTS -->
-        <div class="four columns skills-section">
-          <p class="p-title resume">
-            Concepts
-          </p>
+        <div class="row p-content-small ">
+          <div class="skills-section">
+            <p class="p-title resume">
+              Concepts
+            </p>
 
-          <!-- Coding -->
-          <p class="p-subtitle">
-            Coding
-          </p>
-          <p>
-            Test, SOLID, KISS, DRY, YAGNI, SoC, Design Patterns, Refactor
-          </p>
+            <!-- Coding -->
+            <p class="p-subtitle">
+              Coding
+            </p>
+            <p>
+              Test, SOLID, KISS, DRY, YAGNI, SoC, Design Patterns, Refactor
+            </p>
 
-          <!-- Manager -->
-          <p class="p-subtitle">
-            Manager
-          </p>
-          <p>
-            Agile, Scrum, Kambam, Asana, Trello, Git Board, Git Wiki, Markdown.
-          </p>
+            <!-- Manager -->
+            <p class="p-subtitle">
+              Manager
+            </p>
+            <p>
+              Agile, Scrum, Kambam, Asana, Trello, Git Board, Git Wiki, Markdown.
+            </p>
 
-          <!-- Engineer -->
-          <p class="p-subtitle">
-            Engineer
-          </p>
-          <p>
-            Simple documentation, requirements analysis, interactions with stakeholders
-          </p>
+            <!-- Engineer -->
+            <p class="p-subtitle">
+              Engineer
+            </p>
+            <p>
+              Simple documentation, requirements analysis, interactions with stakeholders
+            </p>
 
-          <!-- To user -->
-          <p class="p-subtitle">
-            To user
-          </p>
-          <p>
-            Simple designer and usability
-          </p>
+            <!-- To user -->
+            <p class="p-subtitle">
+              To user
+            </p>
+            <p>
+              Simple designer and usability
+            </p>
+          </div>
         </div>
       </div>
     </div>

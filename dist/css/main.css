@@ -288,6 +288,8 @@ SKILLS
 
 .skills-section {
     /* todo: implement me or remove me */
+    min-width: 50%;
+    margin-bottom: 75px;
 }
 
 
