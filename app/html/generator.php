@@ -80,7 +80,7 @@ class HtmlGenerator
 
     $mainInfo = $myTeam->mainInfo;
     $knowledge = $myTeam->knowledge;
-    
+
     $all = sizeof($mainInfo) + sizeof($knowledge);
     $j = 0;
 
@@ -97,7 +97,7 @@ class HtmlGenerator
     $html .= "</p>
     <p>";
 
-    
+
 
     for ($i = 0; $i < sizeof($knowledge); $i++) {
       $j++;
