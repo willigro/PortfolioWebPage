@@ -177,6 +177,7 @@
           </p>
           <p id="stop-train-my-dino" class="p-content" hidden>
             Stop training <a id="stop-train-my-dino-link" class="a-main">clicking here</a>
+            <br><span class="p-content-small">Wait, I'm learning!!</span>
           </p>
 
           <canvas id="canvas-dino" hidden></canvas>

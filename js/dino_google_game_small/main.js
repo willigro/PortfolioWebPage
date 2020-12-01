@@ -23,11 +23,25 @@ var best_dino = null
 var global_best_dino = null
 var alives = 0
 
+var starsIntervalDino
+
 function initDinoGame() {
     var canvasDino = document.getElementById("canvas-dino")
     _draw = new Draw(canvasDino.getContext("2d"))
     prepareEnemyObjects()
     initialDinos()
+    startDinoInterval()
+}
+
+function startDinoInterval() {
+    clearInterval(starsIntervalDino)
+    starsIntervalDino = setInterval(function() {
+        updateDino();
+    }, 1000 / 30)
+}
+
+function stopDinoInterval() {
+    clearInterval(starsIntervalDino)
 }
 
 function updateDino() {
@@ -36,6 +50,7 @@ function updateDino() {
 }
 
 function initialDinos() {
+    dinoList = []
     for (let i = 0; i < DINO_POPULATION; i++) {
         dinoList.push(new Dino())
     }

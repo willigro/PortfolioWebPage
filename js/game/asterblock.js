@@ -71,8 +71,6 @@ var mousePressed = false
 var mousePositionX = 0
 var mousePositionY = 0
 
-var runDino = false;
-
 window.onload = function() {
     var canvas = document.getElementById("canvas")
     canvas.width = maxWidth
@@ -82,9 +80,6 @@ window.onload = function() {
     configure()
     init()
     initScreenEffects()
-
-    // DINO
-    initDinoGame();
 }
 
 function startStars() {
@@ -135,12 +130,6 @@ function init() {
     console.log("init", starsInterval)
     starsInterval = setInterval(function() {
         drawBackground();
-
-        if (runDino) {
-
-            updateDino();
-            return
-        }
 
         if (stars.length < START_COUNT) {
             for (var i = 0; i < 10; i++)
@@ -414,14 +403,6 @@ function configureScreenElements() {
 
         stopGame()
     })
-}
-
-function startDinoAndPauseStars() {
-    runDino = true;
-}
-
-function pauseDinoAndContinueStars() {
-    runDino = false;
 }
 
 function restaure() {
