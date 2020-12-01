@@ -6,7 +6,6 @@
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="dist/images/favicon.png">
-
 </head>
 
 <body id="body" class="page">
@@ -173,8 +172,11 @@
 
         <div class="content-title-section">
           <p class="p-title-section">My Skills</p>
-          <p class="p-content">
-            A little bit about me and my Android path
+          <p id="train-my-dino" class="p-content">
+            Train my dino <a id="train-my-dino-link" class="a-main">clicking here</a>
+          </p>
+          <p id="stop-train-my-dino" class="p-content" hidden>
+            Stop training <a id="stop-train-my-dino-link" class="a-main">clicking here</a>
           </p>
         </div>
 
@@ -526,5 +528,9 @@
 <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <script src="js/pages/home.js"></script>
-
+<script src="js/dino_google_game_small/constants.js"></script>
+<script src="js/dino_google_game_small/neuralnetwork.js"></script>
+<script src="js/dino_google_game_small/objects.js"></script>
+<script src="js/dino_google_game_small/draw.js"></script>
+<script src="js/dino_google_game_small/main.js"></script>
 </html>

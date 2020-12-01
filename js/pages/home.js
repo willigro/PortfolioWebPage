@@ -13,6 +13,19 @@ $(document).ready(function() {
         upNumberTo(8, "#experience-glasses");
         upNumberTo(17, "#experience-pc");
 
+        $("#train-my-dino-link").click(function() {
+            $("#train-my-dino").hide();
+            $("#stop-train-my-dino").show();
+
+            startDinoAndPauseStars()
+        });
+
+        $("#stop-train-my-dino-link").click(function() {
+            $("#train-my-dino").show();
+            $("#stop-train-my-dino").hide();
+
+            pauseDinoAndContinueStars()
+        });
 
         $("#show-my-team").click(function() {
 
