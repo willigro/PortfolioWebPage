@@ -178,6 +178,8 @@
           <p id="stop-train-my-dino" class="p-content" hidden>
             Stop training <a id="stop-train-my-dino-link" class="a-main">clicking here</a>
           </p>
+
+          <canvas id="canvas-dino" hidden></canvas>
         </div>
 
         <!-- LANGUAGES -->
@@ -397,10 +399,8 @@
     Experience
 
     -->
-
     <div id="experience" class="move">
       <div class="container center-text p-content">
-
         <div class="content-title-section">
           <p class="p-title-section">My Experiences</p>
           <p class="p-content">
@@ -410,6 +410,8 @@
             <br>PC Gamer: AGL + <span id="experience-pc" style="color: green">0</span>
           </p>
         </div>
+
+
 
         <!-- EDUCATION -->
         <?php
@@ -533,4 +535,5 @@
 <script src="js/dino_google_game_small/objects.js"></script>
 <script src="js/dino_google_game_small/draw.js"></script>
 <script src="js/dino_google_game_small/main.js"></script>
+
 </html>

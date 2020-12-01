@@ -16,6 +16,7 @@ $(document).ready(function() {
         $("#train-my-dino-link").click(function() {
             $("#train-my-dino").hide();
             $("#stop-train-my-dino").show();
+            $("#canvas-dino").show(500);
 
             startDinoAndPauseStars()
         });
@@ -23,6 +24,7 @@ $(document).ready(function() {
         $("#stop-train-my-dino-link").click(function() {
             $("#train-my-dino").show();
             $("#stop-train-my-dino").hide();
+            $("#canvas-dino").hide(500);
 
             pauseDinoAndContinueStars()
         });

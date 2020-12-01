@@ -44,15 +44,12 @@ function showPowerUpEffect(powerUp) {
             showPowerUpEffectGameClock(powerUp, MAX_TIME_POWER_UP_EFFECT, elementHpEffect)
             break;
         case POWER_ATK_SPEED:
-            console.log(powerUp)
             showPowerUpEffectGameClock(powerUp, MAX_TIME_POWER_UP_EFFECT, elementAtkSpeedEffect)
             break;
         case POWER_SPEED:
-            console.log(powerUp)
             showPowerUpEffectGameClock(powerUp, MAX_TIME_POWER_UP_EFFECT, elementSpeedEffect)
             break;
         case POWER_SHIELD:
-            console.log(powerUp)
             showPowerUpEffectGameClock(powerUp, MAX_TIME_POWER_UP_EFFECT, elementShieldEffect)
             break;
     }

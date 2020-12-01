@@ -24,7 +24,8 @@ var global_best_dino = null
 var alives = 0
 
 function initDinoGame() {
-    _draw = new Draw()
+    var canvasDino = document.getElementById("canvas-dino")
+    _draw = new Draw(canvasDino.getContext("2d"))
     prepareEnemyObjects()
     initialDinos()
 }
@@ -115,9 +116,8 @@ function generateObstacles() {
     if (obstacles.length == 0 || removed && obstacles.length < 5) {
         var last = (obstacles.length > 0) ? obstacles[obstacles.length - 1] : null
 
-        var distance = (last && last.x >= maxWidth) ? last.getRight() : maxWidth
+        var distance = (last && last.x >= TREE_START_X) ? last.getRight() : TREE_START_X
         distance += getDistanceObstacle()
-        console.log(distance)
 
         obstacles.push(new Tree(distance, OBJECT_WIDTH * random(2)))
 
@@ -143,7 +143,7 @@ function generateTrees() {
     }
 
     if (trees.length == 0 || removed && trees.length < 5) {
-        var distance = maxWidth
+        var distance = TREE_START_X
         distance += getDistanceObstacle()
 
         trees.push(new Tree(distance, TREE_WIDTH))
@@ -153,7 +153,6 @@ function generateTrees() {
 
             if (score_to_tree >= 1000) {
                 score_to_tree = (_game_speed > 10) ? 200 : 0
-                    // trees.push(new Tree(trees[trees.length - 1].x + getDistanceObstacle(), TREE_WIDTH * 3))
             }
         }
     }
@@ -187,6 +186,7 @@ function getNextFromObstacles(dino) {
 }
 
 function render() {
+    _draw.drawBackground(maxWidth, maxHeight)
     _draw.drawDinos(dinoList)
     _draw.drawObstacles(obstacles)
 }

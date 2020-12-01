@@ -108,7 +108,7 @@ class Dino {
         var o = Math.round,
             r = Math.random,
             s = 255;
-        return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+        return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + 255 + ')';
     }
 }
 
@@ -116,7 +116,7 @@ class Tree {
     constructor(x, width) {
         this.x = x
         this.y = BASE_Y_POSTITION;
-        this.width = width
+        this.width = width * 2
         this.height = width
 
         this.isShowing = true;
@@ -130,7 +130,7 @@ class Tree {
     }
 
     outMap() {
-        return !this.x || this.x + this.width < 0
+        return !this.x || this.x + this.width < TREE_START_X_TO_DESTROY
     }
 
     getRight() {
