@@ -384,6 +384,99 @@
     </div>
 
     <!-- 
+
+    Experience
+
+    -->
+
+    <div id="experience" class="move">
+      <div class="container center-text p-content">
+        <div class="row">
+
+          <!-- EDUCATION -->
+          <div class="six columns">
+            <p class="p-title">Education</p>
+
+            <div class="p-subtitle" style="margin-top: 25px;">
+              2015<span style="color: white"> - </span>2017
+            </div>
+            <div>
+              Degree in System Development and Analysis
+            </div>
+
+            <div class="p-subtitle" style="margin-top: 25px;">
+              2019<span style="color: white"> - </span>2020
+            </div>
+            <div>
+              Post degree in Artificial Intelligence
+            </div>
+          </div>
+
+          <!-- PROFESSIONAL -->
+          <div class="six columns">
+            <p class="p-title">Professional</p>
+
+            <!-- UseMobile -->
+            <div class="p-subtitle" style="margin-top: 25px;">
+              2020-09<span style="color: white"> - </span>Current
+            </div>
+            <div>
+              UseMobile
+            </div>
+            <div class="p-shine">
+              Android Developer
+            </div>
+            <div class="p-content-small">
+              Brazil, MG - remote
+            </div>
+
+            <!-- Trinity -->
+            <div class="p-subtitle" style="margin-top: 25px;">
+              2018-11<span style="color: white"> - </span>2020-09
+            </div>
+            <div>
+              Trinity
+            </div>
+            <div class="p-shine">
+              Android Developer
+            </div>
+            <div class="p-content-small">
+              Brazil, PE
+            </div>
+
+            <!-- JBR -->
+            <div class="p-subtitle" style="margin-top: 25px;">
+              2018-11<span style="color: white"> - </span>2020-09
+            </div>
+            <div>
+              JBR-Engenharia
+            </div>
+            <div class="p-shine">
+              Android Developer, trainee
+            </div>
+            <div class="p-content-small">
+              Brazil, PE
+            </div>
+
+            <!-- PSD -->
+            <div class="p-subtitle" style="margin-top: 25px;">
+              2018-11<span style="color: white"> - </span>2020-09
+            </div>
+            <div>
+              PSD Agencia Digital
+            </div>
+            <div class="p-shine">
+              Developer, trainee
+            </div>
+            <div class="p-content-small">
+              Brazil, PE
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 
       
     RESUME 
     

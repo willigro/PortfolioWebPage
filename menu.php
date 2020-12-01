@@ -26,6 +26,7 @@
                         <ul style="float: right;">
                             <li><a href="#" id="menu-section-my-team">My team</a></li>
                             <li><a href="#" id="menu-section-skills">Skills</a></li>
+                            <li><a href="#" id="menu-section-experience">Experience</a></li>
                             <li><a href="#" id="menu-section-resume">Resume</a></li>
                         </ul>
                     </div>

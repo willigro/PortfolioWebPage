@@ -73,7 +73,7 @@ $(document).ready(function() {
             $("#header").height(window.innerHeight)
         }
         // The order matters
-        const sections = ["resume", "skills", "my-team"]
+        const sections = ["resume", "experience", "skills", "my-team"]
         for (i in sections) {
             configureMenuSectionActions(sections[i])
         }
@@ -84,7 +84,6 @@ $(document).ready(function() {
             handleMenuSectionsSelection(sections)
 
             if (!languagesDone && this.scrollY > $("#skills").position().top / 2) {
-                // console.log(this.scrollY, $("#skills").position().top)
                 handleLanguages();
             }
         });
