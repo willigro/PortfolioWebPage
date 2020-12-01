@@ -7,7 +7,7 @@ class HtmlGenerator
 
     for ($i = 0; $i < count($androidApplications); $i++) {
       $obj = $androidApplications[$i];
-      $html .= '<div style="margin-top: 15vh" class="p-content-small">
+      $html .= '<div style="margin-bottom: 10vh" class="p-content-small">
             <div class="row">';
 
       if ($obj->mainImage) {
@@ -110,6 +110,62 @@ class HtmlGenerator
     }
 
     return $html . "</div>";
+  }
+
+  function getMyProfessionalExperience($professional)
+  {
+    $html = '<div style="text-align: left;" >
+      <p class="p-title center-text">Professional</p>';
+    for ($i = 0; $i < sizeof($professional); $i++) {
+      $obj = $professional[$i];
+
+      $html .= '<div class="row line-bottom">
+      <div class="five columns">
+        <div style="margin-top: 25px;">
+        ' . $obj->dateFrom . '<span class="p-shine"> - </span>' . $obj->dateTo . '
+        </div>
+        <div>
+        ' . $obj->company . '
+        </div>
+        <div class="p-shine">
+        ' . $obj->office . '
+        </div>
+        <div class="p-content-small">
+        ' . $obj->locate . '
+        </div>
+      </div>
+      
+      <div class="seven columns" style="margin-top: 25px;">
+      <p class="p-content-small">' . $obj->description . '</p>';
+
+      $html .= '</div>
+      </div>';
+    }
+
+    return $html . '</div>';
+  }
+
+  function getMyEducationExperience($professional)
+  {
+    // $html = '<div class="row center-text">
+    //   <p class="p-title">Professional</p>';
+    // for ($i = 0; $i < sizeof($professional); $i++) {
+    //   $obj = $professional[$i];
+    //   $html .= '<div class="p-subtitle" style="margin-top: 25px;">
+    //   ' . $obj->dateFrom . '<span style="color: white"> - </span>' . $obj->dateTo . '
+    //   </div>
+    //   <div>
+    //   ' . $obj->company . '
+    //   </div>
+    //   <div class="p-shine">
+    //   ' . $obj->office . '
+    //   </div>
+    //   <div class="p-content-small">
+    //   ' . $obj->locate . '
+    //   </div>';
+    // }
+
+    return "";
   }
 
   function percent2Color($value, $brightness = 255, $max = 100, $min = 0, $thirdColorHex = '55')

@@ -6,8 +6,13 @@ $(document).ready(function() {
     var languagesDone = false
 
     function initAndroid() {
-        // handleContentHeader()
         handleMenuHomeSections(true)
+
+        upNumberTo(25, "#experience-bugs");
+        upNumberTo(12, "#experience-coffee");
+        upNumberTo(8, "#experience-glasses");
+        upNumberTo(17, "#experience-pc");
+
 
         $("#show-my-team").click(function() {
 
@@ -96,19 +101,12 @@ $(document).ready(function() {
         $("#table-languages").ready(function() {
             $("#table-languages > tbody > tr").each(function() {
                 const value = $(this).find('td').eq(1).text();
-                updateWidth("#" + value.replace(/\s/g, '_'))
+                updateLanguagePercentWidth("#" + value.replace(/\s/g, '_'))
             });
         });
     }
 
-    /**
-     * OK - less delay
-     * start when sections is shown
-     * do one time
-     * if have space replace to hiffen
-     * 
-     */
-    function updateWidth(element) {
+    function updateLanguagePercentWidth(element) {
         var current = 1
         const goalNumber = $(element).data("percente")
         var interval = setInterval(function() {

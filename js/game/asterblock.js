@@ -18,7 +18,7 @@ const CLOSE_TO_WALL = 10
 const TO_CLOSE = 100
 const MAX_RADIUS = 100000
 
-const START_COUNT = 700
+const START_COUNT = 600
 const ASTEROIDS_COUNT = 10
 const ASTEROIDS_COUNT_LIMIT = 20
 
@@ -126,6 +126,7 @@ function onKeyUp(event) {
 }
 
 function init() {
+    console.log("init", starsInterval)
     starsInterval = setInterval(function() {
         drawBackground();
 

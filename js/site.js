@@ -48,6 +48,20 @@ function configureMenuSectionActions(section) {
     })
 }
 
+function upNumberTo(goalNumber, element, plus) {
+    var current = 1
+    $(element).html(current)
+    var interval = setInterval(function() {
+        $(element).html(current)
+
+        if (current == goalNumber) {
+            if (plus)
+                $(element).html(current + "+")
+            clearInterval(interval)
+        } else
+            current++
+    }, 1250 / goalNumber)
+}
 
 $(document).ready(function() {
 

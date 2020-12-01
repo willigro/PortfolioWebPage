@@ -5,12 +5,14 @@ Move data to database when finish the layout
 include "./app/business/languageBusiness.php";
 include "./app/business/myTeamBusiness.php";
 include "./app/business/androidApplicationBusiness.php";
+include "./app/business/experienceBusness.php";
 include "./app/html/generator.php";
 
 $htmlGenerator = new HtmlGenerator();
 $languageBusiness = new LanguageBusiness();
 $androidApplicationBusiness = new AndroidApplicationBusiness();
 $myTeamBusiness = new MyTeamBusiness();
+$experienceBusiness = new ExperienceBusiness();
 
 function getLanguages()
 {
@@ -77,4 +79,18 @@ function getMyDataTeam()
     global $htmlGenerator;
 
     return $htmlGenerator->getMyTeam($myTeamBusiness->getMyDataTeam());
+}
+
+function getMyProfessionalExperience(){
+    global $experienceBusiness;
+    global $htmlGenerator;
+
+    return $htmlGenerator->getMyProfessionalExperience($experienceBusiness->getProfessionalExperiences());
+}
+
+function getMyEducationExperience(){
+    global $experienceBusiness;
+    global $htmlGenerator;
+
+    return $htmlGenerator->getMyEducationExperience($experienceBusiness->getEducationExperiences());
 }

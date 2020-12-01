@@ -309,6 +309,13 @@ TEXT
     font-size: var(--main-text-size-title);
 }
 
+.p-title-section {
+    font-weight: bold;
+    margin-bottom: var(--main-text-margin-bottom-content);
+    font-size: var(--main-text-size-title);
+    color: var(--main-text-color-accent);
+}
+
 .p-title-regular {
     margin-bottom: var(--main-text-margin-bottom-content);
     font-size: var(--main-text-size-title);
@@ -318,6 +325,12 @@ TEXT
     color: rgb(168, 204, 10);
     margin-bottom: var(--main-text-margin-bottom-content);
     font-size: var(--main-text-size-subtitle);
+}
+
+.p-subtitle-small {
+    color: rgb(168, 204, 10);
+    margin-bottom: var(--main-text-margin-bottom-content);
+    font-size: var(--main-text-size-content);
 }
 
 .p-content {
@@ -452,4 +465,13 @@ MAIN LINK
 .move {
     width: 100vw;
     display: inline-block;
+}
+
+.content-title-section {
+    margin-bottom: 12vh;
+    text-align: center;
+}
+
+.line-bottom {
+    border-bottom: 1px solid rgb(97, 97, 97);
 }
