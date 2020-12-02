@@ -7,23 +7,12 @@ $(document).ready(function() {
 
     function initAndroid() {
         handleMenuHomeSections(true)
+        handleExperienceXpValues()
+        configureDinoClick()
+        configureMyTeamClick()
+    }
 
-        upNumberTo(25, "#experience-bugs");
-        upNumberTo(12, "#experience-coffee");
-        upNumberTo(8, "#experience-glasses");
-        upNumberTo(17, "#experience-pc");
-
-        $("#train-my-dino-link").click(function() {
-            configureDino();
-            initDinoGame();
-        });
-
-        $("#stop-train-my-dino-link").click(function() {
-
-
-            stopDinoInterval()
-        });
-
+    function configureMyTeamClick() {
         $("#show-my-team").click(function() {
 
             const boxes = ["#profile-android", "#profile-tech-leader", "#profile-ceo", "#profile-game", "#profile-data-scientist"]
@@ -81,6 +70,24 @@ $(document).ready(function() {
             $(this).hide()
             $("#show-my-team").show()
         });
+    }
+
+    function configureDinoClick() {
+        $("#train-my-dino-link").click(function() {
+            configureDino();
+            initDinoGame();
+        });
+
+        $("#stop-train-my-dino-link").click(function() {
+            stopDinoInterval()
+        });
+    }
+
+    function handleExperienceXpValues() {
+        upNumberTo(25, "#experience-bugs");
+        upNumberTo(12, "#experience-coffee");
+        upNumberTo(8, "#experience-glasses");
+        upNumberTo(17, "#experience-pc");
     }
 
     function handleMenuHomeSections(updateHeight) {
