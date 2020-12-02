@@ -344,6 +344,7 @@ function configureScreenElements() {
     const header = $("#header")
     const resume = $("#resume")
     const skill = $("#skills")
+    const experience = $("#experience")
 
     const numbers = $("#android-numbers")
     const own = $("#android-own")
@@ -359,9 +360,12 @@ function configureScreenElements() {
         elementNewGame.show()
         elementStopGame.hide()
 
+        stopDinoInterval()
+
         header.hide(SHOW_HIDE_ANIMATION_DELAY)
         resume.hide(SHOW_HIDE_ANIMATION_DELAY)
         skill.hide(SHOW_HIDE_ANIMATION_DELAY)
+        experience.hide(SHOW_HIDE_ANIMATION_DELAY)
         menu.hide(SHOW_HIDE_ANIMATION_DELAY)
         own.hide(SHOW_HIDE_ANIMATION_DELAY)
         libs.hide(SHOW_HIDE_ANIMATION_DELAY)
@@ -377,6 +381,7 @@ function configureScreenElements() {
         header.show(SHOW_HIDE_ANIMATION_DELAY)
         resume.show(SHOW_HIDE_ANIMATION_DELAY)
         skill.show(SHOW_HIDE_ANIMATION_DELAY)
+        experience.show(SHOW_HIDE_ANIMATION_DELAY)
         menu.show(SHOW_HIDE_ANIMATION_DELAY)
         own.show(SHOW_HIDE_ANIMATION_DELAY)
         libs.show(SHOW_HIDE_ANIMATION_DELAY)
