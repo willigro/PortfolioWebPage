@@ -71,20 +71,26 @@ function showPowerUpEffectGameClock(tag, maxTimes, element) {
     })
 }
 
-function showHitInTheSides() {
-    hitsLeft()
-    hitsRight()
+function showHitInTheSides(onShield) {
+    hitsLeft(onShield)
+    hitsRight(onShield)
 }
 
-function hitsLeft() {
-    buildSides("left", 2, 3, 0);
+function hitsLeft(onShield) {
+    buildSides("left", 2, 3, onShield);
 }
 
-function hitsRight() {
-    buildSides("right", 2, 3);
+function hitsRight(onShield) {
+    buildSides("right", 2, 3, onShield);
 }
 
-function buildSides(tag, maxTimes, resetTimes) {
+function buildSides(tag, maxTimes, resetTimes, onShield) {
+    const baseR = onShield ? 216 : 150
+    const baseG = onShield ? 142 : 10
+    const baseB = onShield ? 30 : 10
+
+    const maxG = onShield ? 135 : 60
+
     gameClock.newClock(tag, maxTimes, true, function() {
 
         var x = 0
@@ -96,9 +102,9 @@ function buildSides(tag, maxTimes, resetTimes) {
             }
             var height = randomMin(5, maxRectangleHitHeight);
             const width = randomMin(5, actualMaxHitWidth);
-            const r = randomMin(150, 255)
-            const g = randomMin(10, 60)
-            const b = randomMin(10, 60)
+            const r = randomMin(baseR, 255)
+            const g = randomMin(baseG, maxG)
+            const b = randomMin(baseB, 60)
 
             ctx.fillStyle = "rgba(" + r + ", " + g + ", " + b + ", 0.7)"
 

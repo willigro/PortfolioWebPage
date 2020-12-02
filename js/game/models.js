@@ -377,10 +377,11 @@ class Ship {
         if (intersect(object, this)) {
 
             object.destroy()
-
+            var onShield = false
             if (this.activedShield && this.shieldEnergy > 0) {
                 this.shieldEnergy -= 100;
                 if (this.shieldEnergy < 0) this.shieldEnergy = 0
+                onShield = true
                 updateShieldEnergy()
             } else
                 --this.lifePoints;
@@ -389,7 +390,7 @@ class Ship {
                 this.die()
             }
             updateLifeView()
-            showHitInTheSides()
+            showHitInTheSides(onShield)
         }
     }
 
