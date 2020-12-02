@@ -475,3 +475,11 @@ MAIN LINK
 .line-bottom {
     border-bottom: 1px solid rgb(97, 97, 97);
 }
+
+.resume {
+    margin-top: 10vh;
+}
+
+.resume-subtitle {
+    margin-top: 5vh;
+}

@@ -454,9 +454,9 @@
 
           <!-- FORMATION -->
           <p class="p-title resume">My academic formation</p>
-          <p class="p-subtitle">Web Designer</p>
+          <p class="p-subtitle resume-subtitle">Web Designer</p>
           <p>At 2011 I'd a small course of Web Designer, where I learn some concepts of HTML and CSS.</p>
-          <p class="p-subtitle">System Analysis and Development</p>
+          <p class="p-subtitle resume-subtitle">System Analysis and Development</p>
           <p>
             Some years later I has been work as IT Support, doing servers and pc instalations, network config and some other things.
             <br />Was there that I met a developer and it maked me want try again, so I save some money and start my college one year later.
@@ -467,7 +467,7 @@
             In this time I loved games and AI and I wanted work just with one of them, but this changed and today I want to join the
             AI, Games and Android in one, but the project still be in the idealization phase.
           </p>
-          <p class="p-subtitle">Pos college, AI</p>
+          <p class="p-subtitle resume-subtitle">Pos college, AI</p>
           <p>
             At 2019 I started my post degree in Artificial Intelligence, also in the Unibratec, that unfortunately closed some months later.
             So, I was transfer to Europeia also in Recife. Then the quarentine has come and it spoil the classes, and the experience, but I was
@@ -476,7 +476,7 @@
 
           <!-- ANDROID -->
           <p class="p-title resume">Android Development</p>
-          <p class="p-subtitle">The start</p>
+          <p class="p-subtitle resume-subtitle">The start</p>
           <p>
             I started on the Android Development at 2017, yet in the college, working in simple projects and concepts.
             <br />In this year, my first project, maked to final exam from the class, was a virtual assistence with speech recognization.
@@ -485,19 +485,19 @@
             <br />My final project in the college was a application with server, client web and android, so my team to divied the tasks and designed someome of us to be the tecnology leader.
             I was the Android leader, and we got finsh the project without problems and in the time. All of the equips got the max points, web, documentation and us (android).
           </p>
-          <p class="p-subtitle">The first trainee</p>
+          <p class="p-subtitle resume-subtitle">The first trainee</p>
           <p>
             Before I concluded my college, I got it a trainee in the PSD Digital Agency. There I learn PHP, Ionic 2 and nodejs. It was a
             good experiency, we were five developers with some projects, but three monthes later I left the company.
           </p>
-          <p class="p-subtitle">The first freela</p>
+          <p class="p-subtitle resume-subtitle">The first freela</p>
           <p>
             So, I concluded my college, and not got a job, then I tried a freela for a collegue: create two android apps, one to client and one to
             admin use like a server. The app would be to make orders of sumplements. I'd the Android project, but in the delivery, showing to consumer
             as was the app, him ask me about IOS and I tried do a Hybrid app with Ionic 2. I did the client and admin apps, but my pc was not a
             MAC, so I not got build the IOS app and the project was stopped, time and money wasted, but experience acquired.
           </p>
-          <p class="p-subtitle">Second trainee</p>
+          <p class="p-subtitle resume-subtitle">Second trainee</p>
           <p>
             After of six months "stopped" I got a new trainee in the JBR - Engenering, also at Recife, this time working only with Android Development (and sometimes as IT Support).
             <br />In the start I needed create fours App, but in the end I create just two. The team was my Leader, a TI Support that help me with the
@@ -506,7 +506,7 @@
             <br />The second one was a project to draw the a area, a road area with some impact, also I needed export this drawings to XML (it take me still more time).
             <br />In the end, my leader and me realized that I needed work with some equip, with differents projects, so I get out of the company.
           </p>
-          <p class="p-subtitle">My first job as developer</p>
+          <p class="p-subtitle resume-subtitle">My first job as developer</p>
           <p>Almost two years later of get my formation I finally get my first CLT job as Android Developer at the Solutions Trinity, Recife in 2018.</p>
           <p>
             There I work with various Android apps and sometimes with javascript or PHP. Focusing in the Android, I was designed to work with a legacy App writen in Java, without pattern and with some bugs.
@@ -519,11 +519,11 @@
             <br>An app to truckers.
             <br>An app to accompany the work with energy poles and equipments for a energy company.
           </p>
-          <p class="p-subtitle">Second freela</p>
+          <p class="p-subtitle resume-subtitle">Second freela</p>
           <p>
             I got a job with a constumer from the Trinity, where a maked a App to sales.
           </p>
-          <p class="p-subtitle">My actual job</p>
+          <p class="p-subtitle resume-subtitle">My actual job</p>
           <p>Today I work in the Use Mobile, a company from Minas Gerais, remotely. For now I just work with one project, still knowing the company.</p>
 
           <!-- AI -->
