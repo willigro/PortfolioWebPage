@@ -11,6 +11,7 @@ $(document).ready(function() {
 
     var languagesDone = false
     var experienceDone = false
+    var resumeDone = false
 
     function initAndroid() {
         handleMenuHomeSections(true)
@@ -141,6 +142,12 @@ $(document).ready(function() {
                             clearInterval(interval)
                         }
                     }, delay)
+                }
+                break;
+            case SECTION_RESUME:
+                if (!resumeDone) {
+                    resumeDone = true
+                    writeEachChar("resume-subtitle", "A little bit about me and my Android path", MID_TIME_WRITER, LIGHT_MIN_WRITER, LIGHT_MAX_WRITER)
                 }
                 break;
         }

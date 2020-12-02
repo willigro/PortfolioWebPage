@@ -414,7 +414,7 @@
             My Experiences
             <div id="experience-level-up" style="color: rgb(87, 106, 228); position: absolute; width: 100%; opacity: 0;" class="p-power-up-high">LEVEL UP!!</div>
           </p>
-          
+
           <p class="p-content">
             Bugs Resolved: DEX + <span id="experience-bugs" style="color: pink">0</span>
             <br>Coffee: CON + <span id="experience-coffee" style="color: red">0</span>
@@ -427,7 +427,7 @@
         <?php
         echo getMyProfessionalExperience();
         ?>
-        
+
         <!-- EDUCATION -->
         <?php
         echo getMyEducationExperience();
@@ -445,8 +445,8 @@
 
         <div class="content-title-section">
           <p class="p-title-section">My Resume</p>
-          <p class="p-content">
-            A little bit about me and my Android path
+          <p id="resume-subtitle" class="p-content">
+            <!-- Implemented by script -->
           </p>
         </div>
 
@@ -539,6 +539,7 @@
 </body>
 <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="js/write_text.js"></script>
 <script src="js/pages/home.js"></script>
 <script src="js/dino_google_game_small/constants.js"></script>
 <script src="js/dino_google_game_small/neuralnetwork.js"></script>
