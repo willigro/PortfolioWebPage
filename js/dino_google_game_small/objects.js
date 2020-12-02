@@ -12,7 +12,7 @@ class Dino {
         this.isJumping = false;
         this.jumpForce = 10
         this.gravityForce = 5
-        this.limitHeightInJump = BASE_Y_POSTITION - 50
+        this.limitHeightInJump = BASE_Y_POSTITION - (OBJECT_WIDTH * 2)
 
         this.brain = new Brain()
     }
@@ -105,10 +105,8 @@ class Dino {
     }
 
     random_rgba() {
-        var o = Math.round,
-            r = Math.random,
-            s = 255;
-        return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + 255 + ')';
+        const s = 200
+        return 'rgba(' + random(s, 255) + ',' + random(s, 255) + ',' + random(s, 255) + ',' + 1 + ')';
     }
 }
 
@@ -116,7 +114,7 @@ class Tree {
     constructor(x, width) {
         this.x = x
         this.y = BASE_Y_POSTITION;
-        this.width = width * 2
+        this.width = width
         this.height = width
 
         this.isShowing = true;

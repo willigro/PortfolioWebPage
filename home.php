@@ -173,13 +173,20 @@
         <div class="content-title-section">
           <p class="p-title-section">My Skills</p>
           <p id="train-my-dino" class="p-content">
-            Train my dino <a id="train-my-dino-link" class="a-main">clicking here</a>
+            Train the blocks <a id="train-my-dino-link" class="a-main">clicking here</a>
           </p>
-          <p id="stop-train-my-dino" class="p-content" hidden>
-            Stop training <a id="stop-train-my-dino-link" class="a-main">clicking here</a>
-            <br><span class="p-content-small">Wait, I'm learning!!</span>
-          </p>
+          <div id="stop-train-my-dino" class="p-content" hidden>
+            Stop the training <a id="stop-train-my-dino-link" class="a-main">clicking here</a>
 
+            <div class="p-content-small">
+              Wait, I'm learning!!
+              <br>Score <span id="dino_actual_score">0</span>
+              <br>Alive blocks <span id="dino_alive">0</span>
+              <br>Best score <span id="dino_best_score">0</span>
+            </div>
+          </div>
+
+          <canvas id="canvas-dino-brain" hidden></canvas>
           <canvas id="canvas-dino" hidden></canvas>
         </div>
 

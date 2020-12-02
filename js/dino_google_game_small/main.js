@@ -1,7 +1,3 @@
-/***
- * Started and controlled by ASTERBLOCK.JS
- **/
-
 var interval
 
 const _genetic = new Genetic()
@@ -25,9 +21,28 @@ var alives = 0
 
 var starsIntervalDino
 
-function initDinoGame() {
+var elementDinoActualScore
+var elementDinoBestScore
+var elementDinosAlive
+
+function configureDino() {
+    $("#train-my-dino").hide();
+    $("#stop-train-my-dino").show();
+    $("#canvas-dino").show(500);
+    $("#canvas-dino-brain").show(500);
+
     var canvasDino = document.getElementById("canvas-dino")
+    var canvasDinoBrain = document.getElementById("canvas-dino-brain")
+
     _draw = new Draw(canvasDino.getContext("2d"))
+    _drawBrain = new Draw(canvasDinoBrain.getContext("2d"))
+
+    elementDinoActualScore = $("#dino_actual_score")
+    elementDinoBestScore = $("#dino_best_score")
+    elementDinosAlive = $("#dino_alive")
+}
+
+function initDinoGame() {
     prepareEnemyObjects()
     initialDinos()
     startDinoInterval()
@@ -41,6 +56,11 @@ function startDinoInterval() {
 }
 
 function stopDinoInterval() {
+    $("#train-my-dino").show();
+    $("#stop-train-my-dino").hide();
+    $("#canvas-dino").hide(500);
+    $("#canvas-dino-brain").hide(500);
+
     clearInterval(starsIntervalDino)
 }
 
@@ -134,41 +154,12 @@ function generateObstacles() {
         var distance = (last && last.x >= TREE_START_X) ? last.getRight() : TREE_START_X
         distance += getDistanceObstacle()
 
-        obstacles.push(new Tree(distance, OBJECT_WIDTH * random(2)))
+        obstacles.push(new Tree(distance, OBJECT_WIDTH * randomNotZero(2)))
 
         if (object_score >= 500) {
             object_score = (_game_speed > 10) ? 200 : 0
             const d = obstacles[obstacles.length - 1].getRight() + getDistanceObstacle()
-            new Tree(d, OBJECT_WIDTH * random(4))
-        }
-    }
-}
-
-function generateTrees() {
-    score_to_tree++
-
-    var removed = false
-    for (let i = 0; i < trees.length; i++) {
-        const t = trees[i]
-        if (t.outMap()) {
-            trees.splice(i, 1)
-            i--
-            removed = true
-        }
-    }
-
-    if (trees.length == 0 || removed && trees.length < 5) {
-        var distance = TREE_START_X
-        distance += getDistanceObstacle()
-
-        trees.push(new Tree(distance, TREE_WIDTH))
-
-        if (score_to_tree >= 500) {
-            trees.push(new Tree(trees[trees.length - 1].getRight() + getDistanceObstacle(), TREE_WIDTH * 2))
-
-            if (score_to_tree >= 1000) {
-                score_to_tree = (_game_speed > 10) ? 200 : 0
-            }
+            obstacles.push(new Tree(d, OBJECT_WIDTH * randomNotZero(3)))
         }
     }
 }
@@ -201,9 +192,15 @@ function getNextFromObstacles(dino) {
 }
 
 function render() {
+    elementDinosAlive.html(alives + " of " + DINO_POPULATION)
     _draw.drawBackground(maxWidth, maxHeight)
     _draw.drawDinos(dinoList)
     _draw.drawObstacles(obstacles)
+    if (best_dino) {
+        elementDinoActualScore.html(best_dino.score)
+        _drawBrain.drawBackground(maxWidth, maxHeight)
+        _drawBrain.drawBrain(best_dino.brain)
+    }
 }
 
 function newEra() {
@@ -217,6 +214,8 @@ function newEra() {
         best_dino = null
         initDinoGame()
     }
+
+    elementDinoBestScore.html(global_best_dino.score)
 }
 
 function stopDinoGame() {

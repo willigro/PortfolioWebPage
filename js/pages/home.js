@@ -14,17 +14,12 @@ $(document).ready(function() {
         upNumberTo(17, "#experience-pc");
 
         $("#train-my-dino-link").click(function() {
-            $("#train-my-dino").hide();
-            $("#stop-train-my-dino").show();
-            $("#canvas-dino").show(500);
-
+            configureDino();
             initDinoGame();
         });
 
         $("#stop-train-my-dino-link").click(function() {
-            $("#train-my-dino").show();
-            $("#stop-train-my-dino").hide();
-            $("#canvas-dino").hide(500);
+
 
             stopDinoInterval()
         });
