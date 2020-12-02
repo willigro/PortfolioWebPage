@@ -114,7 +114,7 @@ class HtmlGenerator
 
   function getMyProfessionalExperience($professional)
   {
-    $html = '<div style="text-align: left;" >
+    $html = '<div style="text-align: left;  margin-bottom: 10vh">
       <p class="p-title center-text">Professional</p>';
     for ($i = 0; $i < sizeof($professional); $i++) {
       $obj = $professional[$i];
@@ -145,27 +145,32 @@ class HtmlGenerator
     return $html . '</div>';
   }
 
-  function getMyEducationExperience($professional)
+  function getMyEducationExperience($education)
   {
-    // $html = '<div class="row center-text">
-    //   <p class="p-title">Professional</p>';
-    // for ($i = 0; $i < sizeof($professional); $i++) {
-    //   $obj = $professional[$i];
-    //   $html .= '<div class="p-subtitle" style="margin-top: 25px;">
-    //   ' . $obj->dateFrom . '<span style="color: white"> - </span>' . $obj->dateTo . '
-    //   </div>
-    //   <div>
-    //   ' . $obj->company . '
-    //   </div>
-    //   <div class="p-shine">
-    //   ' . $obj->office . '
-    //   </div>
-    //   <div class="p-content-small">
-    //   ' . $obj->locate . '
-    //   </div>';
-    // }
+    $html = '<div style="text-align: left;">
+    <p class="p-title center-text">Education</p>';
+    for ($i = 0; $i < sizeof($education); $i++) {
+      $obj = $education[$i];
 
-    return "";
+      $html .= '<div class="row line-bottom">';
+
+      if ($obj->dateFrom != null)
+        $html .= '<div style="margin-top: 25px;">
+      ' . $obj->dateFrom . '<span class="p-shine"> - </span>' . $obj->dateTo . '
+      </div>';
+      else
+        $html .= '<div style="margin-top: 25px;">Unfinished</div>';
+
+      $html .= '<div>
+        ' . $obj->institute . '
+        </div>
+        <div class="p-shine">
+        ' . $obj->course . '
+        </div>    
+      </div>';
+    }
+
+    return $html . '</div>';
   }
 
   function percent2Color($value, $brightness = 255, $max = 100, $min = 0, $thirdColorHex = '55')

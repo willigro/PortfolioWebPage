@@ -421,14 +421,16 @@
 
 
 
-        <!-- EDUCATION -->
-        <?php
-        echo getMyEducationExperience();
-        ?>
+
 
         <!-- PROFESSIONAL -->
         <?php
         echo getMyProfessionalExperience();
+        ?>
+        
+        <!-- EDUCATION -->
+        <?php
+        echo getMyEducationExperience();
         ?>
       </div>
     </div>

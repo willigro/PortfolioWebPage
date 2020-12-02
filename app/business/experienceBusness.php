@@ -5,9 +5,41 @@ class ExperienceBusiness
 {
     function getEducationExperiences()
     {
+
+        $analysis = new Education(
+            "2015",
+            "2017",
+            "Unibratec, Brazil - PE",
+            "Degree in System Development and Analysis"
+        );
+
+        $ai = new Education(
+            "2019",
+            "2020",
+            "Initialize at Unibratec, Brazil - PE
+        <br>Finalize at Europeia, Brazil - PE",
+            "Post degree in Artificial Intelligence"
+        );
+
+        $english =  new Education(
+            "2020",
+            "Current",
+            "English Live - Online",
+            "English course"
+        );
+
+        $unfinished =  new Education(
+            null,
+            null,
+            "Unity 2D, Godot, Android Development",
+            "Udemy"
+        );
+
         return [
-            new Education("2015", "2017", "Degree in System Development and Analysis"),
-            new Education("2019", "2020", "Post degree in Artificial Intelligence")
+            $english,
+            $ai,
+            $analysis,
+            $unfinished
         ];
     }
 

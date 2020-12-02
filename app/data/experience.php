@@ -24,11 +24,13 @@ class Education
     public $dateFrom = "";
     public $dateTo = "";
     public $institute = "";
+    public $course = "";
 
-    function __construct($dateFrom, $dateTo, $institute)
+    function __construct($dateFrom, $dateTo, $institute, $course)
     {
         $this->dateFrom = $dateFrom;
         $this->dateTo = $dateTo;
         $this->institute = $institute;
+        $this->course  = $course;
     }
 }
