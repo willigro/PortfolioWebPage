@@ -419,10 +419,6 @@
           </p>
         </div>
 
-
-
-
-
         <!-- PROFESSIONAL -->
         <?php
         echo getMyProfessionalExperience();
