@@ -180,9 +180,9 @@
 
             <div class="p-content-small">
               Wait, I'm learning!!
-              <br>Score <span id="dino_actual_score">0</span>
+              <br>Actual Best Score <span id="dino_actual_score">0</span>
               <br>Alive blocks <span id="dino_alive">0</span>
-              <br>Best score <span id="dino_best_score" class="p-shine">0</span>
+              <br>Global Best score <span id="dino_best_score" class="p-shine">0</span>
             </div>
           </div>
 
@@ -409,8 +409,12 @@
     -->
     <div id="experience" class="move">
       <div class="container center-text p-content">
-        <div class="content-title-section">
-          <p class="p-title-section">My Experiences</p>
+        <div class="content-title-section" style="position: relative">
+          <p class="p-title-section">
+            My Experiences
+            <div id="experience-level-up" style="color: rgb(87, 106, 228); position: absolute; width: 100%; opacity: 0;" class="p-power-up-high">LEVEL UP!!</div>
+          </p>
+          
           <p class="p-content">
             Bugs Resolved: DEX + <span id="experience-bugs" style="color: pink">0</span>
             <br>Coffee: CON + <span id="experience-coffee" style="color: red">0</span>

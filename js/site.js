@@ -1,10 +1,12 @@
 const SCROLLING_SMOOTH_TIME = 1500
-const TEM_PERCENT_HEIGHT = valueFromPercentage(10, window.innerHeight)
+const FIVE_PERCENT_HEIGHT = valueFromPercentage(5, window.innerHeight)
+const TEN_PERCENT_HEIGHT = valueFromPercentage(10, window.innerHeight)
+const TWENTY_PERCENT_HEIGHT = valueFromPercentage(20, window.innerHeight)
 
 const menuSectionUnselectedColor = getComputedStyle(document.body).getPropertyValue('--main-text-color-menu-section');
 const menuSectionSelectedColor = getComputedStyle(document.body).getPropertyValue('--main-text-color-menu-section-selected');
 
-function handleMenuSectionsSelection(sections) {
+function handleMenuSectionsSelection(sections, callback) {
     // reset all
     for (i in sections) {
         const s = "#menu-section-" + sections[i]
@@ -17,8 +19,10 @@ function handleMenuSectionsSelection(sections) {
         const sT = s.position().top
         const t = document.documentElement.scrollTop
 
-        if (t + TEM_PERCENT_HEIGHT >= sT || i == sections.length - 1) {
+        if (t + TWENTY_PERCENT_HEIGHT * 2 >= sT || i == sections.length - 1) {
             $("#menu-section-" + sections[i]).css({ color: menuSectionSelectedColor })
+            if (callback)
+                callback(sections[i]);
             break
         }
     }
@@ -32,7 +36,7 @@ function configureMenuSectionActions(section) {
 
     const menu = $("#menu")
     menu.ready(function() {
-        const height = menu.height() + TEM_PERCENT_HEIGHT
+        const height = menu.height() + TEN_PERCENT_HEIGHT
         elementSection.css({ "padding-top": height });
     })
 
@@ -48,7 +52,7 @@ function configureMenuSectionActions(section) {
     })
 }
 
-function upNumberTo(goalNumber, element, plus) {
+function upNumberTo(goalNumber, element, plus, callback) {
     var current = 1
     $(element).html(current)
     var interval = setInterval(function() {
@@ -57,6 +61,9 @@ function upNumberTo(goalNumber, element, plus) {
         if (current == goalNumber) {
             if (plus)
                 $(element).html(current + "+")
+
+            if (callback)
+                callback();
             clearInterval(interval)
         } else
             current++

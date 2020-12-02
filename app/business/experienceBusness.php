@@ -31,8 +31,8 @@ class ExperienceBusiness
         $unfinished =  new Education(
             null,
             null,
-            "Unity 2D, Godot, Android Development",
-            "Udemy"
+            "Udemy - Online",
+            "Unity 2D, Godot, Android Development"
         );
 
         return [

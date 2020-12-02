@@ -1,13 +1,19 @@
 $(document).ready(function() {
 
+    const SECTION_RESUME = "resume"
+    const SECTION_SKILLS = "skills"
+    const SECTION_MY_TEAM = "my-team"
+    const SECTION_EXPERIENCE = "experience"
+
     const MY_TEAM_MOVE_ANIMATION_DELAY = 700
     const MY_TEAM_MOVE_ANIMATION_DELAY_FAST = 500
     const MY_TEAM_OPACITY_ANIMATION_DELAY = 500
+
     var languagesDone = false
+    var experienceDone = false
 
     function initAndroid() {
         handleMenuHomeSections(true)
-        handleExperienceXpValues()
         configureDinoClick()
         configureMyTeamClick()
     }
@@ -83,11 +89,12 @@ $(document).ready(function() {
         });
     }
 
-    function handleExperienceXpValues() {
+    function handleExperienceXpValues(callback) {
+        experienceDone = true
         upNumberTo(25, "#experience-bugs");
         upNumberTo(12, "#experience-coffee");
         upNumberTo(8, "#experience-glasses");
-        upNumberTo(17, "#experience-pc");
+        upNumberTo(17, "#experience-pc", null, callback);
     }
 
     function handleMenuHomeSections(updateHeight) {
@@ -95,22 +102,48 @@ $(document).ready(function() {
             $("#header").height(window.innerHeight)
         }
         // The order matters
-        const sections = ["resume", "experience", "skills", "my-team"]
+        const sections = [SECTION_RESUME, SECTION_EXPERIENCE, SECTION_SKILLS, SECTION_MY_TEAM]
         for (i in sections) {
             configureMenuSectionActions(sections[i])
         }
 
-        handleMenuSectionsSelection(sections)
+        handleMenuSectionsSelection(sections, callbackSectionSelected)
 
         $(window).scroll(function() {
-            handleMenuSectionsSelection(sections)
-
-            if (!languagesDone && this.scrollY > $("#skills").position().top / 2) {
-                handleLanguages();
-            }
+            handleMenuSectionsSelection(sections, callbackSectionSelected)
         });
 
         $("#menu-option-sections-home").show()
+    }
+
+    let callbackSectionSelected = function(section) {
+        switch (section) {
+            case SECTION_SKILLS:
+                if (!languagesDone)
+                    handleLanguages();
+                break;
+            case SECTION_EXPERIENCE:
+                if (!experienceDone) {
+                    let element = $('#experience-level-up')
+                    handleExperienceXpValues()
+
+                    let t = element.position().top
+                    let op = .5
+                    const delay = 15
+                    const tFactor = 3
+                    let opFactor = .01
+                    let interval = setInterval(function() {
+                        t -= tFactor;
+                        op += opFactor;
+
+                        element.css({ "top": t, "opacity": op })
+                        if (element.position().top <= -FIVE_PERCENT_HEIGHT && op < 1) {
+                            clearInterval(interval)
+                        }
+                    }, delay)
+                }
+                break;
+        }
     }
 
     function handleLanguages() {
@@ -124,9 +157,9 @@ $(document).ready(function() {
     }
 
     function updateLanguagePercentWidth(element) {
-        var current = 1
+        let current = 1
         const goalNumber = $(element).data("percente")
-        var interval = setInterval(function() {
+        let interval = setInterval(function() {
             $(element).css({ width: current + "%" })
 
             if (current == goalNumber) {

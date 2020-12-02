@@ -23,7 +23,7 @@ $(document).ready(function() {
 
         const menu = $("#menu")
         menu.ready(function() {
-            const height = menu.height() + TEM_PERCENT_HEIGHT
+            const height = menu.height() + TEN_PERCENT_HEIGHT
             element.css({ "padding-top": height });
         })
     }
