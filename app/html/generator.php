@@ -173,6 +173,31 @@ class HtmlGenerator
     return $html . '</div>';
   }
 
+  function getResumes($resume)
+  {
+    $html = '';
+
+    for ($i = 0; $i < sizeof($resume); $i++) {
+      $res = $resume[$i];
+
+      $html .= '<p class="p-title resume">' . $res->title . '</p>';
+
+      for ($j = 0; $j < sizeof($res->sections); $j++) {
+        $sec = $res->sections[$j];
+
+        $html .= '<p class="p-subtitle resume-subtitle">' . $sec->title . '</p>';
+
+        for ($x = 0; $x < sizeof($sec->subSections); $x++) {
+          $sub = $sec->subSections[$x];
+
+          $html .= '<p>' . $sub . '</p>';
+        }
+      }
+    }
+
+    return $html;
+  }
+
   function percent2Color($value, $brightness = 255, $max = 100, $min = 0, $thirdColorHex = '55')
   {
     // Calculate first and second color (Inverse relationship)
