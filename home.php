@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--
 
+All:
+  - Check english
+  - Base text size
+
+My team:
+  - photos
+  - check text
+  - check link
+
+Resume:
+  - Check texts
+
+Android:
+  - Change imgs from my pocket and DdD
+  - Add zoom to all images
+  - Animation for sections if need
+  - Check ordenations
+  - Check descriptions
+
+-->
 <head>
 
   <!-- Favicon
@@ -259,7 +280,6 @@
                   LiveData
                   <br>ViewModel
                   <br>Coroutines
-                  <br>Room
                   <br>Navigation Components
                   <br><span style="font-weight: lighter;">and more...</span>
                 </div>
@@ -292,7 +312,9 @@
               <div class="row" style="margin-top: 10px;  font-weight: bold;">
                 <div class="six columns">
                   SQLite
+                  <br>Room
                   <br>SharedPreferences
+                  <br>Realm
                   <br>DataStore
                   <br>Files
                   <br>Camera
@@ -450,7 +472,7 @@
           </p>
         </div>
 
-        <div class="row p-content-small">
+        <div class="row p-content">
           <?php
           echo getResume();
           ?>

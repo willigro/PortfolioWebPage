@@ -161,7 +161,7 @@ class AndroidApplicationBusiness
 
         $petFlerte  = new AndroidApplication(
             "PetFlerte",
-            "Sales and orders management",
+            "Pet, chat, promotions",
             "Kotlin, Navigation Components, Coroutines, Firebase (Message), Facebook, Google.",
             null,
             null,
@@ -170,7 +170,7 @@ class AndroidApplicationBusiness
 
         $armazemParaiba = new AndroidApplication(
             "Armazém PB",
-            "Store",
+            "Sales and orders management",
             "Kotlin.",
             null,
             null,

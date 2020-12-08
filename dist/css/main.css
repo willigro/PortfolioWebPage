@@ -9,7 +9,7 @@
     --main-android-app-width-small: 100px;
     --main-android-app-height-small: 160px;
     /* Background colors */
-    --main-background-color: black;
+    --main-background-color: rgb(0, 0, 0, .7);
     --main-background-color-box: rgb(24, 24, 24);
     /* Texts color */
     --main-text-color-light: white;

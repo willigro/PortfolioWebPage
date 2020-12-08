@@ -185,7 +185,7 @@ class HtmlGenerator
       for ($j = 0; $j < sizeof($res->sections); $j++) {
         $sec = $res->sections[$j];
 
-        $html .= '<p class="p-subtitle resume-subtitle">' . $sec->title . '</p>';
+        $html .= '<p class="p-subtitle resume-subtitle"><span class="p-content-small p-shine">' . $sec->date . '</span> ' . $sec->title . '</p>';
 
         for ($x = 0; $x < sizeof($sec->subSections); $x++) {
           $sub = $sec->subSections[$x];
