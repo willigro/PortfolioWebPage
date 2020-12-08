@@ -6,6 +6,36 @@ const TWENTY_PERCENT_HEIGHT = valueFromPercentage(20, window.innerHeight)
 const menuSectionUnselectedColor = getComputedStyle(document.body).getPropertyValue('--main-text-color-menu-section');
 const menuSectionSelectedColor = getComputedStyle(document.body).getPropertyValue('--main-text-color-menu-section-selected');
 
+
+/* 
+
+MODAL based in 
+https://codepen.io/tony-jones/pen/ZOXaYL 
+
+*/
+function modal(id) {
+    // Get the modal
+    var modal = document.getElementById("myModal" + id);
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById("myImg" + id);
+    var modalImg = document.getElementById("img" + id);
+    img.onclick = function() {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        modalImg.alt = this.alt;
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    modal.onclick = function() {
+        modalImg.className += " out";
+        setTimeout(function() {
+            modal.style.display = "none";
+            modalImg.className = "modal-content";
+        }, 400);
+    }
+}
+
 function handleMenuSectionsSelection(sections, callback) {
     // reset all
     for (i in sections) {

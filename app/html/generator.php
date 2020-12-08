@@ -1,4 +1,5 @@
 <?php
+
 class HtmlGenerator
 {
   function getAndroidApplications($androidApplications)
@@ -11,13 +12,23 @@ class HtmlGenerator
             <div class="row">';
 
       if ($obj->mainImage) {
+        $id = str_replace(' ', '', $obj->title);
         $html .= '<div class="four columns center">
-                    <img class="android-app-img" src="' . $obj->mainImage . '" alt="' . $obj->title . '">
-                </div>';
+        
+                    <img id="myImg' . $id . '" src="' . $obj->mainImage . '" alt="' . $obj->title . '" class="android-app-img myImg">
+
+                    <div id="myModal' . $id . '" class="modal">
+                      <img class="modal-content" id="img' . $id . '">
+                    </div>
+                   
+                    <script>
+                      modal("' . $id . '");
+                    </script>
+                  </div>';
       } else {
         $html .= '<div class="four columns center">
-            <img class="android-app-img-lib" src="dist/images/android_libs.png">
-        </div>';
+                    <img class="android-app-img-lib" src="dist/images/android_libs.png">
+                  </div>';
       }
 
       $html .= '<div class="eight columns">
@@ -41,7 +52,16 @@ class HtmlGenerator
       if ($obj->smallImages) {
         $html .= '<div>';
         for ($j = 0; $j < count($obj->smallImages); $j++) {
-          $html .= '<img class="android-app-img-small" src="' . $obj->smallImages[$j] . '">';
+          $id = $obj->title . $j;
+          $html .= '<img id="myImg' . $id . '" src="' . $obj->smallImages[$j] . '" alt="' . $obj->title . '" class="android-app-img-small myImg" style=" display: inline-block;">
+
+          <div id="myModal' . $id . '" class="modal">
+            <img class="modal-content" id="img' . $id . '">
+          </div>
+         
+          <script>
+            modal("' . $id . '");
+          </script>';
         }
         $html .= '</div>'; // small images
       }
