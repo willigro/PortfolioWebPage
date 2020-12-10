@@ -16,7 +16,7 @@ Resume:
 
 Android:
   - Change imgs from my pocket and DdD
-  - Add zoom to all images
+  OK - Add zoom to all images
   - Animation for sections if need
   - Check ordenations
   - Check descriptions
@@ -216,6 +216,10 @@ Android:
           <div class="four columns skills-section language">
             <p class="p-title resume">
               Languages
+            </p>
+            <p class="p-content-small" style="margin-bottom: 5vh;">
+              <span id="languages-subtitle" style="font-style: italic;"></span>
+              <br><span id="languages-subtitle-info" style="font-style: italic;"></span>
             </p>
 
             <table id="table-languages" style="justify-content: center; margin-left: auto; margin-right: auto;">
