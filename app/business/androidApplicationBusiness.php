@@ -83,9 +83,9 @@ class AndroidApplicationBusiness
         $robbie  = new AndroidApplication(
             "Robbie",
             "My actual lib in building
-            <br>Dynamic Progress using Dialog, control to progress by priority, Widget Utils, base to dynamic Dialogs with handler for string or HTML, 
-            ScrollView resizable, WebView resizable, File Utils based in Blankj, crash util also based in Blankj (handle any crash, 
-            as executing a function to 'send log to server'), simple Log Util",
+            <br>Dynamic Progress, control progress by priority, Widget Utils, base to dynamic Dialogs also with WebView, 
+            File Utils based in Blankj, crash util also based in Blankj (handling any crash, as executing a function
+             to 'send log to server'), simple Log Util, and more",
             "Kotlin, AndroidX, Canvas, Views, File.",
             null,
             null,
@@ -94,8 +94,8 @@ class AndroidApplicationBusiness
         );
 
         return array(
-            $olimpo,
-            $robbie
+            $robbie,
+            $olimpo
         );
     }
 
