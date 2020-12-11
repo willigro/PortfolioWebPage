@@ -8,15 +8,12 @@ All:
 
 My team:
   - photos
-  - check text
-  - check link
 
 Resume:
   - Check texts
 
 Android:
   - Change imgs from my pocket and DdD
-  OK - Add zoom to all images
   - Animation for sections if need
   - Check ordenations
   - Check descriptions
