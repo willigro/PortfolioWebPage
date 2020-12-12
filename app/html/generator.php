@@ -156,7 +156,7 @@ class HtmlGenerator
       </div>
       
       <div class="seven columns" style="margin-top: 25px;">
-      <p class="p-content-small">' . $obj->description . '</p>';
+      <p class="p-content">' . $obj->description . '</p>';
 
       $html .= '</div>
       </div>';

@@ -52,7 +52,7 @@ class ExperienceBusiness
             "UseMobile",
             "Android Developer",
             "Brazil, MG - remote",
-            "Currently I'm working here with a finance project, resolving some bugs, implementing some features."
+            "Currently I'm working here with a finance project working with Pix, and others."
         );
 
         $trinity = new Professional(

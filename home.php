@@ -15,8 +15,6 @@ Resume:
 Android:
   - Change imgs from my pocket and DdD
   - Animation for sections if need
-  - Check ordenations
-  - Check descriptions
 
 -->
 <head>
@@ -219,7 +217,7 @@ Android:
               <br><span id="languages-subtitle-info" style="font-style: italic;"></span>
             </p>
 
-            <table id="table-languages" style="justify-content: center; margin-left: auto; margin-right: auto;">
+            <table id="table-languages" class="p-content" style="justify-content: center; margin-left: auto; margin-right: auto;">
               <?php
               $languages = getLanguages();
               for ($i = 0; $i < count($languages); $i++) {
@@ -249,7 +247,7 @@ Android:
       </div>
 
       <div class="container-larger">
-        <div class="row p-content-small center">
+        <div class="row p-content center">
 
           <!-- BY TECHNOLOGY -->
           <div class="skills-section">
@@ -269,7 +267,7 @@ Android:
                 <div class="six columns">Android Jetpack</div>
               </div>
               <div class="row" style="margin-top: 10px;">
-                <div class="six columns" style="font-weight: bold;">
+                <div class="six columns">
                   Clean Architecture
                   <br>MVVM
                   <br>MVP
@@ -277,12 +275,12 @@ Android:
                   <br>Facade
                 </div>
 
-                <div class="six columns" style="font-weight: bold;">
+                <div class="six columns">
                   LiveData
                   <br>ViewModel
                   <br>Coroutines
                   <br>Navigation Components
-                  <br><span style="font-weight: lighter;">and more...</span>
+                  <br>and more...
                 </div>
               </div>
 
@@ -290,7 +288,7 @@ Android:
                 <div class="six columns">Test</div>
                 <div class="six columns">Network</div>
               </div>
-              <div class="row" style="margin-top: 10px;  font-weight: bold;">
+              <div class="row" style="margin-top: 10px;">
                 <div class="six columns">
                   JUnit
                   <br>Espresso
@@ -302,7 +300,7 @@ Android:
                   <br>Retrofit
                   <br>Glide, Picasso
                   <br>Firebase, Facebook, Google
-                  <br><span style="font-weight: lighter;">and more...</span>
+                  <br>and more...
                 </div>
               </div>
 
@@ -310,7 +308,7 @@ Android:
                 <div class="six columns">Persistence</div>
                 <div class="six columns">Others</div>
               </div>
-              <div class="row" style="margin-top: 10px;  font-weight: bold;">
+              <div class="row" style="margin-top: 10px">
                 <div class="six columns">
                   SQLite
                   <br>Room
@@ -320,7 +318,7 @@ Android:
                   <br>Files
                   <br>Camera
                   <br>DBBrowser
-                  <br><span style="font-weight: lighter;">and more... like MYSQL, PostgreSQL</span>
+                  <br>and more... like MYSQL, PostgreSQL
                 </div>
 
                 <div class="six columns">
@@ -330,7 +328,7 @@ Android:
                   <br>Broadcast
                   <br>Threads
                   <br>GPS
-                  <br><span style="font-weight: lighter;">and more...</span>
+                  <br>and more...
                 </div>
               </div>
 
@@ -355,7 +353,7 @@ Android:
                   <div class="six columns">Techniques</div>
                 </div>
                 <div class="row" style="margin-top: 10px;">
-                  <div class="six columns" style="font-weight: bold;">
+                  <div class="six columns">
                     Git
                     <br>Github
                     <br>Gitlab
@@ -368,13 +366,13 @@ Android:
                     <br>Unity
                   </div>
 
-                  <div class="six columns" style="font-weight: bold;">
+                  <div class="six columns">
                     Machine learning
                     <br>Genectic algorithm
                     <br>Deep Learning
                     <br>Computer vision
                     <br>NLP (Natural Language Process)
-                    <br><span style="font-weight: lighter;">and some more...</span>
+                    <br>and some more...
                   </div>
                 </div>
               </div>
@@ -383,7 +381,7 @@ Android:
         </div>
 
         <!-- CONCEPTS -->
-        <div class="row p-content-small ">
+        <div class="row p-content">
           <div class="skills-section">
             <p class="p-title resume">
               Concepts

@@ -171,7 +171,7 @@ class AndroidApplicationBusiness
         $armazemParaiba = new AndroidApplication(
             "Armazém PB",
             "Sales and orders management",
-            "Kotlin.",
+            "Kotlin, just some adjusts.",
             null,
             null,
             "https://play.google.com/store/apps/details?id=br.com.mobile.armazempb"
