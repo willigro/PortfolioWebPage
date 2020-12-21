@@ -24,6 +24,7 @@ function modal(id) {
         modal.style.display = "block";
         modalImg.src = this.src;
         modalImg.alt = this.alt;
+        document.getElementById("player-console").style.display = "none";
     }
 
     // When the user clicks on <span> (x), close the modal
@@ -32,6 +33,8 @@ function modal(id) {
         setTimeout(function() {
             modal.style.display = "none";
             modalImg.className = "modal-content";
+
+            document.getElementById("player-console").style.display = "block";
         }, 400);
     }
 }

@@ -535,6 +535,7 @@ https://codepen.io/tony-jones/pen/ZOXaYL
 .modal-content {
     margin: auto;
     display: block;
+    max-height: 100%;
 }
 
 

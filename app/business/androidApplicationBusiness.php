@@ -18,12 +18,14 @@ class AndroidApplicationBusiness
             <br>Can be used to notify when the insulin action is started or finish (standard hours).
             <br>The registers generate a historic of the fees, insulins and meals.",
             "Java, Kotlin, Async Task, SQLite, JUnit, MVP, MVVM (refactoring), ViewModell (refactoring), WorkManager, AndroidX, Material Design",
-            $this->imageRoot . "d_d_test_shot_1.png",
+            $this->imageRoot . "d_d_test_shot_1.jpg",
             array(
-                $this->imageRoot . "d_d_test_shot_2.png",
-                $this->imageRoot . "d_d_test_shot_3.png",
-                $this->imageRoot . "d_d_test_shot_4.png",
-                $this->imageRoot . "d_d_test_shot_5.png"
+                $this->imageRoot . "d_d_test_shot_2.jpg",
+                $this->imageRoot . "d_d_test_shot_3.jpg",
+                $this->imageRoot . "d_d_test_shot_4.jpg",
+                $this->imageRoot . "d_d_test_shot_5.jpg",
+                $this->imageRoot . "d_d_test_shot_6.jpg",
+                $this->imageRoot . "d_d_test_shot_7.jpg"
             ),
             "https://play.google.com/store/apps/details?id=com.rgames.diariodadiabetes"
         );
@@ -49,11 +51,11 @@ class AndroidApplicationBusiness
             <br>Register expense or earning.
             <br>Register pattern flows to easily regiter of the current flows.",
             "Kotlin, Coroutines, Kodein, Navigation Components, Room, LiveData, ViewModel, MVVM, JUnit, Espresso, AndroidX.",
-            $this->imageRoot . "my_pocket_test_shot_1.png",
+            $this->imageRoot . "my_pocket_test_shot_1.jpg",
             array(
-                $this->imageRoot . "my_pocket_test_shot_2.png",
-                $this->imageRoot . "my_pocket_test_shot_3.png",
-                $this->imageRoot . "my_pocket_test_shot_4.png"
+                $this->imageRoot . "my_pocket_test_shot_2.jpg",
+                $this->imageRoot . "my_pocket_test_shot_3.jpg",
+                $this->imageRoot . "my_pocket_test_shot_4.jpg"
             ),
             "https://play.google.com/store/apps/details?id=com.rgames.meusgastos"
         );

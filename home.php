@@ -13,8 +13,8 @@ Resume:
   - Check texts
 
 Android:
-  - Change imgs from my pocket and DdD
   - Animation for sections if need
+  - Game, hide content and adjust errors
 
 -->
 <head>
