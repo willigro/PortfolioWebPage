@@ -3,7 +3,6 @@
 <!--
 
 All:
-  - Check english
   - Base text size
 
 My team:
