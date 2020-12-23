@@ -97,7 +97,7 @@ Android:
           <div id="profile-avatar-android" class="four columns">
             <img class="avatar" src="dist/images/avatar_test_4.jpg" alt="Android Developer">
 
-            <p>Android Developer</p>
+            <p class="p-content">Android Developer</p>
           </div>
 
           <div id="profile-content-android" class="eight columns avatar-container">
@@ -118,7 +118,7 @@ Android:
           <div id="profile-avatar-tech" class="four columns">
             <img class="avatar" src="dist/images/avatar_test_1.jpg" alt="Android Developer">
 
-            <p>Tech Leader</p>
+            <p class="p-content">Tech Leader</p>
           </div>
         </div>
 
@@ -127,7 +127,7 @@ Android:
           <div id="profile-avatar-ceo" class="four columns">
             <img class="avatar" src="dist/images/avatar_test_2.jpg" alt="Android Developer">
 
-            <p>CEO</p>
+            <p class="p-content">CEO</p>
           </div>
 
           <div id="profile-content-ceo" class="eight columns avatar-container">
@@ -148,7 +148,7 @@ Android:
           <div id="profile-avatar-game" class="four columns">
             <img class="avatar" src="dist/images/avatar_test_3.jpg" alt="Android Developer">
 
-            <p>Game Developer</p>
+            <p class="p-content">Game Developer</p>
           </div>
         </div>
 
@@ -157,7 +157,7 @@ Android:
           <div id="profile-avatar-data" class="four columns">
             <img class="avatar" src="dist/images/avatar_test_5.jpg" alt="Android Developer">
 
-            <p>Data Scientist</p>
+            <p class="p-content">Data Scientist</p>
           </div>
 
           <div id="profile-content-data" class="eight columns avatar-container">
