@@ -25,7 +25,7 @@ class MyTeamBusiness
 
         $myTeam->newKnowlegde("Android and me", "Well, I worked on almost thirty Android projects, several them stopeds, and others I'm still working.
         I love build new features, complexy features, archtectures, and testing concepts. Some days I wake up, think in some simple app to 
-        solution my simple problem, search on playstore for one, and when I find I try make one better.");
+        solution my simple problem, search on playstore for one, and if I find one, so I try make one better, if not find, so I'll be rich!!");
 
         return $myTeam;
     }
@@ -44,7 +44,7 @@ class MyTeamBusiness
         $myTeam->newKnowlegde(
             "What did i do?",
             "I Designed tasks, and defined cronograme, defined architeture and tecnologies;
-                <br>Did code review, also did classes to teach some techlogies like Kotlin, ViewModel, etc;"
+                <br>Did code review, I also taught some techlogies like Kotlin, ViewModel, etc;"
         );
 
         return $myTeam;
@@ -59,7 +59,7 @@ class MyTeamBusiness
 
         $myTeam->newMainInfo("Experience", "1 year " . $this->info("(from my self)"));
         $myTeam->newMainInfo("Skills", "Junior");
-        $myTeam->newMainInfo("Projects I do for Rittmann " . $this->info("(me)"), "10");
+        $myTeam->newMainInfo("Projects I did for Rittmann " . $this->info("(me)"), "10");
 
         $myTeam->newKnowlegde(
             "What did i do?",
