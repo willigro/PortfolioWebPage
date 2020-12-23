@@ -14,7 +14,6 @@ Resume:
 
 Android:
   - Animation for sections if need
-  - Game, hide content and adjust errors
 
 -->
 <head>
