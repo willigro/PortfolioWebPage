@@ -81,9 +81,16 @@ $(document).ready(function() {
 
     function writeThisSiteWasMaked() {
         writeEachChar("this-site", "This site was maked 100% in html, css and js with hard coding, no libs.", LOW_TIME_WRITER - 5, DARK_MIN_WRITER, DARK_MAX_WRITER, function() {
+            writeBackground()
+        })
+    }
+
+    function writeBackground() {
+        writeEachChar("the-background", "And the backgrounds are animations created in canvas.", LOW_TIME_WRITER - 5, DARK_MIN_WRITER, DARK_MAX_WRITER, function() {
             showOptions()
         })
     }
+
 
     init();
 });

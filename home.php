@@ -8,10 +8,7 @@ All:
 
 My team:
   - photos
-
-Resume:
-  - Check texts
-
+  
 Android:
   - Animation for sections if need
 
