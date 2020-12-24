@@ -1,15 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <!--
-
-All:
-  - Base text size
-
-My team:
-  - photos
   
-Android:
-  - Animation for sections if need
+My team:
+  - Photos
 
 -->
 <head>
