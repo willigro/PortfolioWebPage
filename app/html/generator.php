@@ -8,7 +8,7 @@ class HtmlGenerator
 
     for ($i = 0; $i < count($androidApplications); $i++) {
       $obj = $androidApplications[$i];
-      $html .= '<div style="margin-bottom: 10vh" class="p-content">
+      $html .= '<div style="margin-bottom: 10vh" class="p-content line-bottom">
             <div class="row">';
 
       if ($obj->mainImage) {
