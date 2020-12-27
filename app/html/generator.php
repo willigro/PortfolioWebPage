@@ -1,4 +1,5 @@
 <?php
+
 class HtmlGenerator
 {
   function getAndroidApplications($androidApplications)
@@ -7,17 +8,27 @@ class HtmlGenerator
 
     for ($i = 0; $i < count($androidApplications); $i++) {
       $obj = $androidApplications[$i];
-      $html .= '<div style="margin-bottom: 10vh" class="p-content-small">
+      $html .= '<div style="margin-bottom: 10vh" class="p-content line-bottom">
             <div class="row">';
 
       if ($obj->mainImage) {
+        $id = str_replace(' ', '', $obj->title);
         $html .= '<div class="four columns center">
-                    <img class="android-app-img" src="' . $obj->mainImage . '" alt="' . $obj->title . '">
-                </div>';
+        
+                    <img id="myImg' . $id . '" src="' . $obj->mainImage . '" alt="' . $obj->title . '" class="android-app-img myImg">
+
+                    <div id="myModal' . $id . '" class="modal">
+                      <img class="modal-content" id="img' . $id . '">
+                    </div>
+                   
+                    <script>
+                      modal("' . $id . '");
+                    </script>
+                  </div>';
       } else {
         $html .= '<div class="four columns center">
-            <img class="android-app-img-lib" src="dist/images/android_libs.png">
-        </div>';
+                    <img class="android-app-img-lib" src="dist/images/android_libs.png">
+                  </div>';
       }
 
       $html .= '<div class="eight columns">
@@ -41,7 +52,16 @@ class HtmlGenerator
       if ($obj->smallImages) {
         $html .= '<div>';
         for ($j = 0; $j < count($obj->smallImages); $j++) {
-          $html .= '<img class="android-app-img-small" src="' . $obj->smallImages[$j] . '">';
+          $id = $obj->title . $j;
+          $html .= '<img id="myImg' . $id . '" src="' . $obj->smallImages[$j] . '" alt="' . $obj->title . '" class="android-app-img-small myImg" style=" display: inline-block;">
+
+          <div id="myModal' . $id . '" class="modal">
+            <img class="modal-content" id="img' . $id . '">
+          </div>
+         
+          <script>
+            modal("' . $id . '");
+          </script>';
         }
         $html .= '</div>'; // small images
       }
@@ -88,7 +108,7 @@ class HtmlGenerator
       $j++;
       $obj = $mainInfo[$i];
 
-      $html .= $obj[0] . '<span class="p-content-small" style="color:' . $this->percent2Color((100 * $j / 2) / $all) . '"><br>' . $obj[1] . '</span>';
+      $html .= $obj[0] . '<span class="p-content" style="color:' . $this->percent2Color((100 * $j / 2) / $all) . '"><br>' . $obj[1] . '</span>';
 
       if ($i < sizeof($mainInfo) - 1)
         $html .= "<br>";
@@ -103,7 +123,7 @@ class HtmlGenerator
       $j++;
       $obj = $knowledge[$i];
 
-      $html .= $obj[0] . '<span class="p-content-small" style="color:' . $this->percent2Color((100 * $j / 2) / $all) . '"><br>' . $obj[1] . '</span>';
+      $html .= $obj[0] . '<span class="p-content" style="color:' . $this->percent2Color((100 * $j / 2) / $all) . '"><br>' . $obj[1] . '</span>';
 
       if ($i < sizeof($knowledge) - 1)
         $html .= "<br>";
@@ -136,7 +156,7 @@ class HtmlGenerator
       </div>
       
       <div class="seven columns" style="margin-top: 25px;">
-      <p class="p-content-small">' . $obj->description . '</p>';
+      <p class="p-content">' . $obj->description . '</p>';
 
       $html .= '</div>
       </div>';
@@ -171,6 +191,31 @@ class HtmlGenerator
     }
 
     return $html . '</div>';
+  }
+
+  function getResumes($resume)
+  {
+    $html = '';
+
+    for ($i = 0; $i < sizeof($resume); $i++) {
+      $res = $resume[$i];
+
+      $html .= '<p class="p-title resume">' . $res->title . '</p>';
+
+      for ($j = 0; $j < sizeof($res->sections); $j++) {
+        $sec = $res->sections[$j];
+
+        $html .= '<p class="p-subtitle resume-subtitle"><span class="p-content-small p-shine">' . $sec->date . '</span> ' . $sec->title . '</p>';
+
+        for ($x = 0; $x < sizeof($sec->subSections); $x++) {
+          $sub = $sec->subSections[$x];
+
+          $html .= '<p>' . $sub . '</p>';
+        }
+      }
+    }
+
+    return $html;
   }
 
   function percent2Color($value, $brightness = 255, $max = 100, $min = 0, $thirdColorHex = '55')

@@ -6,6 +6,8 @@ include "./app/business/languageBusiness.php";
 include "./app/business/myTeamBusiness.php";
 include "./app/business/androidApplicationBusiness.php";
 include "./app/business/experienceBusness.php";
+include "./app/business/resumeBusiness.php";
+
 include "./app/html/generator.php";
 
 $htmlGenerator = new HtmlGenerator();
@@ -13,6 +15,7 @@ $languageBusiness = new LanguageBusiness();
 $androidApplicationBusiness = new AndroidApplicationBusiness();
 $myTeamBusiness = new MyTeamBusiness();
 $experienceBusiness = new ExperienceBusiness();
+$resumeBusiness = new ResumeBusiness();
 
 function getLanguages()
 {
@@ -93,4 +96,11 @@ function getMyEducationExperience(){
     global $htmlGenerator;
 
     return $htmlGenerator->getMyEducationExperience($experienceBusiness->getEducationExperiences());
+}
+
+function getResume(){
+    global $resumeBusiness;
+    global $htmlGenerator;
+
+    return $htmlGenerator->getResumes($resumeBusiness->getResume());
 }

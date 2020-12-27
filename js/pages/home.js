@@ -161,6 +161,10 @@ $(document).ready(function() {
                 updateLanguagePercentWidth("#" + value.replace(/\s/g, '_'))
             });
         });
+
+        writeEachChar("languages-subtitle", "I know, I know, the skills bars don't measure my skills, but it's cute, I like it!", MID_TIME_WRITER, LIGHT_MIN_WRITER, LIGHT_MAX_WRITER, function() {
+            writeEachChar("languages-subtitle-info", "And I want show a comparation between them, how I feel", MID_TIME_WRITER, DARK_MIN_WRITER, DARK_MAX_WRITER)
+        })
     }
 
     function updateLanguagePercentWidth(element) {

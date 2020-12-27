@@ -92,7 +92,7 @@
     <div class="container-large p-content">
       <div class="content-title-section">
         <p class="p-title-section">Here are some projects that I worked in the last 2 years</p>
-        <p class="p-content">You can ask me about this projects, I won't put many information about them because of the privacity of companies</p>
+        <p class="p-content">You can ask me about this projects, I won't put many information about them because of the companies privacity</p>
       </div>
 
       <?php

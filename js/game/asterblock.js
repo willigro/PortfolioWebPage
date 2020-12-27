@@ -351,6 +351,11 @@ function configureScreenElements() {
     const libs = $("#android-libs")
     const colaborated = $("#android-colaborated")
 
+    const android_numbers = $("#android-numbers")
+    const android_own = $("#android-own")
+    const android_libs = $("#android-libs")
+    const android_colaborated = $("#android-colaborated")
+
     const menu = $("#menu")
 
     elementPlay.click(function() {
@@ -360,7 +365,9 @@ function configureScreenElements() {
         elementNewGame.show()
         elementStopGame.hide()
 
-        stopDinoInterval()
+        if (typeof stopDinoInterval !== "undefined") {
+            stopDinoInterval()
+        }
 
         header.hide(SHOW_HIDE_ANIMATION_DELAY)
         resume.hide(SHOW_HIDE_ANIMATION_DELAY)
@@ -371,6 +378,10 @@ function configureScreenElements() {
         libs.hide(SHOW_HIDE_ANIMATION_DELAY)
         colaborated.hide(SHOW_HIDE_ANIMATION_DELAY)
         numbers.hide(SHOW_HIDE_ANIMATION_DELAY)
+        android_numbers.hide(SHOW_HIDE_ANIMATION_DELAY)
+        android_own.hide(SHOW_HIDE_ANIMATION_DELAY)
+        android_libs.hide(SHOW_HIDE_ANIMATION_DELAY)
+        android_colaborated.hide(SHOW_HIDE_ANIMATION_DELAY)
     })
 
     elementStop.click(function() {
@@ -387,6 +398,10 @@ function configureScreenElements() {
         libs.show(SHOW_HIDE_ANIMATION_DELAY)
         colaborated.show(SHOW_HIDE_ANIMATION_DELAY)
         numbers.show(SHOW_HIDE_ANIMATION_DELAY)
+        android_numbers.show(SHOW_HIDE_ANIMATION_DELAY)
+        android_own.show(SHOW_HIDE_ANIMATION_DELAY)
+        android_libs.show(SHOW_HIDE_ANIMATION_DELAY)
+        android_colaborated.show(SHOW_HIDE_ANIMATION_DELAY)
     })
 
     elementNewGame.click(function() {

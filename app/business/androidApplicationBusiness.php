@@ -14,16 +14,18 @@ class AndroidApplicationBusiness
             "To control the register from the diabetes. Designed from a Diabestes types 1 carrier to Diabetes type 1 carriers, type 
             2 and people responsable from carries
             <br>Register glucose fees, insulin applications, meals, favorite meals, weight historic.
-            <br>Insulin to application calculator, carboohydrates calculator and suggestions based in the actual glucose fee.
+            <br>Insulin application calculator, carboohydrates calculator and suggestions based in the actual glucose fee.
             <br>Can be used to notify when the insulin action is started or finish (standard hours).
             <br>The registers generate a historic of the fees, insulins and meals.",
             "Java, Kotlin, Async Task, SQLite, JUnit, MVP, MVVM (refactoring), ViewModell (refactoring), WorkManager, AndroidX, Material Design",
-            $this->imageRoot . "d_d_test_shot_1.png",
+            $this->imageRoot . "d_d_test_shot_1.jpg",
             array(
-                $this->imageRoot . "d_d_test_shot_2.png",
-                $this->imageRoot . "d_d_test_shot_3.png",
-                $this->imageRoot . "d_d_test_shot_4.png",
-                $this->imageRoot . "d_d_test_shot_5.png"
+                $this->imageRoot . "d_d_test_shot_2.jpg",
+                $this->imageRoot . "d_d_test_shot_3.jpg",
+                $this->imageRoot . "d_d_test_shot_4.jpg",
+                $this->imageRoot . "d_d_test_shot_5.jpg",
+                $this->imageRoot . "d_d_test_shot_6.jpg",
+                $this->imageRoot . "d_d_test_shot_7.jpg"
             ),
             "https://play.google.com/store/apps/details?id=com.rgames.diariodadiabetes"
         );
@@ -33,7 +35,7 @@ class AndroidApplicationBusiness
             "Control small business
             <br>Perfect to small business that have few services or products, like restaurants, bars, small stores.
             <br>Register the cashier, create orders, fast pay, parceled pay or pay with change.
-            <br>Register items, services, investiments, exists, and know how much you gain, and how much you spend with investiments or exists.",
+            <br>Register items, services, investiments, cashier exits, and know how much you gain, and how much you spend with investiments or expenses.",
             "Java, Async Task, SQLite, JUnit, MVP, AndroidX, Material Design",
             $this->imageRoot . "pedidos_test_shot_1.png",
             array(
@@ -47,13 +49,13 @@ class AndroidApplicationBusiness
             "Meu Bolso",
             "Simple register of the cash flows
             <br>Register expense or earning.
-            <br>Register pattern flows to easily regiter of the current flows.",
+            <br>Register standard flows to easily regiter the current flows.",
             "Kotlin, Coroutines, Kodein, Navigation Components, Room, LiveData, ViewModel, MVVM, JUnit, Espresso, AndroidX.",
-            $this->imageRoot . "my_pocket_test_shot_1.png",
+            $this->imageRoot . "my_pocket_test_shot_1.jpg",
             array(
-                $this->imageRoot . "my_pocket_test_shot_2.png",
-                $this->imageRoot . "my_pocket_test_shot_3.png",
-                $this->imageRoot . "my_pocket_test_shot_4.png"
+                $this->imageRoot . "my_pocket_test_shot_2.jpg",
+                $this->imageRoot . "my_pocket_test_shot_3.jpg",
+                $this->imageRoot . "my_pocket_test_shot_4.jpg"
             ),
             "https://play.google.com/store/apps/details?id=com.rgames.meusgastos"
         );
@@ -82,10 +84,10 @@ class AndroidApplicationBusiness
 
         $robbie  = new AndroidApplication(
             "Robbie",
-            "My actual lib in building
-            <br>Dynamic Progress using Dialog, control to progress by priority, Widget Utils, base to dynamic Dialogs with handler for string or HTML, 
-            ScrollView resizable, WebView resizable, File Utils based in Blankj, crash util also based in Blankj (handle any crash, 
-            as executing a function to 'send log to server'), simple Log Util",
+            "My current lib in building
+            <br>Dynamic Progress, control progress by priority, Widget Utils, base to dynamic Dialogs also with WebView, 
+            File Utils based in Blankj, crash util also based in Blankj (handling any crash, as executing a function
+             to 'send log to server'), simple Log Util, and more",
             "Kotlin, AndroidX, Canvas, Views, File.",
             null,
             null,
@@ -94,8 +96,8 @@ class AndroidApplicationBusiness
         );
 
         return array(
-            $olimpo,
-            $robbie
+            $robbie,
+            $olimpo
         );
     }
 
@@ -161,7 +163,7 @@ class AndroidApplicationBusiness
 
         $petFlerte  = new AndroidApplication(
             "PetFlerte",
-            "Sales and orders management",
+            "Pet, chat, promotions",
             "Kotlin, Navigation Components, Coroutines, Firebase (Message), Facebook, Google.",
             null,
             null,
@@ -170,8 +172,8 @@ class AndroidApplicationBusiness
 
         $armazemParaiba = new AndroidApplication(
             "Armazém PB",
-            "Store",
-            "Kotlin.",
+            "Sales and orders management",
+            "Kotlin, just some adjusts.",
             null,
             null,
             "https://play.google.com/store/apps/details?id=br.com.mobile.armazempb"

@@ -9,8 +9,9 @@
     --main-android-app-width-small: 100px;
     --main-android-app-height-small: 160px;
     /* Background colors */
-    --main-background-color: black;
+    --main-background-color: rgb(0, 0, 0, 1);
     --main-background-color-box: rgb(24, 24, 24);
+    --main-background-color-dark-light: rgb(0, 0, 0, .7);
     /* Texts color */
     --main-text-color-light: white;
     --main-text-color-dark: rgb(24, 24, 24);
@@ -27,8 +28,8 @@
     --main-text-extra-large: 68px;
     --main-text-size-title: 34px;
     --main-text-size-subtitle: 28px;
-    --main-text-size-content: 22px;
-    --main-text-size-content-small: 18px;
+    --main-text-size-content: 20px;
+    --main-text-size-content-small: 17px;
     --main-text-size-menu: 26px;
     --main-text-size-menu-section: 18px;
     /* Margins */
@@ -71,7 +72,7 @@ MENU
 
 .menu {
     z-index: 1;
-    background-color: var(--main-background-color);
+    background-color: var(--main-background-color-dark-light);
     position: fixed;
     width: 100%;
     padding-top: 20px;
@@ -474,4 +475,152 @@ MAIN LINK
 
 .line-bottom {
     border-bottom: 1px solid rgb(97, 97, 97);
+}
+
+.resume {
+    margin-top: 10vh;
+}
+
+.resume-subtitle {
+    margin-top: 5vh;
+}
+
+
+/* 
+
+MODAL based in 
+https://codepen.io/tony-jones/pen/ZOXaYL 
+
+*/
+
+.myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.myImg:hover {
+    opacity: 0.7;
+}
+
+
+/* The Modal (background) */
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Black w/ opacity */
+}
+
+
+/* Modal Content (image) */
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-height: 100%;
+}
+
+
+/* Caption of Modal Image */
+
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+
+/* Add Animation */
+
+.modal-content,
+#caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+.out {
+    animation-name: zoom-out;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {
+        -webkit-transform: scale(1)
+    }
+    to {
+        -webkit-transform: scale(2)
+    }
+}
+
+@keyframes zoom {
+    from {
+        transform: scale(0.4)
+    }
+    to {
+        transform: scale(1)
+    }
+}
+
+@keyframes zoom-out {
+    from {
+        transform: scale(1)
+    }
+    to {
+        transform: scale(0)
+    }
+}
+
+
+/* The Close Button */
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* 100% Image Width on Smaller Screens */
+
+@media only screen and (max-width: 700px) {
+    .modal-content {
+        width: 100%;
+    }
 }

@@ -52,7 +52,7 @@ class ExperienceBusiness
             "UseMobile",
             "Android Developer",
             "Brazil, MG - remote",
-            "Currently I'm working here with a finance project, resolving some bugs, implementing some features."
+            "Currently I'm working here with a finance project (Pix, Card, etc)."
         );
 
         $trinity = new Professional(
@@ -72,9 +72,9 @@ class ExperienceBusiness
             "JBR Engenharia",
             "Android Developer, Trainee",
             "Brazil, PE",
-            "Well, here I was hired to make fours android projects for engenering, but in the end I make just two.
-            <br>I needed work in all phases of the project, analysis, implementation, test, support, etc. It was very good to my learne, but
-            I needed of a team, because there the only developer was me. Wall, all dificults here make me better and improve my skills."
+            "Well, here I was hired to make four android projects for engeneering, but in the end I make just two.
+            <br>I needed work in all phases of the project, analysis, implementation, test, support, etc. It was very good to my learning, but
+            I needed of a team, because there the only developer was me. So, all dificults here maked me a better person and improved my skills."
         );
 
         $psd = new Professional(
@@ -83,7 +83,7 @@ class ExperienceBusiness
             "PSD Agencia Digital",
             "Developer, Trainee",
             "Brazil, PE",
-            "Here was my first job with development. We're five developer, in a garage, working with some web projects.
+            "Here was my first job with development. We was five developer, in a garage, working with some web projects.
         <br>I was hired to work with PHP (I maked a small PHP test and can pass yet in the half it, because I used POO and MVC).
         <br>I also worked with Ionic 2 and NodeJs in a mobile app."
         );
