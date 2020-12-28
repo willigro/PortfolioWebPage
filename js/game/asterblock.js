@@ -72,6 +72,8 @@ var mousePressed = false
 var mousePositionX = 0
 var mousePositionY = 0
 
+var move
+
 window.onload = function() {
     var canvas = document.getElementById("canvas")
     canvas.width = maxWidth
@@ -95,6 +97,11 @@ function stopStars() {
 function onMouseMove(event) {
     mousePositionX = event.clientX
     mousePositionY = event.clientY
+
+    if (mousePressed) {
+
+        move.moveButtonTest(event.x, event.y);
+    }
 }
 
 function onMouseDown(event) {
@@ -130,9 +137,14 @@ function onKeyUp(event) {
 function init() {
     // console.log("init", starsInterval)
     // console.log(START_COUNT)
+    move = new MovementButton(ctx, null);
+
 
     starsInterval = setInterval(function() {
         drawBackground();
+
+        move.update();
+        move.draw();
 
         if (stars.length < START_COUNT) {
             for (var i = 0; i < 10; i++)
