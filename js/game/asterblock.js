@@ -19,7 +19,7 @@ const TO_CLOSE = 100
 const MAX_RADIUS = 100000
 
 // Try calculate a value from the size screen
-const START_COUNT = 400
+const START_COUNT = mobileCheck() ? 250 : 500
 const ASTEROIDS_COUNT = 10
 const ASTEROIDS_COUNT_LIMIT = 20
 
@@ -98,12 +98,12 @@ function onMouseMove(event) {
 }
 
 function onMouseDown(event) {
-    console.log("down")
+    // console.log("down")
     mousePressed = true;
 }
 
 function onMouseUp(event) {
-    console.log("up")
+    // console.log("up")
     mousePressed = false;
 }
 
@@ -128,7 +128,9 @@ function onKeyUp(event) {
 }
 
 function init() {
-    console.log("init", starsInterval)
+    // console.log("init", starsInterval)
+    // console.log(START_COUNT)
+
     starsInterval = setInterval(function() {
         drawBackground();
 
