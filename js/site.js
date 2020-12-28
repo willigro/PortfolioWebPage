@@ -114,6 +114,8 @@ $(document).ready(function() {
         for (i in menus) {
             configureMainMenuActions(menus[i])
         }
+
+        $("#menu").css({ "padding-top": $("#play").height() * 2 })
     }
 
     function configureMainMenuActions(page) {
