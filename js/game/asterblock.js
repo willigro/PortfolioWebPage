@@ -72,7 +72,7 @@ var mousePressed = false
 var mousePositionX = 0
 var mousePositionY = 0
 
-var move
+var joystickToMove
 
 window.onload = function() {
     var canvas = document.getElementById("canvas")
@@ -98,8 +98,8 @@ function onMouseMove(event) {
     mousePositionX = event.clientX
     mousePositionY = event.clientY
 
-    if (mousePressed && move) {
-        move.moveButtonTest(event.x, event.y);
+    if (mousePressed && joystickToMove) {
+        joystickToMove.moveButtonTest(event.x, event.y);
     }
 }
 
@@ -112,10 +112,10 @@ function onMouseUp(event) {
     // console.log("up")
     mousePressed = false;
 
-    if (move) {
-        move.release();
-        move.update();
-        move.draw();
+    if (joystickToMove) {
+        joystickToMove.release();
+        joystickToMove.update();
+        joystickToMove.draw();
     }
 }
 
@@ -177,10 +177,10 @@ function init() {
             _ship.draw()
 
             if (mousePressed) {
-                move.update()
+                joystickToMove.update()
             }
 
-            move.draw();
+            joystickToMove.draw();
 
             for (let a of _asteroids) {
                 for (let s of _shots) {
@@ -273,7 +273,7 @@ function startNewGame() {
     keysDown = []
     _allowedEnemies = [ENEMY_WHITE]
     _ship = new Ship(centerX, centerY)
-    move = new MovementButton(ctx, _ship);
+    joystickToMove = new MovementButton(ctx, _ship);
     _blackHole.x = centerX
     _blackHole.y = centerY
     mousePositionX = 0
