@@ -251,7 +251,7 @@ class Ship {
         updateStatus()
     }
 
-    update() {
+    handleShot() {
         if (this.currentShotTime <= 0) {
             this.currentShotTime = this.timeToNewShot
             this.canShot = true
@@ -261,12 +261,9 @@ class Ship {
         if (mousePressed) {
             this.shotTo(mousePositionX, mousePositionY)
         }
-
-        this.move()
-        this.handleShield()
     }
 
-    move() {
+    actions() {
         this.activedShield = false
         this.directionX = 0
         this.directionY = 0

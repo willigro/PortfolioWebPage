@@ -73,6 +73,7 @@ var mousePositionX = 0
 var mousePositionY = 0
 
 var joystickToMove
+var joystickToShot
 
 window.onload = function() {
     var canvas = document.getElementById("canvas")
@@ -95,12 +96,9 @@ function stopStars() {
 }
 
 function onMouseMove(event) {
+    // console.log("onMouseMove", event)
     mousePositionX = event.clientX
     mousePositionY = event.clientY
-
-    if (mousePressed && joystickToMove) {
-        joystickToMove.moveButtonTest(event.x, event.y);
-    }
 }
 
 function onMouseDown(event) {
@@ -111,11 +109,29 @@ function onMouseDown(event) {
 function onMouseUp(event) {
     // console.log("up")
     mousePressed = false;
+}
 
+function onTouchMove(event) {
+    mousePositionX = event.touches[0].clientX
+    mousePositionY = event.touches[0].clientY
+
+    if (joystickToMove && joystickToMove.isTriggered) {
+        joystickToMove.setPosition(mousePositionX, mousePositionY);
+    }
+}
+
+function onToushStart(event) {
+    console.log("onMouseDown", event)
+    if (joystickToMove)
+        joystickToMove.trigger(event)
+}
+
+function onTouchEnd(event) {
+    // console.log("up")
+    // console.log("onMouseUp", event)
     if (joystickToMove) {
         joystickToMove.release();
         joystickToMove.update();
-        joystickToMove.draw();
     }
 }
 
@@ -151,7 +167,7 @@ function init() {
                 stars.push(new Star(random(maxWidth), random(maxHeight), stars.length))
         }
 
-        _blackHole.draw()
+        // _blackHole.draw()
         for (let s of stars) {
             s.update()
         }
@@ -173,14 +189,17 @@ function init() {
 
             gameClock.tick();
 
-            _ship.update()
+            _ship.handleShot()
+            if (!mobileCheck())
+                _ship.actions()
+            _ship.handleShield()
             _ship.draw()
 
-            if (mousePressed) {
+            if (mobileCheck()) {
                 joystickToMove.update()
+                joystickToMove.draw();
+                joystickToShot.draw();
             }
-
-            joystickToMove.draw();
 
             for (let a of _asteroids) {
                 for (let s of _shots) {
@@ -273,7 +292,7 @@ function startNewGame() {
     keysDown = []
     _allowedEnemies = [ENEMY_WHITE]
     _ship = new Ship(centerX, centerY)
-    joystickToMove = new MovementButton(ctx, _ship);
+    startJoysticks()
     _blackHole.x = centerX
     _blackHole.y = centerY
     mousePositionX = 0
@@ -285,6 +304,15 @@ function startNewGame() {
     updateShieldEnergy()
     updateActualPoints()
     resetEffects()
+}
+
+function startJoysticks() {
+    if (!mobileCheck()) return
+
+    let area = maxWidth * .25;
+    let h = maxHeight * .7;
+    joystickToMove = new MovementButton(ctx, _ship, 10, h, area, "red", "blue");
+    joystickToShot = new MovementButton(ctx, _ship, maxWidth - 10 - area, h, area, "yellow", "black");
 }
 
 function updateLifeView() {
@@ -348,6 +376,18 @@ function drawBackground() {
 }
 
 function configureScreenElements() {
+    let can = document.getElementById("player-console") //get canvas element
+
+    if (mobileCheck()) {
+        can.addEventListener('touchstart', onToushStart, false) //register event
+        can.addEventListener('touchend', onTouchEnd, false) //register event
+        can.addEventListener('touchmove', onTouchMove, false) //register event
+    } else {
+        can.addEventListener('mousedown', onMouseDown, false) //register event
+        can.addEventListener('mouseup', onMouseUp, false) //register event
+        can.addEventListener('mousemove', onMouseMove, false) //register event
+    }
+
     elementPlay = $("#play")
     elementNewGame = $("#new-game")
     elementStopGame = $("#stop-game")

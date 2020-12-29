@@ -60,7 +60,7 @@ Refactor:
 <body>
     <canvas id="canvas" style="height: 100%; width: 100%; position: fixed; z-index: -1;"></canvas>
 
-    <div id="player-console" class="player p-content" onmousemove="onMouseMove(event)" onmousedown="onMouseDown(event)" onmouseup="onMouseUp(event)">
+    <div id="player-console" class="player p-content">
         <a id="play">Play Asterblocks</a>
         <div id="game-panel" hidden>
             <ul>
@@ -99,7 +99,7 @@ Refactor:
                 </p>
             </div>
 
-            <div id="in-game-panel" style="position: absolute; bottom:3px; right:3px;" hidden>
+            <div id="in-game-panel" style="position: absolute; top:30px; right:3px;" hidden>
                 <p style="margin-top: 10px">
                     Life <span id="life" style="color: red"></span>
                     <br>Shield Energy <span id="shield-energy" style="color: orange"></span>
