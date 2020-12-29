@@ -1,7 +1,9 @@
 var ctx
+var ctxJoystick
 var delay = 0
 var maxDistanceToCenter = 0
 var starsInterval
+var joystickInterval
 
 var stars = []
 
@@ -53,6 +55,7 @@ var elementGameTips
 var elementSpeed
 var elementAtkSpeed
 var elementPlayerLevel
+var elementJoysticks
 
 var actualPoints = 0
 var baseEnemyLife = 0
@@ -80,6 +83,12 @@ window.onload = function() {
     canvas.width = maxWidth
     canvas.height = maxHeight
     ctx = canvas.getContext("2d")
+
+    var canvas2 = document.getElementById("canvasJoystick")
+    canvas2.width = maxWidth
+    canvas2.height = maxHeight
+    ctxJoystick = canvas2.getContext("2d")
+
     restaure();
     configure()
     init()
@@ -92,6 +101,7 @@ function startStars() {
 
 function stopStars() {
     clearInterval(starsInterval)
+    clearInterval(joystickInterval)
     drawBackground();
 }
 
@@ -170,6 +180,21 @@ function init() {
     // console.log("init", starsInterval)
     // console.log(START_COUNT)
 
+    if (mobileCheck())
+        joystickInterval = setInterval(function() {
+            if (inGame) {
+                ctxJoystick.clearRect(0, 0, maxWidth, maxHeight)
+
+                if (joystickToMove.isTriggered)
+                    joystickToMove.update()
+                joystickToMove.draw();
+
+                if (joystickToShot.isTriggered)
+                    joystickToShot.updateToShot()
+                joystickToShot.draw();
+            }
+        }, delay)
+
     starsInterval = setInterval(function() {
         drawBackground();
 
@@ -204,13 +229,13 @@ function init() {
             if (mobileCheck()) {
                 _ship.handleShotJoystick(joystickToShot)
 
-                if (joystickToMove.isTriggered)
-                    joystickToMove.update()
-                joystickToMove.draw();
+                // if (joystickToMove.isTriggered)
+                //     joystickToMove.update()
+                // joystickToMove.draw();
 
-                if (joystickToShot.isTriggered)
-                    joystickToShot.updateToShot()
-                joystickToShot.draw();
+                // if (joystickToShot.isTriggered)
+                //     joystickToShot.updateToShot()
+                // joystickToShot.draw();
             } else {
                 _ship.handleShot(mousePositionX, mousePositionY, mousePressed)
                 _ship.actions()
@@ -286,6 +311,7 @@ function playerDie() {
     elementNewGame.show()
     elementStopGame.hide()
     elementGameTips.show()
+    elementInGamePanel.hide()
 }
 
 function stopGame() {
@@ -329,8 +355,8 @@ function startJoysticks() {
 
     let area = maxWidth * .25;
     let h = maxHeight * .7;
-    joystickToMove = new MovementButton(ctx, _ship, 10, h, area, "red", "blue");
-    joystickToShot = new MovementButton(ctx, _ship, maxWidth - 10 - area, h, area, "yellow", "black");
+    joystickToMove = new MovementButton(ctxJoystick, _ship, 10, h, area, "rgba(255, 255, 255, .2)", "rgba(255, 255, 255, .5)");
+    joystickToShot = new MovementButton(ctxJoystick, _ship, maxWidth - 10 - area, h, area, "rgba(255, 255, 255, .2)", "rgba(255, 255, 255, .5)");
 }
 
 function updateLifeView() {
@@ -420,6 +446,7 @@ function configureScreenElements() {
     elementAtkSpeed = $("#atk-speed")
     elementSpeed = $("#speed")
     elementPlayerLevel = $("#player-level")
+    elementJoysticks = $("#canvasJoystick")
 
     const header = $("#header")
     const resume = $("#resume")
@@ -444,6 +471,7 @@ function configureScreenElements() {
         elementGameTips.show()
         elementNewGame.show()
         elementStopGame.hide()
+        elementJoysticks.show()
 
         if (typeof stopDinoInterval !== "undefined") {
             stopDinoInterval()
@@ -468,6 +496,8 @@ function configureScreenElements() {
         stopGame()
         elementGamePanel.hide()
         elementPlay.show()
+        elementJoysticks.hide()
+        elementInGamePanel.hide()
 
         header.show(SHOW_HIDE_ANIMATION_DELAY)
         resume.show(SHOW_HIDE_ANIMATION_DELAY)
@@ -489,6 +519,7 @@ function configureScreenElements() {
         elementGameTips.hide()
         elementStopGame.show()
         elementNewGame.hide()
+        elementJoysticks.show()
 
         document.onkeydown = onKeyDown;
         document.onkeyup = onKeyUp;
@@ -500,6 +531,8 @@ function configureScreenElements() {
         elementGameTips.show()
         elementStopGame.hide()
         elementNewGame.show()
+        elementInGamePanel.hide()
+        elementJoysticks.hide()
 
         stopGame()
     })

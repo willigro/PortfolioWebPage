@@ -287,7 +287,6 @@ class Ship {
             const s = new Shot(fx, fy, tx, ty, _shots, "yellow");
             s.x = this.x;
             s.y = this.y;
-            console.log(s)
             _shots.push(s)
             this.canShot = false
         }

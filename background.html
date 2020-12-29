@@ -59,6 +59,7 @@ Refactor:
 
 <body>
     <canvas id="canvas" style="height: 100%; width: 100%; position: fixed; z-index: -1;"></canvas>
+    <canvas id="canvasJoystick" style="height: 100%; width: 100%; position: fixed; z-index: 1;"></canvas>
 
     <div id="player-console" class="player p-content">
         <a id="play">Play Asterblocks</a>
@@ -110,7 +111,7 @@ Refactor:
                 </p>
             </div>
 
-            <div style=" position: relative; padding-top: 5vh;">
+            <div style="position: relative; padding-top: 5vh;">
                 <p id="power-up-received-level-up" style="color: rgb(87, 106, 228);" class="p-power-up-high" hidden>LEVEL UP!!</p>
                 <p id="power-up-received-speed" style="color: yellow;" class="p-power-up" hidden>SPEED UP!!</p>
                 <p id="power-up-received-atk-speed" style="color: green;" class="p-power-up" hidden>ATK SPEED UP!!</p>
