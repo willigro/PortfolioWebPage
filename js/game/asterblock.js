@@ -19,7 +19,7 @@ const TO_CLOSE = 100
 const MAX_RADIUS = 100000
 
 // Try calculate a value from the size screen
-const START_COUNT = mobileCheck() ? 250 : 500
+const START_COUNT = mobileCheck() ? 100 : 500
 const ASTEROIDS_COUNT = 10
 const ASTEROIDS_COUNT_LIMIT = 20
 
