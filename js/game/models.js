@@ -274,26 +274,22 @@ class Ship {
         for (let keyCode of keysDown) {
             if (keyCode == 65 && this.x > 0) {
                 // left a
-                this.x -= this.velocity
-                this.directionX = -1
+                this.toLeft()
             }
 
             if (keyCode == 87 && this.y > 0) {
                 // top w
-                this.y -= this.velocity
-                this.directionY = -1
+                this.toTop()
             }
 
             if (keyCode == 68 && this.x < maxWidth) {
                 // right d
-                this.x += this.velocity
-                this.directionX = 1
+                this.toRight()
             }
 
             if (keyCode == 83 && this.y < maxHeight) {
                 // bottom s
-                this.y += this.velocity
-                this.directionY = 1
+                this.toBottom()
             }
 
             if (keyCode == 32) // space
@@ -399,6 +395,26 @@ class Ship {
         _blackHole.y = this.y
         this.start()
         playerDie()
+    }
+
+    toLeft() {
+        this.x -= this.velocity
+        this.directionX = -1
+    }
+
+    toRight() {
+        this.x += this.velocity
+        this.directionX = 1
+    }
+
+    toTop() {
+        this.y -= this.velocity
+        this.directionY = -1
+    }
+
+    toBottom() {
+        this.y += this.velocity
+        this.directionY = 1
     }
 }
 

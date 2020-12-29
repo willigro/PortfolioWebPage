@@ -98,8 +98,7 @@ function onMouseMove(event) {
     mousePositionX = event.clientX
     mousePositionY = event.clientY
 
-    if (mousePressed) {
-
+    if (mousePressed && move) {
         move.moveButtonTest(event.x, event.y);
     }
 }
@@ -112,6 +111,12 @@ function onMouseDown(event) {
 function onMouseUp(event) {
     // console.log("up")
     mousePressed = false;
+
+    if (move) {
+        move.release();
+        move.update();
+        move.draw();
+    }
 }
 
 function onKeyDown(event) {
@@ -137,14 +142,9 @@ function onKeyUp(event) {
 function init() {
     // console.log("init", starsInterval)
     // console.log(START_COUNT)
-    move = new MovementButton(ctx, null);
-
 
     starsInterval = setInterval(function() {
         drawBackground();
-
-        move.update();
-        move.draw();
 
         if (stars.length < START_COUNT) {
             for (var i = 0; i < 10; i++)
@@ -175,6 +175,12 @@ function init() {
 
             _ship.update()
             _ship.draw()
+
+            if (mousePressed) {
+                move.update()
+            }
+
+            move.draw();
 
             for (let a of _asteroids) {
                 for (let s of _shots) {
@@ -267,6 +273,7 @@ function startNewGame() {
     keysDown = []
     _allowedEnemies = [ENEMY_WHITE]
     _ship = new Ship(centerX, centerY)
+    move = new MovementButton(ctx, _ship);
     _blackHole.x = centerX
     _blackHole.y = centerY
     mousePositionX = 0

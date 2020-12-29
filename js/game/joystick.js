@@ -5,13 +5,20 @@
          this.width = w;
          this.height = h;
          this.size = w;
+         this.initialX = x;
+         this.initialY = y;
+     }
+
+     release() {
+         this.x = this.initialX;
+         this.y = this.initialY;
      }
  }
 
  class MovementButton {
      constructor(ctx, player) {
          this.ctx = ctx;
-         this.player;
+         this.player = player;
 
          this.buttonMoving = false;
          this.position = { x: 0, y: 0 };
@@ -28,7 +35,6 @@
          this.area = 200;
          this.left = 50;
          this.top = 350;
-
 
          this.areaButton = this.area / 4;
          this.leftButton = (this.left + (this.area / 2)) - (this.areaButton / 2);
@@ -49,11 +55,24 @@
          this.rectButton.y = this.position.y - this.rectButton.height / 2;
 
          if (this.buttonMoving)
-             this.moveplayer();
-
+             this.movePlayerDirections();
      }
 
-     moveplayer() {
+     movePlayerDirections() {
+         if (this.rectButtonInRigth)
+             this.player.toRight();
+
+         else if (this.rectButtonInLeft)
+             this.player.toLeft();
+
+         if (this.rectButtonInTop)
+             this.player.toTop();
+
+         else if (this.rectButtonInBottom)
+             this.player.toBottom();
+     }
+
+     movePlayer() {
          let largura = 0;
          let altura = 0;
 
@@ -91,6 +110,8 @@
      }
 
      moveButtonTest(x, y) {
+         this.buttonMoving = true;
+
          let destiny_x = x
          let destiny_y = y
 
@@ -110,29 +131,45 @@
              this.setToDirectionX(true, false);
          } else if (destiny_x < this.positionInitX) {
              this.setToDirectionX(false, true);
+         } else {
+             this.setToDirectionX(false, false);
          }
 
          if (destiny_y > this.positionInitY) {
              this.setToDirectionY(false, true);
          } else if (destiny_y < this.positionInitY) {
              this.setToDirectionY(true, false);
+         } else {
+             this.setToDirectionY(false, false);
          }
 
+         if (destiny_x > this.rect.x + this.rect.width)
+             destiny_x = this.rect.x + this.rect.width
+
+         if (destiny_x < this.rect.x)
+             destiny_x = this.rect.x
+
+         if (destiny_y > this.rect.y + this.rect.height)
+             destiny_y = this.rect.y + this.rect.height
+
+         if (destiny_y < this.rect.y)
+             destiny_y = this.rect.y
+
          this.position = { x: destiny_x, y: destiny_y }
-         console.log(this.position)
+     }
+
+     release() {
+         this.position.x = this.positionInitX
+         this.position.y = this.positionInitY
      }
 
      setToDirectionX(rigth, left) {
-         //  rectButtonInRigth = rigth;
-         //  rectButtonInLeft = left;
-         //  player.setSideX(rigth, left);
-         console.log(rigth, left)
+         this.rectButtonInRigth = rigth;
+         this.rectButtonInLeft = left;
      }
 
      setToDirectionY(top, bottom) {
-         //  rectButtonInTop = top;
-         //  rectButtonInBottom = bottom;
-         //  player.setSideY(top, bottom);
-         console.log(top, bottom)
+         this.rectButtonInTop = top;
+         this.rectButtonInBottom = bottom;
      }
  }
