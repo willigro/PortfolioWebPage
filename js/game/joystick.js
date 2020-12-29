@@ -14,6 +14,14 @@
          this.x = this.initialX;
          this.y = this.initialY;
      }
+
+     centerX() {
+         return this.x + (this.width / 2);
+     }
+
+     centerY() {
+         return this.y + (this.height / 2);
+     }
  }
 
  class MovementButton {
@@ -50,12 +58,19 @@
          this.rectButton = new Rect(this.leftButton, this.topButton, this.areaButton, this.areaButton, rectButtonColor);
      }
 
-     update() {
-         this.rectButton.x = this.position.x - this.rectButton.width / 2;
-         this.rectButton.y = this.position.y - this.rectButton.height / 2;
-
-         if (this.isTriggered)
+     update(force) {
+         if (this.isTriggered || force) {
+             this.rectButton.x = this.position.x - this.rectButton.width / 2;
+             this.rectButton.y = this.position.y - this.rectButton.height / 2;
              this.movePlayerDirections();
+         }
+     }
+
+     updateToShot(force) {
+         if (this.isTriggered || force) {
+             this.rectButton.x = this.position.x - this.rectButton.width / 2;
+             this.rectButton.y = this.position.y - this.rectButton.height / 2;
+         }
      }
 
      draw() {
@@ -118,13 +133,11 @@
      movePlayerDirections() {
          if (this.rectButtonInRigth)
              this.player.toRight();
-
          else if (this.rectButtonInLeft)
              this.player.toLeft();
 
          if (this.rectButtonInTop)
              this.player.toTop();
-
          else if (this.rectButtonInBottom)
              this.player.toBottom();
      }
@@ -150,7 +163,5 @@
          let y = event.touches[0].clientY
 
          this.isTriggered = intersect({ x: x, y: y, size: 1 }, this.rect)
-
-         console.log(this.isTriggered)
      }
  }

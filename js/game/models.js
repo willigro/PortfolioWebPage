@@ -251,15 +251,45 @@ class Ship {
         updateStatus()
     }
 
-    handleShot() {
+    updateShotTime() {
         if (this.currentShotTime <= 0) {
             this.currentShotTime = this.timeToNewShot
             this.canShot = true
         }
         this.currentShotTime--;
+    }
 
-        if (mousePressed) {
-            this.shotTo(mousePositionX, mousePositionY)
+    handleShot(toX, toY, shot) {
+        this.updateShotTime()
+
+        if (shot) {
+            this.shotTo(toX, toY)
+        }
+    }
+
+    handleShotJoystick(joystick) {
+        this.updateShotTime()
+
+        if (joystick.isTriggered) {
+            this.shotFromTo(joystick.rect.centerX(), joystick.rect.centerY(), joystick.rectButton.centerX(), joystick.rectButton.centerY())
+        }
+    }
+
+    shotTo(x, y) {
+        if (this.canShot) {
+            _shots.push(new Shot(this.x, this.y, x, y, _shots, "yellow"))
+            this.canShot = false
+        }
+    }
+
+    shotFromTo(fx, fy, tx, ty) {
+        if (this.canShot) {
+            const s = new Shot(fx, fy, tx, ty, _shots, "yellow");
+            s.x = this.x;
+            s.y = this.y;
+            console.log(s)
+            _shots.push(s)
+            this.canShot = false
         }
     }
 
@@ -295,13 +325,6 @@ class Ship {
 
         // _blackHole.x = this.x
         // _blackHole.y = this.y
-    }
-
-    shotTo(x, y) {
-        if (this.canShot) {
-            _shots.push(new Shot(this.x, this.y, x, y, _shots, "yellow"))
-            this.canShot = false
-        }
     }
 
     usePowerUp(powerUp) {
@@ -412,6 +435,11 @@ class Ship {
     toBottom() {
         this.y += this.velocity
         this.directionY = 1
+    }
+
+    idle() {
+        this.directionX = 0;
+        this.directionY = 0;
     }
 }
 

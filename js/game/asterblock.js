@@ -118,20 +118,31 @@ function onTouchMove(event) {
     if (joystickToMove && joystickToMove.isTriggered) {
         joystickToMove.setPosition(mousePositionX, mousePositionY);
     }
+
+    if (joystickToShot && joystickToShot.isTriggered) {
+        joystickToShot.setPosition(mousePositionX, mousePositionY);
+    }
 }
 
 function onToushStart(event) {
     console.log("onMouseDown", event)
     if (joystickToMove)
         joystickToMove.trigger(event)
+
+    if (joystickToShot)
+        joystickToShot.trigger(event)
 }
 
 function onTouchEnd(event) {
-    // console.log("up")
-    // console.log("onMouseUp", event)
-    if (joystickToMove) {
+    if (joystickToMove && joystickToMove.isTriggered) {
         joystickToMove.release();
-        joystickToMove.update();
+        joystickToMove.update(true);
+        _ship.idle()
+    }
+
+    if (joystickToShot && joystickToShot.isTriggered) {
+        joystickToShot.release();
+        joystickToShot.updateToShot(true);
     }
 }
 
@@ -189,17 +200,24 @@ function init() {
 
             gameClock.tick();
 
-            _ship.handleShot()
-            if (!mobileCheck())
-                _ship.actions()
-            _ship.handleShield()
-            _ship.draw()
 
             if (mobileCheck()) {
-                joystickToMove.update()
+                _ship.handleShotJoystick(joystickToShot)
+
+                if (joystickToMove.isTriggered)
+                    joystickToMove.update()
                 joystickToMove.draw();
+
+                if (joystickToShot.isTriggered)
+                    joystickToShot.updateToShot()
                 joystickToShot.draw();
+            } else {
+                _ship.handleShot(mousePositionX, mousePositionY, mousePressed)
+                _ship.actions()
             }
+
+            _ship.handleShield()
+            _ship.draw()
 
             for (let a of _asteroids) {
                 for (let s of _shots) {
