@@ -24,6 +24,35 @@
      }
  }
 
+ class SimpleButton {
+     constructor(ctx, x, y, size, color, triggerColor) {
+         this.ctx = ctx;
+
+         this.isTriggered = false;
+
+         this.size = size;
+         this.x = x;
+         this.y = y;
+
+         this.color = color
+         this.triggerColor = triggerColor
+     }
+
+     trigger(event) {
+         let x = event.touches[0].clientX
+         let y = event.touches[0].clientY
+
+         if (intersect({ x: x, y: y, size: 1 }, this)) {
+             this.isTriggered = !this.isTriggered
+         }
+     }
+
+     draw() {
+         this.ctx.fillStyle = this.isTriggered ? this.triggerColor : this.color
+         this.ctx.fillRect(this.x, this.y, this.size, this.size)
+     }
+ }
+
  class MovementButton {
      constructor(ctx, player, x, y, area, rectColor, rectButtonColor) {
          this.ctx = ctx;

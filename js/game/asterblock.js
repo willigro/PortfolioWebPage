@@ -77,6 +77,7 @@ var mousePositionY = 0
 
 var joystickToMove
 var joystickToShot
+var shieldButton
 
 window.onload = function() {
     var canvas = document.getElementById("canvas")
@@ -141,6 +142,9 @@ function onToushStart(event) {
 
     if (joystickToShot)
         joystickToShot.trigger(event)
+
+    if (shieldButton)
+        shieldButton.trigger(event)
 }
 
 function onTouchEnd(event) {
@@ -192,6 +196,10 @@ function init() {
                 if (joystickToShot.isTriggered)
                     joystickToShot.updateToShot()
                 joystickToShot.draw();
+
+                if (_ship)
+                    _ship.activedShield = this.shieldButton.isTriggered
+                shieldButton.draw()
             }
         }, delay)
 
@@ -312,6 +320,7 @@ function playerDie() {
     elementStopGame.hide()
     elementGameTips.show()
     elementInGamePanel.hide()
+    elementJoysticks.hide()
 }
 
 function stopGame() {
@@ -357,6 +366,9 @@ function startJoysticks() {
     let h = maxHeight * .7;
     joystickToMove = new MovementButton(ctxJoystick, _ship, 10, h, area, "rgba(255, 255, 255, .2)", "rgba(255, 255, 255, .5)");
     joystickToShot = new MovementButton(ctxJoystick, _ship, maxWidth - 10 - area, h, area, "rgba(255, 255, 255, .2)", "rgba(255, 255, 255, .5)");
+
+    let buttonSize = maxWidth * .1
+    shieldButton = new SimpleButton(ctxJoystick, maxWidth - 10 - buttonSize, maxHeight * .6, buttonSize, "rgba(255, 255, 255, .3)", "rgba(255, 255, 255, .7)")
 }
 
 function updateLifeView() {
