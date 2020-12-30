@@ -107,57 +107,57 @@ function stopStars() {
 }
 
 function onMouseMove(event) {
-    // console.log("onMouseMove", event)
     mousePositionX = event.clientX
     mousePositionY = event.clientY
 }
 
 function onMouseDown(event) {
-    // console.log("down")
     mousePressed = true;
 }
 
 function onMouseUp(event) {
-    // console.log("up")
     mousePressed = false;
 }
 
 function onTouchMove(event) {
-    mousePositionX = event.touches[0].clientX
-    mousePositionY = event.touches[0].clientY
+    for (let t of event.touches) {
+        if (joystickToMove && joystickToMove.canHandlingTouchEvent(t)) {
+            joystickToMove.setPosition(t.clientX, t.clientY);
+        }
 
-    if (joystickToMove && joystickToMove.isTriggered) {
-        joystickToMove.setPosition(mousePositionX, mousePositionY);
-    }
-
-    if (joystickToShot && joystickToShot.isTriggered) {
-        joystickToShot.setPosition(mousePositionX, mousePositionY);
+        if (joystickToShot && joystickToShot.canHandlingTouchEvent(t)) {
+            joystickToShot.setPosition(t.clientX, t.clientY);
+        }
     }
 }
 
 function onToushStart(event) {
-    console.log("onMouseDown", event)
-    if (joystickToMove)
-        joystickToMove.trigger(event)
+    for (let touche of event.touches) {
+        if (joystickToMove && !joystickToMove.isTriggered)
+            joystickToMove.trigger(touche)
 
-    if (joystickToShot)
-        joystickToShot.trigger(event)
+        if (joystickToShot && !joystickToShot.isTriggered)
+            joystickToShot.trigger(touche)
 
-    if (shieldButton)
-        shieldButton.trigger(event)
+        if (shieldButton)
+            shieldButton.trigger(touche)
+    }
 }
 
 function onTouchEnd(event) {
-    if (joystickToMove && joystickToMove.isTriggered) {
-        joystickToMove.release();
-        joystickToMove.update(true);
-        _ship.idle()
-    }
+    if (event.type == "touchend")
+        for (let t of event.changedTouches) {
+            if (joystickToMove && joystickToMove.isTriggered && joystickToMove.canHandlingTouchEvent(t)) {
+                joystickToMove.release();
+                joystickToMove.update(true);
+                _ship.idle()
+            }
 
-    if (joystickToShot && joystickToShot.isTriggered) {
-        joystickToShot.release();
-        joystickToShot.updateToShot(true);
-    }
+            if (joystickToShot && joystickToShot.isTriggered && joystickToShot.canHandlingTouchEvent(t)) {
+                joystickToShot.release();
+                joystickToShot.updateToShot(true);
+            }
+        }
 }
 
 function onKeyDown(event) {
@@ -191,6 +191,7 @@ function init() {
 
                 if (joystickToMove.isTriggered)
                     joystickToMove.update()
+                console.log(joystickToMove.isTriggered)
                 joystickToMove.draw();
 
                 if (joystickToShot.isTriggered)
@@ -236,14 +237,6 @@ function init() {
 
             if (mobileCheck()) {
                 _ship.handleShotJoystick(joystickToShot)
-
-                // if (joystickToMove.isTriggered)
-                //     joystickToMove.update()
-                // joystickToMove.draw();
-
-                // if (joystickToShot.isTriggered)
-                //     joystickToShot.updateToShot()
-                // joystickToShot.draw();
             } else {
                 _ship.handleShot(mousePositionX, mousePositionY, mousePressed)
                 _ship.actions()

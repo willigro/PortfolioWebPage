@@ -38,9 +38,9 @@
          this.triggerColor = triggerColor
      }
 
-     trigger(event) {
-         let x = event.touches[0].clientX
-         let y = event.touches[0].clientY
+     trigger(touche) {
+         let x = touche.clientX
+         let y = touche.clientY
 
          if (intersect({ x: x, y: y, size: 1 }, this)) {
              this.isTriggered = !this.isTriggered
@@ -187,10 +187,20 @@
          this.rectButtonInBottom = bottom;
      }
 
-     trigger(event) {
-         let x = event.touches[0].clientX
-         let y = event.touches[0].clientY
+     trigger(touche) {
+         let x = touche.clientX
+         let y = touche.clientY
 
          this.isTriggered = intersect({ x: x, y: y, size: 1 }, this.rect)
+         if (this.isTriggered) {
+
+             this.touche = touche;
+         }
+     }
+
+     canHandlingTouchEvent(touche) {
+         if (!this.touche) return false;
+
+         return this.touche.identifier == touche.identifier;
      }
  }
