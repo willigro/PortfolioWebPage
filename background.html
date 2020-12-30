@@ -8,13 +8,14 @@
 
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta charset="utf-8">
-    <title>My Portfolio</title>
+    <title>Portfolio</title>
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Rittmann">
 
     <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
 
     <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -31,6 +32,7 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/site.js"></script>
+    <script src="js/game/joystick.js"></script>
     <script src="js/game/asterblock.js"></script>
     <script src="js/game/models.js"></script>
     <script src="js/game/screen_effects.js"></script>
@@ -58,8 +60,9 @@ Refactor:
 
 <body>
     <canvas id="canvas" style="height: 100%; width: 100%; position: fixed; z-index: -1;"></canvas>
+    <canvas id="canvasJoystick" style="height: 100%; width: 100%; position: fixed; z-index: 1;"></canvas>
 
-    <div id="player-console" class="player p-content" onmousemove="onMouseMove(event)" onmousedown="onMouseDown(event)" onmouseup="onMouseUp(event)">
+    <div id="player-console" class="player p-content">
         <a id="play">Play Asterblocks</a>
         <div id="game-panel" hidden>
             <ul>
@@ -98,7 +101,7 @@ Refactor:
                 </p>
             </div>
 
-            <div id="in-game-panel" style="position: absolute; bottom:3px; right:3px;" hidden>
+            <div id="in-game-panel" style="position: absolute; top:30px; right:3px;" hidden>
                 <p style="margin-top: 10px">
                     Life <span id="life" style="color: red"></span>
                     <br>Shield Energy <span id="shield-energy" style="color: orange"></span>
@@ -109,7 +112,7 @@ Refactor:
                 </p>
             </div>
 
-            <div style=" position: relative; padding-top: 5vh;">
+            <div style="position: relative; padding-top: 5vh;">
                 <p id="power-up-received-level-up" style="color: rgb(87, 106, 228);" class="p-power-up-high" hidden>LEVEL UP!!</p>
                 <p id="power-up-received-speed" style="color: yellow;" class="p-power-up" hidden>SPEED UP!!</p>
                 <p id="power-up-received-atk-speed" style="color: green;" class="p-power-up" hidden>ATK SPEED UP!!</p>

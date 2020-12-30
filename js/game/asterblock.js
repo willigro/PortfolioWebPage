@@ -1,7 +1,9 @@
 var ctx
+var ctxJoystick
 var delay = 0
 var maxDistanceToCenter = 0
 var starsInterval
+var joystickInterval
 
 var stars = []
 
@@ -18,7 +20,8 @@ const CLOSE_TO_WALL = 10
 const TO_CLOSE = 100
 const MAX_RADIUS = 100000
 
-const START_COUNT = 600
+// Try calculate a value from the size screen
+const START_COUNT = mobileCheck() ? 100 : 500
 const ASTEROIDS_COUNT = 10
 const ASTEROIDS_COUNT_LIMIT = 20
 
@@ -52,6 +55,7 @@ var elementGameTips
 var elementSpeed
 var elementAtkSpeed
 var elementPlayerLevel
+var elementJoysticks
 
 var actualPoints = 0
 var baseEnemyLife = 0
@@ -71,11 +75,21 @@ var mousePressed = false
 var mousePositionX = 0
 var mousePositionY = 0
 
+var joystickToMove
+var joystickToShot
+var shieldButton
+
 window.onload = function() {
     var canvas = document.getElementById("canvas")
     canvas.width = maxWidth
     canvas.height = maxHeight
     ctx = canvas.getContext("2d")
+
+    var canvas2 = document.getElementById("canvasJoystick")
+    canvas2.width = maxWidth
+    canvas2.height = maxHeight
+    ctxJoystick = canvas2.getContext("2d")
+
     restaure();
     configure()
     init()
@@ -88,6 +102,7 @@ function startStars() {
 
 function stopStars() {
     clearInterval(starsInterval)
+    clearInterval(joystickInterval)
     drawBackground();
 }
 
@@ -97,13 +112,52 @@ function onMouseMove(event) {
 }
 
 function onMouseDown(event) {
-    console.log("down")
     mousePressed = true;
 }
 
 function onMouseUp(event) {
-    console.log("up")
     mousePressed = false;
+}
+
+function onTouchMove(event) {
+    for (let t of event.touches) {
+        if (joystickToMove && joystickToMove.canHandlingTouchEvent(t)) {
+            joystickToMove.setPosition(t.clientX, t.clientY);
+        }
+
+        if (joystickToShot && joystickToShot.canHandlingTouchEvent(t)) {
+            joystickToShot.setPosition(t.clientX, t.clientY);
+        }
+    }
+}
+
+function onToushStart(event) {
+    for (let touche of event.touches) {
+        if (joystickToMove && !joystickToMove.isTriggered)
+            joystickToMove.trigger(touche)
+
+        if (joystickToShot && !joystickToShot.isTriggered)
+            joystickToShot.trigger(touche)
+
+        if (shieldButton)
+            shieldButton.trigger(touche)
+    }
+}
+
+function onTouchEnd(event) {
+    if (event.type == "touchend")
+        for (let t of event.changedTouches) {
+            if (joystickToMove && joystickToMove.isTriggered && joystickToMove.canHandlingTouchEvent(t)) {
+                joystickToMove.release();
+                joystickToMove.update(true);
+                _ship.idle()
+            }
+
+            if (joystickToShot && joystickToShot.isTriggered && joystickToShot.canHandlingTouchEvent(t)) {
+                joystickToShot.release();
+                joystickToShot.updateToShot(true);
+            }
+        }
 }
 
 function onKeyDown(event) {
@@ -127,7 +181,28 @@ function onKeyUp(event) {
 }
 
 function init() {
-    console.log("init", starsInterval)
+    // console.log("init", starsInterval)
+    // console.log(START_COUNT)
+
+    if (mobileCheck())
+        joystickInterval = setInterval(function() {
+            if (inGame) {
+                ctxJoystick.clearRect(0, 0, maxWidth, maxHeight)
+
+                if (joystickToMove.isTriggered)
+                    joystickToMove.update()
+                joystickToMove.draw();
+
+                if (joystickToShot.isTriggered)
+                    joystickToShot.updateToShot()
+                joystickToShot.draw();
+
+                if (_ship)
+                    _ship.activedShield = this.shieldButton.isTriggered
+                shieldButton.draw()
+            }
+        }, delay)
+
     starsInterval = setInterval(function() {
         drawBackground();
 
@@ -136,7 +211,7 @@ function init() {
                 stars.push(new Star(random(maxWidth), random(maxHeight), stars.length))
         }
 
-        _blackHole.draw()
+        // _blackHole.draw()
         for (let s of stars) {
             s.update()
         }
@@ -158,7 +233,15 @@ function init() {
 
             gameClock.tick();
 
-            _ship.update()
+
+            if (mobileCheck()) {
+                _ship.handleShotJoystick(joystickToShot)
+            } else {
+                _ship.handleShot(mousePositionX, mousePositionY, mousePressed)
+                _ship.actions()
+            }
+
+            _ship.handleShield()
             _ship.draw()
 
             for (let a of _asteroids) {
@@ -228,6 +311,8 @@ function playerDie() {
     elementNewGame.show()
     elementStopGame.hide()
     elementGameTips.show()
+    elementInGamePanel.hide()
+    elementJoysticks.hide()
 }
 
 function stopGame() {
@@ -252,6 +337,7 @@ function startNewGame() {
     keysDown = []
     _allowedEnemies = [ENEMY_WHITE]
     _ship = new Ship(centerX, centerY)
+    startJoysticks()
     _blackHole.x = centerX
     _blackHole.y = centerY
     mousePositionX = 0
@@ -263,6 +349,20 @@ function startNewGame() {
     updateShieldEnergy()
     updateActualPoints()
     resetEffects()
+}
+
+function startJoysticks() {
+    if (!mobileCheck()) return
+
+    let area = maxWidth * .2;
+    let sArea = area / 4
+    let h = maxHeight * .7;
+    let side = sArea + 10
+    joystickToMove = new MovementButton(ctxJoystick, _ship, side, h, area, sArea, "rgba(255, 255, 255, .2)", "rgba(255, 255, 255, .5)");
+    joystickToShot = new MovementButton(ctxJoystick, _ship, maxWidth - side - area, h, area, sArea, "rgba(255, 255, 255, .2)", "rgba(255, 255, 255, .5)");
+
+    let buttonSize = maxWidth * .1
+    shieldButton = new SimpleButton(ctxJoystick, maxWidth - side - buttonSize, maxHeight * .6, buttonSize, "rgba(255, 255, 255, .3)", "rgba(255, 255, 255, .7)")
 }
 
 function updateLifeView() {
@@ -326,6 +426,18 @@ function drawBackground() {
 }
 
 function configureScreenElements() {
+    let can = document.getElementById("player-console") //get canvas element
+
+    if (mobileCheck()) {
+        can.addEventListener('touchstart', onToushStart, false) //register event
+        can.addEventListener('touchend', onTouchEnd, false) //register event
+        can.addEventListener('touchmove', onTouchMove, false) //register event
+    } else {
+        can.addEventListener('mousedown', onMouseDown, false) //register event
+        can.addEventListener('mouseup', onMouseUp, false) //register event
+        can.addEventListener('mousemove', onMouseMove, false) //register event
+    }
+
     elementPlay = $("#play")
     elementNewGame = $("#new-game")
     elementStopGame = $("#stop-game")
@@ -340,6 +452,7 @@ function configureScreenElements() {
     elementAtkSpeed = $("#atk-speed")
     elementSpeed = $("#speed")
     elementPlayerLevel = $("#player-level")
+    elementJoysticks = $("#canvasJoystick")
 
     const header = $("#header")
     const resume = $("#resume")
@@ -364,6 +477,7 @@ function configureScreenElements() {
         elementGameTips.show()
         elementNewGame.show()
         elementStopGame.hide()
+        elementJoysticks.show()
 
         if (typeof stopDinoInterval !== "undefined") {
             stopDinoInterval()
@@ -388,6 +502,8 @@ function configureScreenElements() {
         stopGame()
         elementGamePanel.hide()
         elementPlay.show()
+        elementJoysticks.hide()
+        elementInGamePanel.hide()
 
         header.show(SHOW_HIDE_ANIMATION_DELAY)
         resume.show(SHOW_HIDE_ANIMATION_DELAY)
@@ -409,6 +525,7 @@ function configureScreenElements() {
         elementGameTips.hide()
         elementStopGame.show()
         elementNewGame.hide()
+        elementJoysticks.show()
 
         document.onkeydown = onKeyDown;
         document.onkeyup = onKeyUp;
@@ -420,6 +537,8 @@ function configureScreenElements() {
         elementGameTips.show()
         elementStopGame.hide()
         elementNewGame.show()
+        elementInGamePanel.hide()
+        elementJoysticks.hide()
 
         stopGame()
     })
