@@ -85,6 +85,8 @@
 
          this.rect = new Rect(this.left, this.top, this.area, this.area, rectColor);
          this.rectButton = new Rect(this.leftButton, this.topButton, this.areaButton, this.areaButton, rectButtonColor);
+
+         this.angle = 0;
      }
 
      update(force) {
@@ -157,18 +159,25 @@
              destiny_y = this.rect.y
 
          this.position = { x: destiny_x, y: destiny_y }
+
+         const dx = x - this.rectButton.x
+         const dy = y - this.rectButton.y
+
+         this.angle = Math.atan2(dy, dx) * (180 / Math.PI);
      }
 
      movePlayerDirections() {
-         if (this.rectButtonInRigth)
-             this.player.toRight();
-         else if (this.rectButtonInLeft)
-             this.player.toLeft();
+         //  if (this.rectButtonInRigth)
+         //      this.player.directionX = 1
+         //  else if (this.rectButtonInLeft)
+         //      this.player.directionX = -1
 
-         if (this.rectButtonInTop)
-             this.player.toTop();
-         else if (this.rectButtonInBottom)
-             this.player.toBottom();
+         //  if (this.rectButtonInTop)
+         //      this.player.directionY = -1
+         //  else if (this.rectButtonInBottom)
+         //      this.player.directionY = 1
+
+         this.player.moveJoystick(this.angle)
      }
 
      release() {

@@ -213,8 +213,8 @@ class Ship {
         this.startBaseTimeToShot = BASE_PLAYER_TIME_TO_SHOT
         this.timeToNewShot = BASE_PLAYER_TIME_TO_SHOT
 
-        this.directionX = 0
-        this.directionY = 0
+        this.directionForTrailX = 0
+        this.directionForTrailY = 0
     }
 
     upLevel() {
@@ -257,73 +257,6 @@ class Ship {
             this.canShot = true
         }
         this.currentShotTime--;
-    }
-
-    handleShot(toX, toY, shot) {
-        this.updateShotTime()
-
-        if (shot) {
-            this.shotTo(toX, toY)
-        }
-    }
-
-    handleShotJoystick(joystick) {
-        this.updateShotTime()
-
-        if (joystick.isTriggered) {
-            this.shotFromTo(joystick.rect.centerX(), joystick.rect.centerY(), joystick.rectButton.centerX(), joystick.rectButton.centerY())
-        }
-    }
-
-    shotTo(x, y) {
-        if (this.canShot) {
-            _shots.push(new Shot(this.x, this.y, x, y, _shots, "yellow"))
-            this.canShot = false
-        }
-    }
-
-    shotFromTo(fx, fy, tx, ty) {
-        if (this.canShot) {
-            const s = new Shot(fx, fy, tx, ty, _shots, "yellow");
-            s.x = this.x;
-            s.y = this.y;
-            _shots.push(s)
-            this.canShot = false
-        }
-    }
-
-    actions() {
-        this.activedShield = false
-        this.directionX = 0
-        this.directionY = 0
-            // put break
-        for (let keyCode of keysDown) {
-            if (keyCode == 65 && this.x > 0) {
-                // left a
-                this.toLeft()
-            }
-
-            if (keyCode == 87 && this.y > 0) {
-                // top w
-                this.toTop()
-            }
-
-            if (keyCode == 68 && this.x < maxWidth) {
-                // right d
-                this.toRight()
-            }
-
-            if (keyCode == 83 && this.y < maxHeight) {
-                // bottom s
-                this.toBottom()
-            }
-
-            if (keyCode == 32) // space
-                this.activedShield = true
-        }
-
-        // _blackHole.x = this.x
-        // _blackHole.y = this.y
     }
 
     usePowerUp(powerUp) {
@@ -375,8 +308,8 @@ class Ship {
         const f = 1
         while (size > 0) {
             size -= f
-            x -= this.velocity * this.directionX
-            y -= this.velocity * this.directionY
+            x -= this.velocity * this.directionForTrailX
+            y -= this.velocity * this.directionForTrailY
             ctx.fillRect(x, y, size, size)
         }
     }
@@ -416,29 +349,109 @@ class Ship {
         playerDie()
     }
 
+    idle() {
+        this.directionForTrailX = 0;
+        this.directionForTrailY = 0;
+    }
+
+    /**
+     * Used by the joystick
+     */
+    moveJoystick(angle) {
+        this.directionForTrailX = Math.cos(angle / 180 * Math.PI)
+        this.directionForTrailY = Math.sin(angle / 180 * Math.PI)
+        this.x += this.velocity * this.directionForTrailX
+        this.y += this.velocity * this.directionForTrailY
+    }
+
+    handleShotJoystick(joystick) {
+        this.updateShotTime()
+
+        if (joystick.isTriggered) {
+            this.shotFromTo(joystick.rect.centerX(), joystick.rect.centerY(), joystick.rectButton.centerX(), joystick.rectButton.centerY())
+        }
+    }
+
+    shotFromTo(fx, fy, tx, ty) {
+        if (this.canShot) {
+            const s = new Shot(fx, fy, tx, ty, _shots, "yellow");
+            s.x = this.x;
+            s.y = this.y;
+            _shots.push(s)
+            this.canShot = false
+        }
+    }
+
+    /**
+     * Used by the keys
+     */
+    handleShot(toX, toY, shot) {
+        this.updateShotTime()
+
+        if (shot) {
+            this.shotTo(toX, toY)
+        }
+    }
+
+    shotTo(x, y) {
+        if (this.canShot) {
+            _shots.push(new Shot(this.x, this.y, x, y, _shots, "yellow"))
+            this.canShot = false
+        }
+    }
+
+    actions() {
+        this.activedShield = false
+        this.directionForTrailX = 0
+        this.directionForTrailY = 0
+            // put break
+        for (let keyCode of keysDown) {
+            if (keyCode == 65 && this.x > 0) {
+                // left a
+                this.toLeft()
+            }
+
+            if (keyCode == 87 && this.y > 0) {
+                // top w
+                this.toTop()
+            }
+
+            if (keyCode == 68 && this.x < maxWidth) {
+                // right d
+                this.toRight()
+            }
+
+            if (keyCode == 83 && this.y < maxHeight) {
+                // bottom s
+                this.toBottom()
+            }
+
+            if (keyCode == 32) // space
+                this.activedShield = true
+        }
+
+        // _blackHole.x = this.x
+        // _blackHole.y = this.y
+    }
+
     toLeft() {
         this.x -= this.velocity
-        this.directionX = -1
+        this.directionForTrailX = -1
     }
 
     toRight() {
         this.x += this.velocity
-        this.directionX = 1
+        this.directionForTrailX = 1
     }
 
     toTop() {
         this.y -= this.velocity
-        this.directionY = -1
+        this.directionForTrailY = -1
     }
 
     toBottom() {
         this.y += this.velocity
-        this.directionY = 1
-    }
-
-    idle() {
-        this.directionX = 0;
-        this.directionY = 0;
+        this.directionForTrailY = 1
     }
 }
 

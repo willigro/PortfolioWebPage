@@ -191,7 +191,6 @@ function init() {
 
                 if (joystickToMove.isTriggered)
                     joystickToMove.update()
-                console.log(joystickToMove.isTriggered)
                 joystickToMove.draw();
 
                 if (joystickToShot.isTriggered)
