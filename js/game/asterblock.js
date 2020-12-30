@@ -354,13 +354,15 @@ function startNewGame() {
 function startJoysticks() {
     if (!mobileCheck()) return
 
-    let area = maxWidth * .25;
+    let area = maxWidth * .2;
+    let sArea = area / 4
     let h = maxHeight * .7;
-    joystickToMove = new MovementButton(ctxJoystick, _ship, 10, h, area, "rgba(255, 255, 255, .2)", "rgba(255, 255, 255, .5)");
-    joystickToShot = new MovementButton(ctxJoystick, _ship, maxWidth - 10 - area, h, area, "rgba(255, 255, 255, .2)", "rgba(255, 255, 255, .5)");
+    let side = sArea + 10
+    joystickToMove = new MovementButton(ctxJoystick, _ship, side, h, area, sArea, "rgba(255, 255, 255, .2)", "rgba(255, 255, 255, .5)");
+    joystickToShot = new MovementButton(ctxJoystick, _ship, maxWidth - side - area, h, area, sArea, "rgba(255, 255, 255, .2)", "rgba(255, 255, 255, .5)");
 
     let buttonSize = maxWidth * .1
-    shieldButton = new SimpleButton(ctxJoystick, maxWidth - 10 - buttonSize, maxHeight * .6, buttonSize, "rgba(255, 255, 255, .3)", "rgba(255, 255, 255, .7)")
+    shieldButton = new SimpleButton(ctxJoystick, maxWidth - side - buttonSize, maxHeight * .6, buttonSize, "rgba(255, 255, 255, .3)", "rgba(255, 255, 255, .7)")
 }
 
 function updateLifeView() {

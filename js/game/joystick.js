@@ -54,27 +54,21 @@
  }
 
  class MovementButton {
-     constructor(ctx, player, x, y, area, rectColor, rectButtonColor) {
+     constructor(ctx, player, x, y, area, smallButtonArea, rectColor, rectButtonColor) {
          this.ctx = ctx;
          this.player = player;
 
          this.buttonMoving = false;
          this.position = { x: 0, y: 0 };
          this.positionLastClickMove = { x: 0, y: 0 };
-         this.keepMovingX = true;
-         this.keepMovingY = true;
          this.positionInitX = 0;
          this.positionInitY = 0;
-         this.rectButtonInRigth = false
-         this.rectButtonInLeft = false
-         this.rectButtonInTop = false
-         this.rectButtonInBottom = false;
 
          this.area = area;
          this.left = x;
          this.top = y;
 
-         this.areaButton = this.area / 4;
+         this.areaButton = smallButtonArea;
          this.leftButton = (this.left + (this.area / 2)) - (this.areaButton / 2);
          this.topButton = (this.top + (this.area / 2)) - (this.areaButton / 2);
 
@@ -85,6 +79,8 @@
 
          this.rect = new Rect(this.left, this.top, this.area, this.area, rectColor);
          this.rectButton = new Rect(this.leftButton, this.topButton, this.areaButton, this.areaButton, rectButtonColor);
+         let dArea = (area / 3)
+         this.rectDeadZone = new Rect(this.left + dArea, this.top + dArea, dArea, dArea);
 
          this.angle = 0;
      }
@@ -93,6 +89,7 @@
          if (this.isTriggered || force) {
              this.rectButton.x = this.position.x - this.rectButton.width / 2;
              this.rectButton.y = this.position.y - this.rectButton.height / 2;
+             //  if (!intersect({ x: this.position.x, y: this.position.y, size: 1 }, this.rectDeadZone))
              this.movePlayerDirections();
          }
      }
@@ -110,6 +107,9 @@
 
          this.ctx.fillStyle = this.rectButton.color;
          this.ctx.fillRect(this.rectButton.x, this.rectButton.y, this.rectButton.width, this.rectButton.height)
+
+         //  this.ctx.fillStyle = "red";
+         //  this.ctx.fillRect(this.rectDeadZone.x, this.rectDeadZone.y, this.rectDeadZone.width, this.rectDeadZone.height)
      }
 
      setPosition(x, y) {
@@ -130,22 +130,6 @@
              destiny_y = this.rect.top;
          }
 
-         if (destiny_x > this.positionInitX) {
-             this.setToDirectionX(true, false);
-         } else if (destiny_x < this.positionInitX) {
-             this.setToDirectionX(false, true);
-         } else {
-             this.setToDirectionX(false, false);
-         }
-
-         if (destiny_y > this.positionInitY) {
-             this.setToDirectionY(false, true);
-         } else if (destiny_y < this.positionInitY) {
-             this.setToDirectionY(true, false);
-         } else {
-             this.setToDirectionY(false, false);
-         }
-
          if (destiny_x > this.rect.x + this.rect.width)
              destiny_x = this.rect.x + this.rect.width
 
@@ -160,23 +144,13 @@
 
          this.position = { x: destiny_x, y: destiny_y }
 
-         const dx = x - this.rectButton.x
-         const dy = y - this.rectButton.y
+         const dx = x - this.rectButton.centerX()
+         const dy = y - this.rectButton.centerY()
 
          this.angle = Math.atan2(dy, dx) * (180 / Math.PI);
      }
 
      movePlayerDirections() {
-         //  if (this.rectButtonInRigth)
-         //      this.player.directionX = 1
-         //  else if (this.rectButtonInLeft)
-         //      this.player.directionX = -1
-
-         //  if (this.rectButtonInTop)
-         //      this.player.directionY = -1
-         //  else if (this.rectButtonInBottom)
-         //      this.player.directionY = 1
-
          this.player.moveJoystick(this.angle)
      }
 
@@ -184,16 +158,6 @@
          this.position.x = this.positionInitX
          this.position.y = this.positionInitY
          this.isTriggered = false
-     }
-
-     setToDirectionX(rigth, left) {
-         this.rectButtonInRigth = rigth;
-         this.rectButtonInLeft = left;
-     }
-
-     setToDirectionY(top, bottom) {
-         this.rectButtonInTop = top;
-         this.rectButtonInBottom = bottom;
      }
 
      trigger(touche) {
