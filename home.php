@@ -76,11 +76,11 @@ My team:
       </div>
 
       <div class="row center-text">
-        <a id="show-my-team" class="p-content-small a-main">
+        <a id="show-my-team" class="p-content a-main">
           Click here and see more about them
         </a>
 
-        <a id="hide-my-team" class="p-content-small a-main" hidden>
+        <a id="hide-my-team" class="p-content a-main" hidden>
           Less
         </a>
       </div>

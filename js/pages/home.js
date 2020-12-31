@@ -22,7 +22,6 @@ $(document).ready(function() {
 
     function configureMyTeamClick() {
         $("#show-my-team").click(function() {
-
             const boxes = ["#profile-android", "#profile-tech-leader", "#profile-ceo", "#profile-game", "#profile-data-scientist"]
             const boxesA = ["#my-team-android", "#my-team-tech-leader", "#my-team-ceo", "#my-team-game", "#my-team-data-scientist"]
 
@@ -101,8 +100,15 @@ $(document).ready(function() {
 
     function handleMenuHomeSections(updateHeight) {
         if (updateHeight) {
-            $("#header").height(window.innerHeight)
-            $("#asterblock").height(window.innerHeight / 2)
+            const header = $("#header")
+            const showTeam = $("#show-my-team")
+            const skills = $("#skills")
+            header.ready(function() {
+                // header.height(window.innerHeight)
+                skills.css({ "margin-top": showTeam.height() * 2 });
+            });
+
+            $("#" + SECTION_ASTERBLOCK).height(window.innerHeight / 2)
         }
         // The order matters
         const sections = [SECTION_ASTERBLOCK, SECTION_RESUME, SECTION_EXPERIENCE, SECTION_SKILLS, SECTION_MY_TEAM]
