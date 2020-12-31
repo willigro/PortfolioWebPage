@@ -6,6 +6,7 @@ My team:
   - Photos
 
 -->
+
 <head>
 
   <!-- Favicon
@@ -465,6 +466,17 @@ My team:
           echo getResume();
           ?>
         </div>
+      </div>
+    </div>
+
+    <!--
+      
+    Asterblock
+  
+    -->
+    <div id="asterblock" class="move">
+      <div class="container">
+        <a id="play" class="p-title center a-main">Click here to play Asterblocks</a>
       </div>
     </div>
   </div>

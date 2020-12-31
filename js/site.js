@@ -121,7 +121,7 @@ $(document).ready(function() {
             configureMainMenuActions(menus[i])
         }
 
-        $("#menu").css({ "padding-top": $("#play").height() * 2 })
+        $("#menu").css({ "padding-top": FIVE_PERCENT_HEIGHT })
     }
 
     function configureMainMenuActions(page) {

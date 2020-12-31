@@ -4,6 +4,7 @@ $(document).ready(function() {
     const SECTION_SKILLS = "skills"
     const SECTION_MY_TEAM = "my-team"
     const SECTION_EXPERIENCE = "experience"
+    const SECTION_ASTERBLOCK = "asterblock"
 
     const MY_TEAM_MOVE_ANIMATION_DELAY = 700
     const MY_TEAM_MOVE_ANIMATION_DELAY_FAST = 500
@@ -101,9 +102,10 @@ $(document).ready(function() {
     function handleMenuHomeSections(updateHeight) {
         if (updateHeight) {
             $("#header").height(window.innerHeight)
+            $("#asterblock").height(window.innerHeight / 2)
         }
         // The order matters
-        const sections = [SECTION_RESUME, SECTION_EXPERIENCE, SECTION_SKILLS, SECTION_MY_TEAM]
+        const sections = [SECTION_ASTERBLOCK, SECTION_RESUME, SECTION_EXPERIENCE, SECTION_SKILLS, SECTION_MY_TEAM]
         for (i in sections) {
             configureMenuSectionActions(sections[i])
         }

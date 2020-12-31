@@ -16,7 +16,7 @@
                 <div id="menu-options" class="eight columns">
                     <div class="row">
                         <ul style="float: right;">
-                            <li><a href="#" id="menu_home">Me</a></li>
+                            <li><a href="#" id="menu_home">Resume</a></li>
                             <li><a href="#" id="menu_android">Android</a></li>
                             <li><a href="#" id="menu_ai" hidden>AI</a></li>
                         </ul>
@@ -28,6 +28,7 @@
                             <li><a href="#" id="menu-section-skills">Skills</a></li>
                             <li><a href="#" id="menu-section-experience">Experience</a></li>
                             <li><a href="#" id="menu-section-resume">Resume</a></li>
+                            <li><a href="#" id="menu-section-asterblock">Asterblock</a></li>
                         </ul>
                     </div>
 

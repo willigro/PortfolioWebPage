@@ -459,16 +459,6 @@ function configureScreenElements() {
     const skill = $("#skills")
     const experience = $("#experience")
 
-    const numbers = $("#android-numbers")
-    const own = $("#android-own")
-    const libs = $("#android-libs")
-    const colaborated = $("#android-colaborated")
-
-    const android_numbers = $("#android-numbers")
-    const android_own = $("#android-own")
-    const android_libs = $("#android-libs")
-    const android_colaborated = $("#android-colaborated")
-
     const menu = $("#menu")
 
     elementPlay.click(function() {
@@ -488,14 +478,6 @@ function configureScreenElements() {
         skill.hide(SHOW_HIDE_ANIMATION_DELAY)
         experience.hide(SHOW_HIDE_ANIMATION_DELAY)
         menu.hide(SHOW_HIDE_ANIMATION_DELAY)
-        own.hide(SHOW_HIDE_ANIMATION_DELAY)
-        libs.hide(SHOW_HIDE_ANIMATION_DELAY)
-        colaborated.hide(SHOW_HIDE_ANIMATION_DELAY)
-        numbers.hide(SHOW_HIDE_ANIMATION_DELAY)
-        android_numbers.hide(SHOW_HIDE_ANIMATION_DELAY)
-        android_own.hide(SHOW_HIDE_ANIMATION_DELAY)
-        android_libs.hide(SHOW_HIDE_ANIMATION_DELAY)
-        android_colaborated.hide(SHOW_HIDE_ANIMATION_DELAY)
     })
 
     elementStop.click(function() {
@@ -510,14 +492,6 @@ function configureScreenElements() {
         skill.show(SHOW_HIDE_ANIMATION_DELAY)
         experience.show(SHOW_HIDE_ANIMATION_DELAY)
         menu.show(SHOW_HIDE_ANIMATION_DELAY)
-        own.show(SHOW_HIDE_ANIMATION_DELAY)
-        libs.show(SHOW_HIDE_ANIMATION_DELAY)
-        colaborated.show(SHOW_HIDE_ANIMATION_DELAY)
-        numbers.show(SHOW_HIDE_ANIMATION_DELAY)
-        android_numbers.show(SHOW_HIDE_ANIMATION_DELAY)
-        android_own.show(SHOW_HIDE_ANIMATION_DELAY)
-        android_libs.show(SHOW_HIDE_ANIMATION_DELAY)
-        android_colaborated.show(SHOW_HIDE_ANIMATION_DELAY)
     })
 
     elementNewGame.click(function() {
