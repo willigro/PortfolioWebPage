@@ -123,7 +123,6 @@ class Asteroid {
 
     handleHit(shot) {
         if (intersect(shot, this)) {
-            console.log(this.life)
             this.life--;
             if (this.life <= 0) {
                 this.destroy()

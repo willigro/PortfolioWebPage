@@ -229,7 +229,6 @@ function init() {
             gameClock.newClock("baseEnemyLife", BASE_ENEMY_LIFE, true, function() {
                 baseEnemyLife++;
                 showEnemyLifeUp()
-                console.log("Up")
             })
 
             gameClock.tick();
