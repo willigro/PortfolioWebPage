@@ -77,7 +77,7 @@ class Asteroid {
             life += 1;
         else
             life += 2;
-
+        console.log(life)
         return life;
     }
 
@@ -123,8 +123,9 @@ class Asteroid {
 
     handleHit(shot) {
         if (intersect(shot, this)) {
+            console.log(this.life)
             this.life--;
-            if (this.life == 0) {
+            if (this.life <= 0) {
                 this.destroy()
                 actualPoints += this.points
                 updateActualPoints()
@@ -368,7 +369,7 @@ class Ship {
         this.updateShotTime()
 
         if (joystick.isTriggered) {
-            this.shotFromTo(joystick.rect.centerX(), joystick.rect.centerY(), joystick.rectButton.centerX(), joystick.rectButton.centerY())
+            this.shotFromTo(joystick.zoneButton.x, joystick.zoneButton.y, joystick.smallButton.x, joystick.smallButton.y)
         }
     }
 

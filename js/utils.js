@@ -36,6 +36,13 @@ function intersect(body1, body2) {
         body1.y + body1.size > body2.y
 }
 
+function circlesIntersect(c1, c2) {
+    const dx = c1.x - c2.x;
+    const dy = c1.y - c2.y;
+    const d = Math.sqrt(dx * dx + dy * dy);
+    return d <= c1.r + c2.r;
+}
+
 function pop(array, item) {
     let index = array.indexOf(item);
     if (index !== -1) {

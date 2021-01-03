@@ -21,7 +21,7 @@ const TO_CLOSE = 100
 const MAX_RADIUS = 100000
 
 // Try calculate a value from the size screen
-const START_COUNT = mobileCheck() ? 100 : 500
+const START_COUNT = mobileCheck() ? 50 : 500
 const ASTEROIDS_COUNT = 10
 const ASTEROIDS_COUNT_LIMIT = 20
 
@@ -229,6 +229,7 @@ function init() {
             gameClock.newClock("baseEnemyLife", BASE_ENEMY_LIFE, true, function() {
                 baseEnemyLife++;
                 showEnemyLifeUp()
+                console.log("Up")
             })
 
             gameClock.tick();
@@ -354,15 +355,15 @@ function startNewGame() {
 function startJoysticks() {
     if (!mobileCheck()) return
 
-    let area = maxWidth * .2;
+    let area = maxWidth * .15;
     let sArea = area / 4
-    let h = maxHeight * .7;
-    let side = sArea + 10
+    let h = maxHeight * .8;
+    let side = area + 10
     joystickToMove = new MovementButton(ctxJoystick, _ship, side, h, area, sArea, "rgba(255, 255, 255, .2)", "rgba(255, 255, 255, .5)");
-    joystickToShot = new MovementButton(ctxJoystick, _ship, maxWidth - side - area, h, area, sArea, "rgba(255, 255, 255, .2)", "rgba(255, 255, 255, .5)");
+    joystickToShot = new MovementButton(ctxJoystick, _ship, maxWidth - side, h, area, sArea, "rgba(255, 255, 255, .2)", "rgba(255, 255, 255, .5)");
 
     let buttonSize = maxWidth * .1
-    shieldButton = new SimpleButton(ctxJoystick, maxWidth - side - buttonSize, maxHeight * .6, buttonSize, "rgba(255, 255, 255, .3)", "rgba(255, 255, 255, .7)")
+    shieldButton = new SimpleButton(ctxJoystick, maxWidth - side, maxHeight * .6, buttonSize, "rgba(255, 255, 255, .3)", "rgba(255, 255, 255, .7)")
 }
 
 function updateLifeView() {
@@ -431,6 +432,7 @@ function configureScreenElements() {
     if (mobileCheck()) {
         can.addEventListener('touchstart', onToushStart, false) //register event
         can.addEventListener('touchend', onTouchEnd, false) //register event
+        can.addEventListener('touchcancel', onTouchEnd, false);
         can.addEventListener('touchmove', onTouchMove, false) //register event
     } else {
         can.addEventListener('mousedown', onMouseDown, false) //register event
