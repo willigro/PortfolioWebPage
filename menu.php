@@ -3,7 +3,7 @@
 
 <body class="page">
     <nav id="menu" role="navigation" class="menu">
-        <div class="container">
+        <div class="container-large-x">
             <div class="row">
                 <div class="four columns">
                     <a href="https://www.linkedin.com/in/willi-rittmann-150b39bb/" target="_blank">

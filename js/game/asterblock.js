@@ -103,7 +103,8 @@ function startStars() {
 function stopStars() {
     clearInterval(starsInterval)
     clearInterval(joystickInterval)
-    drawBackground();
+    drawBackground(ctxJoystick);
+    drawBackground(ctx);
 }
 
 function onMouseMove(event) {
@@ -120,32 +121,34 @@ function onMouseUp(event) {
 }
 
 function onTouchMove(event) {
-    for (let t of event.touches) {
-        if (joystickToMove && joystickToMove.canHandlingTouchEvent(t)) {
-            joystickToMove.setPosition(t.clientX, t.clientY);
-        }
+    if (inGame)
+        for (let t of event.touches) {
+            if (joystickToMove && joystickToMove.canHandlingTouchEvent(t)) {
+                joystickToMove.setPosition(t.clientX, t.clientY);
+            }
 
-        if (joystickToShot && joystickToShot.canHandlingTouchEvent(t)) {
-            joystickToShot.setPosition(t.clientX, t.clientY);
+            if (joystickToShot && joystickToShot.canHandlingTouchEvent(t)) {
+                joystickToShot.setPosition(t.clientX, t.clientY);
+            }
         }
-    }
 }
 
 function onToushStart(event) {
-    for (let touche of event.touches) {
-        if (joystickToMove && !joystickToMove.isTriggered)
-            joystickToMove.trigger(touche)
+    if (inGame)
+        for (let touche of event.touches) {
+            if (joystickToMove && !joystickToMove.isTriggered)
+                joystickToMove.trigger(touche)
 
-        if (joystickToShot && !joystickToShot.isTriggered)
-            joystickToShot.trigger(touche)
+            if (joystickToShot && !joystickToShot.isTriggered)
+                joystickToShot.trigger(touche)
 
-        if (shieldButton)
-            shieldButton.trigger(touche)
-    }
+            if (shieldButton)
+                shieldButton.trigger(touche)
+        }
 }
 
 function onTouchEnd(event) {
-    if (event.type == "touchend")
+    if (inGame && event.type == "touchend")
         for (let t of event.changedTouches) {
             if (joystickToMove && joystickToMove.isTriggered && joystickToMove.canHandlingTouchEvent(t)) {
                 joystickToMove.release();
@@ -200,11 +203,13 @@ function init() {
                 if (_ship)
                     _ship.activedShield = this.shieldButton.isTriggered
                 shieldButton.draw()
+            } else {
+                drawBackground(ctxJoystick);
             }
         }, delay)
 
     starsInterval = setInterval(function() {
-        drawBackground();
+        drawBackground(ctx);
 
         if (stars.length < START_COUNT) {
             for (var i = 0; i < 10; i++)
@@ -419,7 +424,7 @@ function startAsteroids() {
     _asteroidShots = []
 }
 
-function drawBackground() {
+function drawBackground(ctx) {
     ctx.clearRect(0, 0, maxWidth, maxHeight)
     ctx.fillStyle = COLOR_BACKGROUND
     ctx.fillRect(0, 0, maxWidth, maxHeight)
@@ -427,16 +432,19 @@ function drawBackground() {
 
 function configureScreenElements() {
     let can = document.getElementById("player-console") //get canvas element
+    let desktopControl = $("#desktop-control")
 
     if (mobileCheck()) {
         can.addEventListener('touchstart', onToushStart, false) //register event
         can.addEventListener('touchend', onTouchEnd, false) //register event
         can.addEventListener('touchcancel', onTouchEnd, false);
         can.addEventListener('touchmove', onTouchMove, false) //register event
+        desktopControl.hide()
     } else {
         can.addEventListener('mousedown', onMouseDown, false) //register event
         can.addEventListener('mouseup', onMouseUp, false) //register event
         can.addEventListener('mousemove', onMouseMove, false) //register event
+        desktopControl.show()
     }
 
     elementPlay = $("#play")

@@ -5,7 +5,7 @@ const TWENTY_PERCENT_HEIGHT = valueFromPercentage(20, window.innerHeight)
 
 const menuSectionUnselectedColor = getComputedStyle(document.body).getPropertyValue('--main-text-color-menu-section');
 const menuSectionSelectedColor = getComputedStyle(document.body).getPropertyValue('--main-text-color-menu-section-selected');
-
+const menuSelectedColor = getComputedStyle(document.body).getPropertyValue('--main-text-color-accent');
 
 /* 
 
@@ -132,7 +132,7 @@ $(document).ready(function() {
         })
 
         if (document.location.href.includes(page)) {
-            menu.css({ color: "red" })
+            menu.css({ color: menuSelectedColor })
         }
     }
 

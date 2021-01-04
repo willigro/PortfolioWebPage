@@ -125,7 +125,7 @@
      }
 
      movePlayerDirections() {
-         this.player.moveJoystick(this.angle * (180 / Math.PI))
+         this.player.moveJoystick(this.angle)
      }
 
      release() {

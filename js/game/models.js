@@ -77,7 +77,7 @@ class Asteroid {
             life += 1;
         else
             life += 2;
-        console.log(life)
+
         return life;
     }
 
@@ -166,10 +166,10 @@ class Shot {
         const dx = toX - this.x
         const dy = toY - this.y
 
-        const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+        const angle = Math.atan2(dy, dx);
 
-        this.velX = this.velocity * Math.cos(angle / 180 * Math.PI)
-        this.velY = this.velocity * Math.sin(angle / 180 * Math.PI)
+        this.velX = this.velocity * Math.cos(angle)
+        this.velY = this.velocity * Math.sin(angle)
     }
 
     move() {
@@ -358,8 +358,8 @@ class Ship {
      * Used by the joystick
      */
     moveJoystick(angle) {
-        this.directionForTrailX = Math.cos(angle / 180 * Math.PI)
-        this.directionForTrailY = Math.sin(angle / 180 * Math.PI)
+        this.directionForTrailX = Math.cos(angle)
+        this.directionForTrailY = Math.sin(angle)
         this.x += this.velocity * this.directionForTrailX
         this.y += this.velocity * this.directionForTrailY
     }
