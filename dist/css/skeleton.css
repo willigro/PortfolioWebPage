@@ -50,7 +50,7 @@
     position: relative;
     width: 100%;
     margin: 0 auto;
-    padding: 0 10px;
+    padding: 0 20px;
     box-sizing: border-box;
 }
 
@@ -77,6 +77,9 @@
 @media (min-width: 550px) {
     .container {
         width: 80%;
+    }
+    .container-large-x {
+        padding: 0 20px;
     }
     .column,
     .columns {

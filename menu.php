@@ -18,7 +18,6 @@
                         <ul style="float: right;">
                             <li><a href="#" id="menu_home">Resume</a></li>
                             <li><a href="#" id="menu_android">Android</a></li>
-                            <li><a href="#" id="menu_ai" hidden>AI</a></li>
                         </ul>
                     </div>
 

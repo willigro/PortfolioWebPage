@@ -108,7 +108,7 @@ class HtmlGenerator
       $j++;
       $obj = $mainInfo[$i];
 
-      $html .= $obj[0] . '<span class="p-content" style="color:' . $this->percent2Color((100 * $j / 2) / $all) . '"><br>' . $obj[1] . '</span>';
+      $html .= '<span class="p-content p-shine">' . $obj[0] . '</span><span class="p-content-small"><br>' . $obj[1] . '</span>'; // style="color:' . $this->percent2Color((100 * $j / 2) / $all) . '"
 
       if ($i < sizeof($mainInfo) - 1)
         $html .= "<br>";
@@ -117,13 +117,11 @@ class HtmlGenerator
     $html .= "</p>
     <p>";
 
-
-
     for ($i = 0; $i < sizeof($knowledge); $i++) {
       $j++;
       $obj = $knowledge[$i];
 
-      $html .= $obj[0] . '<span class="p-content" style="color:' . $this->percent2Color((100 * $j / 2) / $all) . '"><br>' . $obj[1] . '</span>';
+      $html .= '<span class="p-content p-shine">' . $obj[0] . '</span><span class="p-content"><br>' . $obj[1] . '</span>'; // style="color:' . $this->percent2Color((100 * $j / 2) / $all) . '"
 
       if ($i < sizeof($knowledge) - 1)
         $html .= "<br>";
