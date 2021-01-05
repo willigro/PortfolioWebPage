@@ -9,7 +9,7 @@ const COLOR_STAR_RED = "rgba(206, 64, 9, 0.79)"
 const COLOR_STAR_BLUE = "rgba(37, 13, 222, 0.8)"
 
 const COMETS_COUNT = 25
-const STARS_COUNT = 100
+const STARS_COUNT = 250
 
 var comets = []
 var stars = []
@@ -31,6 +31,7 @@ function init() {
             s.draw()
         }
 
+        // console.log(comets[0])
         for (let c of comets) {
             c.move()
             c.draw()
@@ -56,20 +57,28 @@ function drawBackground() {
     ctx.fillRect(0, 0, maxWidth, maxHeight)
 }
 
-const MOVE = 3
 const MIN_SIZE_LESS = .1
 const MAX_SIZE_LESS = .3
 const LESS = .05
 
 class Comet {
     constructor() {
+        this.distance = (maxHeight > maxWidth) ? maxHeight : maxWidth
         this.start()
     }
 
     start() {
         this.tick = 0
-        this.x = randomMin(maxWidth / 2, maxWidth * 2)
-        this.y = 0 - randomMin(0, maxHeight)
+        this.x = random(maxWidth * 2)
+        this.y = random(maxHeight * 2)
+        if (Math.random() > .5) {
+            this.y *= -1
+        }
+
+        if (Math.random() > .5) {
+            this.x *= -1
+        }
+
         this.lastX = this.x
         this.lastY = this.y
         this.size = randomNotZero(4)
@@ -78,8 +87,19 @@ class Comet {
         this.initialLessSize = this.lessSize
         this.color = randomMin(180, 255)
         if (this.color > 255) this.color = 255
-        this.directionX = this.randomDirection()
-        this.directionY = this.randomDirection()
+
+        this.in = false
+            // this.directionX = this.randomDirection()
+            // this.directionY = this.randomDirection()
+
+        const dx = maxWidth / 2 - this.x
+        const dy = maxHeight / 2 - this.y
+
+        const angle = Math.atan2(dy, dx);
+        this.initialAngle = angle
+        this.actualAngle = angle
+
+        this.velocity = randomNotZero(6)
     }
 
     randomDirection() {
@@ -88,14 +108,17 @@ class Comet {
     }
 
     move() {
-        this.x -= MOVE * this.directionX
-        this.y += MOVE * this.directionY
+        this.actualAngle = this.actualAngle - 0.001
+        this.x += this.velocity * Math.cos(this.actualAngle)
+        this.y += this.velocity * Math.sin(this.actualAngle)
 
-        if (this.directionX == 1 && this.lastX > maxWidth ||
-            this.directionX == -1 && this.lastX < 0 ||
-            this.directionY == 1 && this.lastY > maxHeight ||
-            this.directionY == -1 && this.lastY < 0)
-            this.start()
+        // console.log({ x: this.lastX, y: this.lastY, width: 1, height: 1 }, { x: 0, y: 0, width: maxWidth, height: maxHeight })
+        // adjust it
+        // if (this.directionX == 1 && this.lastX > maxWidth ||
+        //     this.directionX == -1 && this.lastX < 0 ||
+        //     this.directionY == 1 && this.lastY > maxHeight ||
+        //     this.directionY == -1 && this.lastY < 0)
+        //     this.start();
     }
 
     draw() {
@@ -108,20 +131,36 @@ class Comet {
         var x = this.x
         var y = this.y
 
-        const p = MOVE - 1
+        const p = this.velocity - 1
         this.adjustTrail()
 
         var t = 0
         while (size > 0) {
             size -= this.lessSize
-            x += p * this.directionX
-            y -= p * this.directionY
+            x -= p * Math.cos(this.actualAngle)
+            y -= p * Math.sin(this.actualAngle)
             ctx.fillRect(x, y, size, size)
             t++
         }
 
         this.lastX = x
         this.lastY = y
+
+        // if (this.in) {
+        //     if (!intersectRect({ x: this.lastX, y: this.lastY, width: 1, height: 1 }, { x: 0, y: 0, width: maxWidth, height: maxHeight })) {
+        //         console.log("out")
+        //         this.start()
+        //     }
+        // } else {
+        //     if (intersectRect({ x: this.lastX, y: this.lastY, width: 3, height: 3 }, { x: 0, y: 0, width: maxWidth, height: maxHeight })) {
+        //         this.in = true
+        //         console.log("in")
+        //     }
+        // }
+
+        if (distance(this.x, this.y, maxWidth / 2, maxHeight / 2) > this.distance * 1.5) {
+            this.start()
+        }
     }
 
     randomTrailLess() {
@@ -156,16 +195,22 @@ class Comet {
 
 class Star {
     constructor() {
-        this.x = random(maxWidth)
-        this.y = random(maxHeight)
-        this.size = random(4)
-        if (this.size == 0) this.size = Math.random()
+        this.initialX = random(maxWidth)
+        this.initialY = random(maxHeight)
+        this.x = this.initialX
+        this.y = this.initialY
+        this.velocity = Math.random()
+        this.initialAngle = randomF(2) //-2.6386326206064994
+        if (Math.random() > .5)
+            this.initialAngle *= -1
+        this.start()
+    }
+
+    start() {
         this.color = this.randomStarColor()
-        this.tickToMove = randomMin(20, 50)
-        this.tick = 0
-        this.moved = 0
-        this.sideToMode = 1
-        this.maxToMode = randomNotZero(5)
+        this.size = randomF(2)
+        if (this.size == 0) this.size = Math.random()
+        this.actualAngle = this.initialAngle
     }
 
     randomStarColor() {
@@ -178,7 +223,7 @@ class Star {
     }
 
     draw() {
-        ctx.fillStyle = this.color
+        ctx.fillStyle = this.color;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
         ctx.fill();
@@ -186,20 +231,17 @@ class Star {
     }
 
     move() {
-        this.tick++;
+        this.actualAngle = this.actualAngle - 0.001
 
-        if (this.tick < this.tickToMove) return
+        let velX = this.velocity * Math.cos(this.actualAngle)
+        let velY = this.velocity * Math.sin(this.actualAngle)
+        this.x -= velX
+        this.y -= velY
 
-        this.tick = 0
-        const toMoveX = Math.random()
-        const toMoveY = Math.random()
-        this.x -= toMoveX * this.sideToMode
-        this.y -= toMoveY * this.sideToMode
-        this.moved += toMoveX + toMoveY
-
-        if (this.moved >= this.maxToMode) {
-            this.moved = 0
-            this.sideToMode *= -1
+        if (this.x > maxWidth || this.y > maxHeight) {
+            this.start()
+            this.x = random(maxWidth)
+            this.y = random(maxHeight)
         }
     }
 }

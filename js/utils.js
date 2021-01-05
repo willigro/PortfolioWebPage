@@ -5,6 +5,10 @@ function random(limit) {
     return Math.floor(Math.random() * limit)
 }
 
+function randomF(limit) {
+    return Math.random() * limit
+}
+
 function randomMin(min, max) {
     return Math.floor(Math.random() * max) + min
 }
@@ -34,6 +38,14 @@ function intersect(body1, body2) {
         body1.x + body1.size > body2.x &&
         body1.y < body2.y + body2.size &&
         body1.y + body1.size > body2.y
+}
+
+
+function intersectRect(body1, body2) {
+    return body1.x < body2.x + body2.width &&
+        body1.x + body1.width > body2.x &&
+        body1.y < body2.y + body2.height &&
+        body1.y + body1.height > body2.y
 }
 
 function circlesIntersect(c1, c2) {

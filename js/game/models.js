@@ -170,6 +170,8 @@ class Shot {
 
         this.velX = this.velocity * Math.cos(angle)
         this.velY = this.velocity * Math.sin(angle)
+
+        console.log(angle)
     }
 
     move() {
