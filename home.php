@@ -237,7 +237,7 @@ My team:
       </div>
 
       <div class="container-larger">
-        <div class="row p-content center">
+        <div class="row p-content center p-light-secondary">
 
           <!-- BY TECHNOLOGY -->
           <div class="skills-section">
@@ -371,7 +371,7 @@ My team:
         </div>
 
         <!-- CONCEPTS -->
-        <div class="row p-content">
+        <div class="row p-content p-light-secondary">
           <div class="skills-section">
             <p class="p-title resume">
               Concepts
@@ -461,7 +461,7 @@ My team:
           </p>
         </div>
 
-        <div class="row p-content">
+        <div class="row p-content p-light-secondary">
           <?php
           echo getResume();
           ?>

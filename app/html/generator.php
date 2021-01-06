@@ -8,7 +8,7 @@ class HtmlGenerator
 
     for ($i = 0; $i < count($androidApplications); $i++) {
       $obj = $androidApplications[$i];
-      $html .= '<div style="margin-bottom: 10vh" class="p-content line-bottom">
+      $html .= '<div style="margin-bottom: 10vh;" class="p-content line-bottom">
             <div class="row">';
 
       if ($obj->mainImage) {
@@ -35,9 +35,13 @@ class HtmlGenerator
               <p class="p-title p-shine">
                 ' . $obj->title . '
               </p>
-              <p>
+              <p class="p-light-secondary">
               ' . $obj->description . '
               </p>';
+
+      if ($obj->someWorks) {
+        $html .= '<p class="p-light-secondary"><span class="p-shine">Some worked tasks</span><br>' . $obj->someWorks . '</p>';
+      }
 
       if ($obj->fromZero)
         $html .= '<p class="p-info">I worked in this project since the start</p>';
@@ -45,7 +49,7 @@ class HtmlGenerator
       $html .=   '<p class="p-subtitle">
                 Some used tecnologies
               </p>
-              <p>
+              <p class="p-light-secondary">
               ' . $obj->technologies . '
               </p>';
 
@@ -108,7 +112,7 @@ class HtmlGenerator
       $j++;
       $obj = $mainInfo[$i];
 
-      $html .= '<span class="p-content p-shine">' . $obj[0] . '</span><span class="p-content-small"><br>' . $obj[1] . '</span>'; // style="color:' . $this->percent2Color((100 * $j / 2) / $all) . '"
+      $html .= '<span class="p-content p-shine">' . $obj[0] . '</span><span class="p-content p-light-secondary"><br>' . $obj[1] . '</span>'; // style="color:' . $this->percent2Color((100 * $j / 2) / $all) . '"
 
       if ($i < sizeof($mainInfo) - 1)
         $html .= "<br>";
@@ -121,7 +125,7 @@ class HtmlGenerator
       $j++;
       $obj = $knowledge[$i];
 
-      $html .= '<span class="p-content p-shine">' . $obj[0] . '</span><span class="p-content"><br>' . $obj[1] . '</span>'; // style="color:' . $this->percent2Color((100 * $j / 2) / $all) . '"
+      $html .= '<span class="p-content p-shine">' . $obj[0] . '</span><span class="p-content p-light-secondary"><br>' . $obj[1] . '</span>'; // style="color:' . $this->percent2Color((100 * $j / 2) / $all) . '"
 
       if ($i < sizeof($knowledge) - 1)
         $html .= "<br>";
@@ -154,7 +158,7 @@ class HtmlGenerator
       </div>
       
       <div class="seven columns" style="margin-top: 25px;">
-      <p class="p-content">' . $obj->description . '</p>';
+      <p class="p-content p-light-secondary">' . $obj->description . '</p>';
 
       $html .= '</div>
       </div>';

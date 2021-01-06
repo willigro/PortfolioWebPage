@@ -10,8 +10,9 @@ class AndroidApplication
     public $gitLink = null;
     public $privateProject = null;
     public $fromZero = null;
+    public $someWorks = null;
 
-    function __construct($title, $description, $technologies, $mainImage, $smallImages, $googlePlayLink = null, $gitLink = null, $privateProject = false, $fromZero = false)
+    function __construct($title, $description, $technologies, $mainImage, $smallImages, $googlePlayLink = null, $gitLink = null, $privateProject = false, $fromZero = false, $someWorks = null)
     {
         $this->title = $title;
         $this->description = $description;
@@ -22,5 +23,6 @@ class AndroidApplication
         $this->gitLink = $gitLink;
         $this->privateProject = $privateProject;
         $this->fromZero = $fromZero;
+        $this->someWorks = $someWorks;
     }
 }

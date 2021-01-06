@@ -13,7 +13,7 @@ class AndroidApplicationBusiness
             "Diário da Diabetes",
             "To control the register from the diabetes. Designed from a Diabestes types 1 carrier to Diabetes type 1 carriers, type 
             2 and people responsable from carries
-            <br>Register glucose fees, insulin applications, meals, favorite meals, weight historic.
+            <br><br>Register glucose fees, insulin applications, meals, favorite meals, weight historic.
             <br>Insulin application calculator, carboohydrates calculator and suggestions based in the actual glucose fee.
             <br>Can be used to notify when the insulin action is started or finish (standard hours).
             <br>The registers generate a historic of the fees, insulins and meals.",
@@ -33,7 +33,7 @@ class AndroidApplicationBusiness
         $order = new AndroidApplication(
             "Pedidos",
             "Control small business
-            <br>Perfect to small business that have few services or products, like restaurants, bars, small stores.
+            <br><br>Perfect to small business that have few services or products, like restaurants, bars, small stores.
             <br>Register the cashier, create orders, fast pay, parceled pay or pay with change.
             <br>Register items, services, investiments, cashier exits, and know how much you gain, and how much you spend with investiments or expenses.",
             "Java, Async Task, SQLite, JUnit, MVP, AndroidX, Material Design",
@@ -48,7 +48,7 @@ class AndroidApplicationBusiness
         $myPocket = new AndroidApplication(
             "Meu Bolso",
             "Simple register of the cash flows
-            <br>Register expense or earning.
+            <br><br>Register expense or earning.
             <br>Register standard flows to easily regiter the current flows.",
             "Kotlin, Coroutines, Kodein, Navigation Components, Room, LiveData, ViewModel, MVVM, JUnit, Espresso, AndroidX.",
             $this->imageRoot . "my_pocket_test_shot_1.jpg",
@@ -72,7 +72,7 @@ class AndroidApplicationBusiness
         $olimpo = new AndroidApplication(
             "Olimpo",
             "My first lib created
-            <br>DateFormat, StringFormat, PriceFormat, Keyboard, Fragment nav, RecyclerView initialization and functions, 
+            <br><br>DateFormat, StringFormat, PriceFormat, Keyboard, Fragment nav, RecyclerView initialization and functions, 
             base to BottomSheet, base to PopUp, Spinner initialization, and Toolbar functions.
             <br>Created when I was learning about modularization and some utils.",
             "Java, Fragment, Recycler, Views.",
@@ -85,7 +85,7 @@ class AndroidApplicationBusiness
         $robbie  = new AndroidApplication(
             "Robbie",
             "My current lib in building
-            <br>Dynamic Progress, control progress by priority, Widget Utils, base to dynamic Dialogs also with WebView, 
+            <br><br>Dynamic Progress, control progress by priority, Widget Utils, base to dynamic Dialogs also with WebView, 
             File Utils based in Blankj, crash util also based in Blankj (handling any crash, as executing a function
              to 'send log to server'), simple Log Util, and more",
             "Kotlin, AndroidX, Canvas, Views, File.",
@@ -109,7 +109,11 @@ class AndroidApplicationBusiness
             "Kotlin, Retrofit, Custom Views, Realm, Coroutines, LiveData, ViewModel, MVVM, Pictures (QR Code), AndroidX, Refactoring.",
             null,
             null,
-            "https://play.google.com/store/apps/details?id=br.com.gerencianet.app"
+            "https://play.google.com/store/apps/details?id=br.com.gerencianet.app",
+            null,
+            false, 
+            false,
+            "Pix, Registration Update, Address for send card."
         );
 
         $roadcard = new AndroidApplication(
@@ -122,7 +126,9 @@ class AndroidApplicationBusiness
             "https://play.google.com/store/apps/details?id=br.com.mmcafe.roadcardapp",
             null,
             false,
-            true
+            true,
+            "Camera 1 and 2 for devices with API 19+, GoogleMaps with customization, Youtube videos, 
+            Share texts, files and images for several apps."
         );
 
         $neoEnergia  = new AndroidApplication(
@@ -134,7 +140,8 @@ class AndroidApplicationBusiness
             null,
             null,
             true,
-            true
+            true,
+            "Camera 2, Offline and Online work, auto backup sending all images and data in background."
         );
 
         $rdm = new AndroidApplication(
@@ -146,7 +153,8 @@ class AndroidApplicationBusiness
             "https://play.google.com/store/apps/details?id=com.rittamann.rdm",
             null,
             false,
-            true
+            true,
+            "Offline and Online with backup and auto control of the data, graphs from the sales."
         );
 
         $smartSell  = new AndroidApplication(
@@ -158,7 +166,9 @@ class AndroidApplicationBusiness
             null,
             null,
             null,
-            true
+            true,
+            false,
+            "Refactoring several parts from the app, GPS, applied unit tests, complex features as discount calculation for multiple costumers."
         );
 
         $petFlerte  = new AndroidApplication(
@@ -167,7 +177,11 @@ class AndroidApplicationBusiness
             "Kotlin, Navigation Components, Coroutines, Firebase (Message), Facebook, Google.",
             null,
             null,
-            "https://play.google.com/store/apps/details?id=br.com.petflerte"
+            "https://play.google.com/store/apps/details?id=br.com.petflerte",
+            null,
+            false,
+            false,
+            "Facebook and Google login using Firebase, Firebase database to chat."
         );
 
         $armazemParaiba = new AndroidApplication(
@@ -176,7 +190,11 @@ class AndroidApplicationBusiness
             "Kotlin, just some adjusts.",
             null,
             null,
-            "https://play.google.com/store/apps/details?id=br.com.mobile.armazempb"
+            "https://play.google.com/store/apps/details?id=br.com.mobile.armazempb",
+            null,
+            false,
+            false,
+            "In the general bug fix"
         );
 
         return array(
