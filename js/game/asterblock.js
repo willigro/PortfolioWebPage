@@ -56,6 +56,8 @@ var elementSpeed
 var elementAtkSpeed
 var elementPlayerLevel
 var elementJoysticks
+var elementPostGame
+var elementPostGameLabel
 
 var actualPoints = 0
 var baseEnemyLife = 0
@@ -318,6 +320,7 @@ function playerDie() {
     elementGameTips.show()
     elementInGamePanel.hide()
     elementJoysticks.hide()
+    elementPostGame.show()
 }
 
 function stopGame() {
@@ -402,6 +405,7 @@ function updateActualPoints() {
     }
 
     elementPoints.html(actualPoints)
+    elementPostGameLabel.html(actualPoints)
 }
 
 function updateStatus() {
@@ -462,6 +466,8 @@ function configureScreenElements() {
     elementSpeed = $("#speed")
     elementPlayerLevel = $("#player-level")
     elementJoysticks = $("#canvasJoystick")
+    elementPostGame = $("#points-post-game")
+    elementPostGameLabel = $("#points-post-game-label")
 
     const header = $("#header")
     const resume = $("#resume")
@@ -470,6 +476,8 @@ function configureScreenElements() {
 
     const menu = $("#menu")
 
+    elementPostGame.show()
+
     elementPlay.click(function() {
         elementGamePanel.show()
         elementPlay.hide()
@@ -477,6 +485,7 @@ function configureScreenElements() {
         elementNewGame.show()
         elementStopGame.hide()
         elementJoysticks.show()
+        elementPostGame.hide()
 
         if (typeof stopDinoInterval !== "undefined") {
             stopDinoInterval()
@@ -495,6 +504,7 @@ function configureScreenElements() {
         elementPlay.show()
         elementJoysticks.hide()
         elementInGamePanel.hide()
+        elementPostGame.show()
 
         header.show(SHOW_HIDE_ANIMATION_DELAY)
         resume.show(SHOW_HIDE_ANIMATION_DELAY)
@@ -509,6 +519,7 @@ function configureScreenElements() {
         elementStopGame.show()
         elementNewGame.hide()
         elementJoysticks.show()
+        elementPostGame.hide()
 
         document.onkeydown = onKeyDown;
         document.onkeyup = onKeyUp;
@@ -522,6 +533,7 @@ function configureScreenElements() {
         elementNewGame.show()
         elementInGamePanel.hide()
         elementJoysticks.hide()
+        elementPostGame.show()
 
         stopGame()
     })
