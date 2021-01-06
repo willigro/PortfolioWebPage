@@ -51,8 +51,7 @@ function handleMenuSectionsSelection(sections, callback) {
         const s = $("#" + sections[i])
         const sT = s.position().top
         const t = document.documentElement.scrollTop
-
-        if (t + TWENTY_PERCENT_HEIGHT * 2 >= sT || i == sections.length - 1) {
+        if (t + TWENTY_PERCENT_HEIGHT >= sT || i == sections.length - 1) {
             $("#menu-section-" + sections[i]).css({ color: menuSectionSelectedColor })
             if (callback)
                 callback(sections[i]);

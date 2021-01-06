@@ -1,6 +1,11 @@
 $(document).ready(function() {
 
     function initAndroid() {
+        handleNumbers()
+        $("#menu-option-sections-android").show()
+
+        $("#android-numbers").height(window.innerHeight / 2);
+
         // last to first
         const sections = ["android-colaborated", "android-libs", "android-own", "android-numbers"]
         for (i in sections) {
@@ -13,9 +18,6 @@ $(document).ready(function() {
         $(window).scroll(function() {
             handleMenuSectionsSelection(sections)
         });
-
-        handleNumbers()
-        $("#menu-option-sections-android").show()
     }
 
     function configureSection(section) {

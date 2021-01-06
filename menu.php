@@ -13,6 +13,7 @@
                         <img class="links-profile-icon" src="dist/images/github-32px.png" alt="Github Profile link">
                     </a>
                 </div>
+                
                 <div id="menu-options" class="eight columns">
                     <div class="row">
                         <ul style="float: right;">
@@ -22,7 +23,7 @@
                     </div>
 
                     <div id="menu-option-sections-home" class="row menu-sections" style="display: none;">
-                        <ul style="float: right;">
+                        <ul style="float: right;" class="line-bottom">
                             <li><a href="#" id="menu-section-my-team">My team</a></li>
                             <li><a href="#" id="menu-section-skills">Skills</a></li>
                             <li><a href="#" id="menu-section-experience">Experience</a></li>
@@ -32,7 +33,7 @@
                     </div>
 
                     <div id="menu-option-sections-android" class="row menu-sections" style="display: none;">
-                        <ul style="float: right;">
+                        <ul style="float: right;" class="line-bottom">
                             <li><a href="#" id="menu-section-android-numbers">Numbers</a></li>
                             <li><a href="#" id="menu-section-android-own">Own</a></li>
                             <li><a href="#" id="menu-section-android-libs">Libs</a></li>
