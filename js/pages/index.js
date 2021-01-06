@@ -38,14 +38,14 @@ $(document).ready(function() {
     }
 
     function writeMyName() {
-        writeEachChar("my_name", "Hi, my name is Willi Guilherme R. O.", HEIGH_TIME_WRITER, LIGHT_MIN_WRITER, LIGHT_MAX_WRITER, function() {
+        writeEachCharColor("my_name", "Hi, my name is Willi Guilherme R. O.", HEIGH_TIME_WRITER, zeroRgb(), randomRgb(), function() {
             writeAndroid()
             handleContentInfo()
         })
     }
 
     function writeAndroid() {
-        writeEachChar("android", "And i'm a Android Developer.", MID_TIME_WRITER, MEDIUM_MIN_WRITER, MEDIUM_MAX_WRITER, function() {
+        writeEachChar("android", "I'm a Android Developer.", MID_TIME_WRITER, MEDIUM_MIN_WRITER, MEDIUM_MAX_WRITER, function() {
             writeAI()
             handleContentInfo()
         })
@@ -81,15 +81,17 @@ $(document).ready(function() {
 
     function writeThisSiteWasMaked() {
         writeEachChar("this-site", "This site was maked 100% in html, css and js with hard coding, no libs.", LOW_TIME_WRITER - 5, DARK_MIN_WRITER, DARK_MAX_WRITER, function() {
-            writeBackground()
-        })
-    }
+            // writeBackground()
 
-    function writeBackground() {
-        writeEachChar("the-background", "And the backgrounds are animations created in canvas.", LOW_TIME_WRITER - 5, DARK_MIN_WRITER, DARK_MAX_WRITER, function() {
             showOptions()
         })
     }
+
+    // function writeBackground() {
+    //     writeEachChar("the-background", "The backgrounds are animations created in canvas.", LOW_TIME_WRITER - 5, DARK_MIN_WRITER, DARK_MAX_WRITER, function() {
+    //         showOptions()
+    //     })
+    // }
 
 
     init();

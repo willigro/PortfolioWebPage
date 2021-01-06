@@ -61,3 +61,16 @@ function pop(array, item) {
         array.splice(index, 1);
     }
 }
+
+/**
+ * 
+ * Make generic?
+ * 
+ */
+function zeroRgb() {
+    return { r: 0, g: 0, b: 0 }
+}
+
+function randomRgb() {
+    return { r: randomMin(50, 255), g: randomMin(15, 255), b: randomMin(50, 255) }
+}

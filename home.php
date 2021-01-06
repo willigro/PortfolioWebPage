@@ -484,6 +484,7 @@ My team:
 <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <script src="js/write_text.js"></script>
+<script src="js/color_text.js"></script>
 <script src="js/pages/home.js"></script>
 <script src="js/dino_google_game_small/constants.js"></script>
 <script src="js/dino_google_game_small/neuralnetwork.js"></script>

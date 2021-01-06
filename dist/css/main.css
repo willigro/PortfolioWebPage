@@ -28,6 +28,7 @@
     /* Texts size */
     --main-text-extra-large: 68px;
     --main-text-size-title: 34px;
+    --main-text-size-title-large: 42px;
     --main-text-size-subtitle: 28px;
     --main-text-size-content: 20px;
     --main-text-size-content-small: 17px;
@@ -301,7 +302,7 @@ TEXT
 
 .p-title-secondary {
     margin-bottom: var(--main-text-margin-bottom-content);
-    font-size: var(--main-text-size-title);
+    font-size: var(--main-text-size-title-large);
 }
 
 .p-title {

@@ -155,7 +155,7 @@ $(document).ready(function() {
             case SECTION_RESUME:
                 if (!resumeDone) {
                     resumeDone = true
-                    writeEachChar("resume-subtitle", "A little bit about me and my Android path", MID_TIME_WRITER, LIGHT_MIN_WRITER, LIGHT_MAX_WRITER)
+                    writeEachCharColor("resume-subtitle", "A little bit about me and my Android path", MID_TIME_WRITER, zeroRgb(), randomRgb())
                 }
                 break;
         }

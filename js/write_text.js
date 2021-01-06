@@ -53,6 +53,12 @@ function writeEachChar(id, text, delay, minColor, maxColor, callback) {
     }, delay);
 }
 
+/**
+ * 
+ * i'll need a rgb min and man, one value to each one MIN (R: 30, G: 80, B: 150) -> MAX (R: 80, G: 120, B: 200)
+ * To dont impact others files, i'll create a new write_text -> color_text
+ * 
+ */
 class ActualChar {
     constructor(char, initialColor, max) {
         this.char = char
