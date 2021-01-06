@@ -32,7 +32,7 @@ class HtmlGenerator
       }
 
       $html .= '<div class="eight columns">
-              <p class="p-title">
+              <p class="p-title p-shine">
                 ' . $obj->title . '
               </p>
               <p>
