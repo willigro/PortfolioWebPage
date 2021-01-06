@@ -1,5 +1,8 @@
 var maxWidth = window.innerWidth
 var maxHeight = window.innerHeight
+const FIVE_PERCENT_HEIGHT = valueFromPercentage(5, window.innerHeight)
+const TEN_PERCENT_HEIGHT = valueFromPercentage(10, window.innerHeight)
+const TWENTY_PERCENT_HEIGHT = valueFromPercentage(20, window.innerHeight)
 
 function random(limit) {
     return Math.floor(Math.random() * limit)

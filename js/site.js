@@ -1,7 +1,4 @@
 const SCROLLING_SMOOTH_TIME = 1500
-const FIVE_PERCENT_HEIGHT = valueFromPercentage(5, window.innerHeight)
-const TEN_PERCENT_HEIGHT = valueFromPercentage(10, window.innerHeight)
-const TWENTY_PERCENT_HEIGHT = valueFromPercentage(20, window.innerHeight)
 
 const menuSectionUnselectedColor = getComputedStyle(document.body).getPropertyValue('--main-text-color-menu-section');
 const menuSectionSelectedColor = getComputedStyle(document.body).getPropertyValue('--main-text-color-menu-section-selected');

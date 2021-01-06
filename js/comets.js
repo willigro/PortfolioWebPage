@@ -8,7 +8,7 @@ const COLOR_STAR_YELLOW = "rgba(255, 209, 71, 0.71)"
 const COLOR_STAR_RED = "rgba(206, 64, 9, 0.79)"
 const COLOR_STAR_BLUE = "rgba(37, 13, 222, 0.8)"
 
-const COMETS_COUNT = 25
+const COMETS_COUNT = 15
 const STARS_COUNT = 250
 
 var comets = []
